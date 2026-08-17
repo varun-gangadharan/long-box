@@ -147,6 +147,8 @@ npm run build
 
 ## Roadmap
 
+See the [implementation plan and Phase 3 design context](docs/IMPLEMENTATION_PLAN.md) for phase gates, the signature branching-path UX, provisional visual tokens, responsive behavior, and the Figma handoff checklist.
+
 1. **Foundation:** normalized schema, ComicVine client, ingestion, validation queries.
 2. **Reading-path engine:** deterministic candidate grouping, ranking, reasons, and API.
 3. **Product UI:** accessible multi-character search and recommendation details.
