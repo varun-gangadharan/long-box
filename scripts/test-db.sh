@@ -14,9 +14,11 @@ trap cleanup EXIT
 initdb -D "$pgdata" -A trust >/dev/null
 pg_ctl -D "$pgdata" -o "-p $port" -w start >/dev/null
 createdb -p "$port" long_box_test
-psql -p "$port" -d long_box_test -v ON_ERROR_STOP=1 \
-  -f supabase/migrations/202608170001_phase_1_foundation.sql >/dev/null
-psql -p "$port" -d long_box_test -v ON_ERROR_STOP=1 \
-  -f supabase/tests/phase_1.sql >/dev/null
+for migration in supabase/migrations/*.sql; do
+  psql -p "$port" -d long_box_test -v ON_ERROR_STOP=1 -f "$migration" >/dev/null
+done
+for test_file in supabase/tests/*.sql; do
+  psql -p "$port" -d long_box_test -v ON_ERROR_STOP=1 -f "$test_file" >/dev/null
+done
 
-echo "Database migration and integration assertions passed."
+echo "Database migrations and integration assertions passed."

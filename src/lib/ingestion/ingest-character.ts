@@ -131,6 +131,7 @@ async function upsertCharacters(
       publisher_id: character.publisher
         ? publisherIds.get(character.publisher.comicvineId)
         : null,
+      details_loaded_at: new Date().toISOString(),
     },
     { onConflict: "comicvine_id" },
   );
