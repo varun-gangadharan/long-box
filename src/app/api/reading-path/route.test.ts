@@ -53,6 +53,24 @@ describe("GET /api/reading-path", () => {
     expect(build).not.toHaveBeenCalled();
   });
 
+  it("keeps configuration failures inside the API error contract", async () => {
+    const consoleError = vi.spyOn(console, "error").mockImplementation(() => undefined);
+    const response = await handleReadingPathRequest(
+      new Request("http://localhost/api/reading-path?characters=Daredevil"),
+      () => {
+        throw new Error("missing environment");
+      },
+    );
+    expect(response.status).toBe(500);
+    expect(await response.json()).toEqual({
+      error: {
+        code: "internal_error",
+        message: "The reading path could not be generated.",
+      },
+    });
+    consoleError.mockRestore();
+  });
+
   it("returns 404 when a character is not found", async () => {
     const build = vi.fn().mockRejectedValue(new CharacterNotFoundError("Unknown"));
     const response = await handleReadingPathRequest(

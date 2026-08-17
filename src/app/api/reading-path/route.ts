@@ -12,17 +12,18 @@ import {
 } from "@/lib/reading-path/service";
 
 export async function GET(request: Request): Promise<Response> {
-  return handleReadingPathRequest(request, databaseFromEnv());
+  return handleReadingPathRequest(request, databaseFromEnv);
 }
 
 export async function handleReadingPathRequest(
   request: Request,
-  database: SupabaseClient,
+  database: SupabaseClient | (() => SupabaseClient),
   build: typeof buildReadingPath = buildReadingPath,
 ): Promise<Response> {
   try {
     const names = parseCharacterQuery(new URL(request.url).searchParams.get("characters"));
-    const result = await build(database, names);
+    const client = typeof database === "function" ? database() : database;
+    const result = await build(client, names);
     return Response.json(result);
   } catch (error) {
     if (error instanceof InvalidReadingPathQueryError) {

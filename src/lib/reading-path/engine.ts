@@ -44,11 +44,7 @@ export function calculateFeatures(candidate: ReadingCandidate): RankingFeatures 
           ? contiguousRatio(candidate.issues)
           : 0.2,
     arcScore:
-      candidate.type === "story_arc"
-        ? 1
-        : candidate.issues.every((issue) => issue.storyArcs.length > 0)
-          ? 0.6
-          : 0,
+      candidate.type === "story_arc" ? 1 : hasSharedStoryArc(candidate.issues) ? 0.6 : 0,
     densityScore,
     metadataCompleteness,
     brevityScore: brevityScore(candidate.issues.length),
@@ -90,7 +86,9 @@ export function explainCandidate(
     );
   }
   if (features.densityScore >= 0.5) {
-    reasons.push("The requested characters make up at least half of the credited cast.");
+    reasons.push(
+      "Across this option, the requested characters average at least half of the credited cast.",
+    );
   }
   if (candidate.issues.length <= 6) {
     reasons.push(`This option contains ${candidate.issues.length} issue${candidate.issues.length === 1 ? "" : "s"}.`);
@@ -174,7 +172,14 @@ function issueRunCandidates(issues: CandidateIssue[]): ReadingCandidate[] {
 }
 
 function candidateForRun(issues: CandidateIssue[]): ReadingCandidate {
-  const sorted = sortIssues(issues);
+  const sorted =
+    issues.length > 1 && issues.every(({ issueNumber }) => integerIssueNumber(issueNumber) !== null)
+      ? [...issues].sort(
+          (left, right) =>
+            (integerIssueNumber(left.issueNumber) ?? 0) -
+            (integerIssueNumber(right.issueNumber) ?? 0),
+        )
+      : sortIssues(issues);
   const first = sorted[0];
   const last = sorted.at(-1) ?? first;
   const type = sorted.length > 1 ? "issue_run" : "single_issue";
@@ -221,6 +226,16 @@ function contiguousRatio(issues: CandidateIssue[]): number {
     }
   }
   return contiguousPairs / (sorted.length - 1);
+}
+
+function hasSharedStoryArc(issues: CandidateIssue[]): boolean {
+  if (!issues.length) return false;
+  const shared = new Set(issues[0].storyArcs.map(({ id }) => id));
+  for (const issue of issues.slice(1)) {
+    const issueArcs = new Set(issue.storyArcs.map(({ id }) => id));
+    for (const id of shared) if (!issueArcs.has(id)) shared.delete(id);
+  }
+  return shared.size > 0;
 }
 
 function brevityScore(length: number): number {

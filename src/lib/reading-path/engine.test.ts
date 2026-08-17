@@ -50,6 +50,15 @@ describe("reading-path candidate generation", () => {
     );
   });
 
+  it("keeps numeric reading order when cover dates are missing or out of order", () => {
+    const [candidate] = generateCandidates([
+      issue("1", { coverDate: "2021-12-01" }),
+      issue("2", { coverDate: null }),
+    ]).filter(({ type }) => type === "issue_run");
+    expect(candidate.title).toBe("Daredevil #1–2");
+    expect(candidate.issues.map(({ issueNumber }) => issueNumber)).toEqual(["1", "2"]);
+  });
+
   it("leaves non-consecutive and non-numeric issues separate", () => {
     const candidates = generateCandidates([issue("1"), issue("3"), issue("Annual")]);
     expect(candidates.map(({ type }) => type)).toEqual([
@@ -84,6 +93,19 @@ describe("reading-path ranking", () => {
     expect(ranked.score).toBe(1);
     expect(ranked.reasons).toContain("All requested characters appear in every issue.");
     expect(ranked.reasons).toContain("These issues share the “Shared Arc” story arc.");
+  });
+
+  it("does not award arc continuity for unrelated arcs", () => {
+    const unrelatedArc = {
+      id: "30000000-0000-4000-8000-000000000002",
+      comicvineId: 2,
+      name: "Other Arc",
+    };
+    const [candidate] = generateCandidates([
+      issue("1", { storyArcs: [arc] }),
+      issue("2", { storyArcs: [unrelatedArc] }),
+    ]).filter(({ type }) => type === "issue_run");
+    expect(calculateFeatures(candidate).arcScore).toBe(0);
   });
 
   it("penalizes an isolated appearance", () => {

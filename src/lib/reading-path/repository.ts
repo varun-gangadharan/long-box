@@ -11,7 +11,7 @@ const resolvedRowSchema = z.object({
   description: z.string().nullable(),
   image_url: z.string().nullable(),
   publisher_name: z.string().nullable(),
-  details_loaded_at: z.string().nullable(),
+  is_canonical: z.boolean(),
 });
 
 const candidateRowSchema = z.object({
@@ -74,8 +74,8 @@ export async function resolveCharacters(
     const matches = rows.filter((row) => row.requested_name === requestedName);
     if (!matches.length) throw new CharacterNotFoundError(requestedName);
 
-    const hydrated = matches.filter((row) => row.details_loaded_at !== null);
-    const selected = matches.length === 1 ? matches[0] : hydrated.length === 1 ? hydrated[0] : null;
+    const canonical = matches.filter((row) => row.is_canonical);
+    const selected = matches.length === 1 ? matches[0] : canonical.length === 1 ? canonical[0] : null;
     if (!selected) {
       throw new AmbiguousCharacterError(requestedName, matches.map(toResolvedCharacter));
     }

@@ -15,7 +15,7 @@ const baseRow = {
   description: null,
   image_url: null,
   publisher_name: "Marvel",
-  details_loaded_at: "2026-08-17T00:00:00Z",
+  is_canonical: true,
 };
 
 function databaseReturning(data: unknown): SupabaseClient {
@@ -31,12 +31,12 @@ describe("character resolution", () => {
     ]);
   });
 
-  it("prefers the one fully ingested record among same-name stubs", async () => {
+  it("uses the catalog-selected canonical record among same-name choices", async () => {
     const stub = {
       ...baseRow,
       id: "40000000-0000-4000-8000-000000000002",
       comicvine_id: 2,
-      details_loaded_at: null,
+      is_canonical: false,
     };
     const [resolved] = await resolveCharacters(
       databaseReturning([stub, baseRow]),
