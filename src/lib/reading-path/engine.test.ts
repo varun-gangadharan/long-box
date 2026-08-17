@@ -108,6 +108,27 @@ describe("reading-path ranking", () => {
     expect(calculateFeatures(candidate).arcScore).toBe(0);
   });
 
+  it("explains only the requested story arc without inventing character coverage", () => {
+    const overlappingArc = {
+      id: "30000000-0000-4000-8000-000000000003",
+      comicvineId: 3,
+      name: "Overlapping Arc",
+    };
+    const candidates = generateCandidates(
+      [
+        issue("1", { storyArcs: [arc, overlappingArc], requestedCharacterCount: 0 }),
+        issue("2", { storyArcs: [arc, overlappingArc], requestedCharacterCount: 0 }),
+      ],
+      "story_arc",
+      arc.id,
+    );
+    expect(candidates.filter(({ type }) => type === "story_arc")).toHaveLength(1);
+    const candidate = candidates.find(({ type }) => type === "story_arc")!;
+    const [ranked] = rankCandidates([candidate]);
+    expect(ranked.features.densityScore).toBe(0);
+    expect(ranked.reasons[0]).toBe("Every issue is attached to the requested story arc.");
+  });
+
   it("penalizes an isolated appearance", () => {
     const [candidate] = generateCandidates([issue("1", { characterCount: 10 })]);
     const features = calculateFeatures(candidate);
@@ -118,6 +139,7 @@ describe("reading-path ranking", () => {
   it("uses a stable ID tie-breaker", () => {
     const base: Omit<ReadingCandidate, "id"> = {
       type: "single_issue",
+      queryType: "characters",
       title: "Same",
       issues: [issue("1")],
       storyArc: null,

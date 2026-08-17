@@ -1,7 +1,11 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { z } from "zod";
 
-import type { CandidateIssue, ResolvedCharacter } from "./types";
+import type {
+  CandidateIssue,
+  ResolvedCharacter,
+  ResolvedStoryArc,
+} from "./types";
 
 const resolvedRowSchema = z.object({
   requested_name: z.string(),
@@ -14,6 +18,14 @@ const resolvedRowSchema = z.object({
   is_canonical: z.boolean(),
 });
 
+const storyArcRowSchema = z.object({
+  requested_name: z.string(),
+  id: z.string().uuid(),
+  comicvine_id: z.coerce.number().int().positive(),
+  name: z.string(),
+  description: z.string().nullable(),
+});
+
 const candidateRowSchema = z.object({
   issue_id: z.string().uuid(),
   comicvine_id: z.coerce.number().int().positive(),
@@ -24,8 +36,8 @@ const candidateRowSchema = z.object({
   volume_id: z.string().uuid(),
   volume_name: z.string(),
   volume_start_year: z.number().int().nullable(),
-  character_count: z.number().int().positive(),
-  requested_character_count: z.number().int().positive(),
+  character_count: z.number().int().nonnegative(),
+  requested_character_count: z.number().int().nonnegative(),
   story_arcs: z.array(
     z.object({
       id: z.string().uuid(),
@@ -49,6 +61,23 @@ export class AmbiguousCharacterError extends Error {
   ) {
     super(`Character name is ambiguous: ${requestedName}`);
     this.name = "AmbiguousCharacterError";
+  }
+}
+
+export class StoryArcNotFoundError extends Error {
+  constructor(readonly requestedName: string) {
+    super(`Story arc not found: ${requestedName}`);
+    this.name = "StoryArcNotFoundError";
+  }
+}
+
+export class AmbiguousStoryArcError extends Error {
+  constructor(
+    readonly requestedName: string,
+    readonly matches: ResolvedStoryArc[],
+  ) {
+    super(`Story arc name is ambiguous: ${requestedName}`);
+    this.name = "AmbiguousStoryArcError";
   }
 }
 
@@ -83,6 +112,22 @@ export async function resolveCharacters(
   });
 }
 
+export async function resolveStoryArc(
+  database: SupabaseClient,
+  requestedName: string,
+): Promise<ResolvedStoryArc> {
+  const { data, error } = await database.rpc("resolve_story_arc_names", {
+    requested_names: [requestedName],
+  });
+  if (error) throw new Error(`Story arc resolution failed: ${error.message}`);
+  const rows = z.array(storyArcRowSchema).parse(data ?? []);
+  if (!rows.length) throw new StoryArcNotFoundError(requestedName);
+  if (rows.length > 1) {
+    throw new AmbiguousStoryArcError(requestedName, rows.map(toResolvedStoryArc));
+  }
+  return toResolvedStoryArc(rows[0]);
+}
+
 export async function findCandidateIssues(
   database: SupabaseClient,
   characterIds: string[],
@@ -91,7 +136,21 @@ export async function findCandidateIssues(
     requested_character_ids: characterIds,
   });
   if (error) throw new Error(`Candidate lookup failed: ${error.message}`);
+  return mapCandidateRows(data);
+}
 
+export async function findStoryArcCandidateIssues(
+  database: SupabaseClient,
+  storyArcId: string,
+): Promise<CandidateIssue[]> {
+  const { data, error } = await database.rpc("reading_path_story_arc_issues", {
+    requested_story_arc_id: storyArcId,
+  });
+  if (error) throw new Error(`Story arc candidate lookup failed: ${error.message}`);
+  return mapCandidateRows(data);
+}
+
+function mapCandidateRows(data: unknown): CandidateIssue[] {
   return z.array(candidateRowSchema).parse(data ?? []).map((row) => ({
     id: row.issue_id,
     comicvineId: row.comicvine_id,
@@ -108,6 +167,15 @@ export async function findCandidateIssues(
     requestedCharacterCount: row.requested_character_count,
     storyArcs: row.story_arcs,
   }));
+}
+
+function toResolvedStoryArc(row: z.infer<typeof storyArcRowSchema>): ResolvedStoryArc {
+  return {
+    id: row.id,
+    comicvineId: row.comicvine_id,
+    name: row.name,
+    description: row.description,
+  };
 }
 
 function toResolvedCharacter(row: z.infer<typeof resolvedRowSchema>): ResolvedCharacter {

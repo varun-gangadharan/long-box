@@ -13,7 +13,8 @@ values ('10000000-0000-0000-0000-000000000020', 120, 'Test Volume', 2020, '10000
 
 insert into issues (id, comicvine_id, volume_id, issue_number, name, cover_date) values
   ('10000000-0000-0000-0000-000000000030', 130, '10000000-0000-0000-0000-000000000020', '1', 'Shared', '2020-01-01'),
-  ('10000000-0000-0000-0000-000000000031', 131, '10000000-0000-0000-0000-000000000020', '2', 'Daredevil only', '2020-02-01');
+  ('10000000-0000-0000-0000-000000000031', 131, '10000000-0000-0000-0000-000000000020', '2', 'Daredevil only', '2020-02-01'),
+  ('10000000-0000-0000-0000-000000000032', 132, '10000000-0000-0000-0000-000000000020', '3', 'Arc only', '2020-03-01');
 
 insert into issue_characters (issue_id, character_id) values
   ('10000000-0000-0000-0000-000000000030', '10000000-0000-0000-0000-000000000010'),
@@ -22,8 +23,9 @@ insert into issue_characters (issue_id, character_id) values
 
 insert into story_arcs (id, comicvine_id, name)
 values ('10000000-0000-0000-0000-000000000040', 140, 'Test Arc');
-insert into issue_story_arcs (issue_id, story_arc_id)
-values ('10000000-0000-0000-0000-000000000030', '10000000-0000-0000-0000-000000000040');
+insert into issue_story_arcs (issue_id, story_arc_id) values
+  ('10000000-0000-0000-0000-000000000030', '10000000-0000-0000-0000-000000000040'),
+  ('10000000-0000-0000-0000-000000000032', '10000000-0000-0000-0000-000000000040');
 
 do $$
 declare
@@ -31,6 +33,7 @@ declare
   candidate_count integer;
   candidate_characters integer;
   candidate_arcs integer;
+  arc_issue_count integer;
 begin
   select count(*) into resolved_count
   from resolve_character_names(array['spider man']);
@@ -58,6 +61,18 @@ begin
   end if;
   if candidate_arcs <> 1 then
     raise exception 'candidate story arcs failed: got %', candidate_arcs;
+  end if;
+
+  select count(*) into resolved_count
+  from resolve_story_arc_names(array['test-arc']);
+  if resolved_count <> 1 then
+    raise exception 'story arc resolution failed: got %', resolved_count;
+  end if;
+
+  select count(*) into arc_issue_count
+  from reading_path_story_arc_issues('10000000-0000-0000-0000-000000000040');
+  if arc_issue_count <> 2 then
+    raise exception 'story arc issue lookup failed: got %', arc_issue_count;
   end if;
 end;
 $$;

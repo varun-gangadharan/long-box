@@ -15,17 +15,27 @@ export const RANKING_WEIGHTS = {
   isolatedAppearancePenalty: 0.1,
 } as const;
 
-export function generateCandidates(issues: CandidateIssue[]): ReadingCandidate[] {
-  return [...storyArcCandidates(issues), ...issueRunCandidates(issues)];
+export function generateCandidates(
+  issues: CandidateIssue[],
+  queryType: ReadingCandidate["queryType"] = "characters",
+  requestedStoryArcId?: string,
+): ReadingCandidate[] {
+  return [
+    ...storyArcCandidates(issues, queryType, requestedStoryArcId),
+    ...issueRunCandidates(issues, queryType),
+  ];
 }
 
 export function calculateFeatures(candidate: ReadingCandidate): RankingFeatures {
   const requestedCharacterCoverage = candidate.issues.length ? 1 : 0;
-  const densityScore = average(
-    candidate.issues.map((issue) =>
-      clamp(issue.requestedCharacterCount / Math.max(issue.characterCount, 1)),
-    ),
-  );
+  const densityScore =
+    candidate.queryType === "story_arc"
+      ? 0
+      : average(
+          candidate.issues.map((issue) =>
+            clamp(issue.requestedCharacterCount / Math.max(issue.characterCount, 1)),
+          ),
+        );
   const metadataCompleteness = average(
     candidate.issues.map(
       (issue) =>
@@ -49,7 +59,9 @@ export function calculateFeatures(candidate: ReadingCandidate): RankingFeatures 
     metadataCompleteness,
     brevityScore: brevityScore(candidate.issues.length),
     isolatedAppearancePenalty:
-      candidate.type === "single_issue" && candidate.issues[0].storyArcs.length === 0
+      candidate.queryType === "characters" &&
+      candidate.type === "single_issue" &&
+      candidate.issues[0].storyArcs.length === 0
         ? 1
         : 0,
   };
@@ -72,9 +84,11 @@ export function explainCandidate(
   features: RankingFeatures,
 ): string[] {
   const reasons = [
-    candidate.issues[0].requestedCharacterCount === 1
-      ? "The requested character appears in every issue."
-      : "All requested characters appear in every issue.",
+    candidate.queryType === "story_arc"
+      ? "Every issue is attached to the requested story arc."
+      : candidate.issues[0].requestedCharacterCount === 1
+        ? "The requested character appears in every issue."
+        : "All requested characters appear in every issue.",
   ];
 
   if (candidate.type === "story_arc" && candidate.storyArc) {
@@ -85,7 +99,7 @@ export function explainCandidate(
       `The issues form a consecutive ${candidate.issues.length}-issue run in the same volume.`,
     );
   }
-  if (features.densityScore >= 0.5) {
+  if (candidate.queryType === "characters" && features.densityScore >= 0.5) {
     reasons.push(
       "Across this option, the requested characters average at least half of the credited cast.",
     );
@@ -117,10 +131,15 @@ export function rankCandidates(candidates: ReadingCandidate[]): RankedRecommenda
     );
 }
 
-function storyArcCandidates(issues: CandidateIssue[]): ReadingCandidate[] {
+function storyArcCandidates(
+  issues: CandidateIssue[],
+  queryType: ReadingCandidate["queryType"],
+  requestedStoryArcId?: string,
+): ReadingCandidate[] {
   const grouped = new Map<string, { arc: CandidateIssue["storyArcs"][number]; issues: CandidateIssue[] }>();
   for (const issue of issues) {
     for (const arc of issue.storyArcs) {
+      if (queryType === "story_arc" && arc.id !== requestedStoryArcId) continue;
       const group = grouped.get(arc.id) ?? { arc, issues: [] };
       group.issues.push(issue);
       grouped.set(arc.id, group);
@@ -132,13 +151,17 @@ function storyArcCandidates(issues: CandidateIssue[]): ReadingCandidate[] {
     .map(({ arc, issues: arcIssues }) => ({
       id: `arc:${arc.id}`,
       type: "story_arc" as const,
+      queryType,
       title: arc.name,
       issues: sortIssues(arcIssues),
       storyArc: arc,
     }));
 }
 
-function issueRunCandidates(issues: CandidateIssue[]): ReadingCandidate[] {
+function issueRunCandidates(
+  issues: CandidateIssue[],
+  queryType: ReadingCandidate["queryType"],
+): ReadingCandidate[] {
   const byVolume = Map.groupBy(issues, (issue) => issue.volume.id);
   const candidates: ReadingCandidate[] = [];
 
@@ -155,7 +178,7 @@ function issueRunCandidates(issues: CandidateIssue[]): ReadingCandidate[] {
 
     const flush = () => {
       if (!run.length) return;
-      candidates.push(candidateForRun(run));
+      candidates.push(candidateForRun(run, queryType));
       run = [];
     };
 
@@ -165,13 +188,16 @@ function issueRunCandidates(issues: CandidateIssue[]): ReadingCandidate[] {
       previous = entry.number;
     }
     flush();
-    candidates.push(...nonNumeric.map((issue) => candidateForRun([issue])));
+    candidates.push(...nonNumeric.map((issue) => candidateForRun([issue], queryType)));
   }
 
   return candidates;
 }
 
-function candidateForRun(issues: CandidateIssue[]): ReadingCandidate {
+function candidateForRun(
+  issues: CandidateIssue[],
+  queryType: ReadingCandidate["queryType"],
+): ReadingCandidate {
   const sorted =
     issues.length > 1 && issues.every(({ issueNumber }) => integerIssueNumber(issueNumber) !== null)
       ? [...issues].sort(
@@ -189,6 +215,7 @@ function candidateForRun(issues: CandidateIssue[]): ReadingCandidate {
         ? `run:${first.volume.id}:${first.comicvineId}-${last.comicvineId}`
         : `issue:${first.id}`,
     type,
+    queryType,
     title:
       type === "issue_run"
         ? `${first.volume.name} #${first.issueNumber}–${last.issueNumber}`

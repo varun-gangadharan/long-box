@@ -3,12 +3,14 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 import { databaseFromEnv } from "@/lib/db/client";
 import {
   AmbiguousCharacterError,
+  AmbiguousStoryArcError,
   CharacterNotFoundError,
+  StoryArcNotFoundError,
 } from "@/lib/reading-path/repository";
 import {
   buildReadingPath,
   InvalidReadingPathQueryError,
-  parseCharacterQuery,
+  parseReadingPathQuery,
 } from "@/lib/reading-path/service";
 
 export async function GET(request: Request): Promise<Response> {
@@ -21,9 +23,9 @@ export async function handleReadingPathRequest(
   build: typeof buildReadingPath = buildReadingPath,
 ): Promise<Response> {
   try {
-    const names = parseCharacterQuery(new URL(request.url).searchParams.get("characters"));
+    const query = parseReadingPathQuery(new URL(request.url).searchParams);
     const client = typeof database === "function" ? database() : database;
-    const result = await build(client, names);
+    const result = await build(client, query);
     return Response.json(result);
   } catch (error) {
     if (error instanceof InvalidReadingPathQueryError) {
@@ -36,6 +38,17 @@ export async function handleReadingPathRequest(
     }
     if (isAmbiguousCharacterError(error)) {
       return errorResponse(409, "ambiguous_character", error.message, {
+        requestedName: error.requestedName,
+        matches: error.matches,
+      });
+    }
+    if (isStoryArcNotFoundError(error)) {
+      return errorResponse(404, "story_arc_not_found", error.message, {
+        requestedName: error.requestedName,
+      });
+    }
+    if (isAmbiguousStoryArcError(error)) {
+      return errorResponse(409, "ambiguous_story_arc", error.message, {
         requestedName: error.requestedName,
         matches: error.matches,
       });
@@ -61,6 +74,28 @@ function isAmbiguousCharacterError(error: unknown): error is AmbiguousCharacterE
     error instanceof AmbiguousCharacterError ||
     (error instanceof Error &&
       error.name === "AmbiguousCharacterError" &&
+      "requestedName" in error &&
+      typeof error.requestedName === "string" &&
+      "matches" in error &&
+      Array.isArray(error.matches))
+  );
+}
+
+function isStoryArcNotFoundError(error: unknown): error is StoryArcNotFoundError {
+  return (
+    error instanceof StoryArcNotFoundError ||
+    (error instanceof Error &&
+      error.name === "StoryArcNotFoundError" &&
+      "requestedName" in error &&
+      typeof error.requestedName === "string")
+  );
+}
+
+function isAmbiguousStoryArcError(error: unknown): error is AmbiguousStoryArcError {
+  return (
+    error instanceof AmbiguousStoryArcError ||
+    (error instanceof Error &&
+      error.name === "AmbiguousStoryArcError" &&
       "requestedName" in error &&
       typeof error.requestedName === "string" &&
       "matches" in error &&

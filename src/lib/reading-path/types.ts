@@ -7,6 +7,13 @@ export type ResolvedCharacter = {
   publisherName: string | null;
 };
 
+export type ResolvedStoryArc = {
+  id: string;
+  comicvineId: number;
+  name: string;
+  description: string | null;
+};
+
 export type StoryArcReference = {
   id: string;
   comicvineId: number;
@@ -35,6 +42,7 @@ export type CandidateType = "single_issue" | "issue_run" | "story_arc";
 export type ReadingCandidate = {
   id: string;
   type: CandidateType;
+  queryType: "characters" | "story_arc";
   title: string;
   issues: CandidateIssue[];
   storyArc: StoryArcReference | null;
@@ -59,6 +67,7 @@ export type RankedRecommendation = ReadingCandidate & {
 export type ReadingPathResult = {
   query: {
     characters: ResolvedCharacter[];
+    storyArc: ResolvedStoryArc | null;
   };
   recommendations: RankedRecommendation[];
 };
