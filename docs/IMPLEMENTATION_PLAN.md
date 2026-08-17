@@ -34,6 +34,24 @@ A useful shorthand is: *The Criterion Collection for comics meets a thoughtful i
 
 The primary personality comes from typography, composition, comic covers, and the reading-path interaction. Comic-themed decoration stays restrained.
 
+### Supplied design reference
+
+The supplied side-by-side homepage and Daredevil reading-page reference is preserved at [`docs/reference/long-box-figma-overview.png`](reference/long-box-figma-overview.png). It is the visual baseline when prose and implementation choices are ambiguous.
+
+Observed direction to preserve:
+
+- a nearly black editorial canvas with flat charcoal surfaces and thin, low-contrast dividers;
+- a compact three-zone header: wordmark, restrained navigation, then search/sign-in utilities;
+- a centered homepage statement and search control surrounded by substantial negative space;
+- small blue section kickers paired with large condensed/editorial serif headings;
+- cover-led discovery sections with varied composition: standing covers, wide first-read rows, and paired-cover stories;
+- a quiet character introduction followed by a large `START HERE` feature where the cover and title dominate;
+- curated path rows made from three restrained issue nodes connected by subtle arrows;
+- square or barely rounded surfaces, almost no decorative shadow, and royal blue reserved for actions, links, years, and micro-labels;
+- cover artwork as the main color source; missing-art placeholders remain visually quiet.
+
+The screenshot establishes hierarchy and composition, not final responsive behavior. It does not show enough detail to identify exact font files, mobile states, focus states, or motion.
+
 ### Explicit anti-patterns
 
 Do not use:
@@ -46,18 +64,18 @@ Do not use:
 - raw ComicVine database layouts;
 - a generic chatbot as the main interaction.
 
-## Provisional visual tokens
+## Screenshot-grounded visual tokens
 
-These values come from the written brief and remain **provisional until the Figma source is inspected**. Phase 3 must replace or confirm them in an authoritative `DESIGN.md` before components are built.
+The canvas, surface, border, and blue below are sampled from the supplied PNG. Text and error colors reconcile that reference with the accessibility requirements in the written brief. Phase 3 records final CSS values and contrast checks in `DESIGN.md` before components are built.
 
-| Role | Provisional value | Intent |
+| Role | Working value | Intent |
 | --- | --- | --- |
-| Canvas | `#151412` | Warm ink-black, never pure black or blue-gray. |
-| Elevated surface | `#201F1C` | Menus, disclosures, and restrained content surfaces. |
-| Primary text | `#F1EEE7` | Warm paper white. |
+| Canvas | `#121213` | Near-black editorial field from the supplied design. |
+| Elevated surface | `#181819` | Search, feature, and reading-path surfaces. |
+| Primary text | `#F1EEE7` | Warm paper white; less harsh than pure white. |
 | Secondary text | `#AAA69D` | Metadata and supporting copy; verify contrast. |
-| Border | `#3A3832` | Low-contrast warm divider. |
-| Brand blue | `#2864B7` | Print-inspired royal blue for selected states, links, path nodes, and primary actions. |
+| Border | `#272727` | Screenshot-sampled low-contrast divider. |
+| Brand blue | `#205DE3` | Screenshot-sampled royal blue for actions, links, years, selected states, and path emphasis. |
 | Error | `#C95C54` | Calm, legible destructive/error state. |
 
 Color outside this restrained system should come mainly from comic-cover artwork. Every final foreground/background pairing must meet WCAG AA.
@@ -71,7 +89,7 @@ Implementation rules:
 - large display type is a brand element, not decoration;
 - body copy stays readable and relatively neutral;
 - uppercase sans-serif micro-labels such as `START HERE`, `MODERN`, and `7 ISSUES` are sparse and carefully tracked;
-- final font families and exact scale come from the Figma inspection and are recorded in `DESIGN.md`;
+- the supplied screenshot requires a high-contrast condensed/editorial serif plus neutral sans; exact, legally shippable font families and scale are recorded in `DESIGN.md` before UI implementation;
 - no default “Inter everywhere” implementation.
 
 ## Layout and material
@@ -163,21 +181,18 @@ Required accessibility:
 - readable line lengths and type sizes;
 - no information available only through color, motion, or hover.
 
-## Figma handoff checklist
+## Remaining design handoff
 
-A Figma inspection must capture and reconcile:
+The screenshot replaces the blocked Figma MCP workflow for visual direction. Before Phase 3 implementation, `DESIGN.md` must make the remaining choices explicit:
 
-- file/page/frame names and the most recent Long Box screens;
-- exact colors and contrast pairings;
-- font families, weights, line heights, and tracking;
+- legally shippable font families, weights, line heights, and tracking;
 - grid, content widths, spacing scale, and breakpoints;
-- radii, borders, shadows, cover aspect ratios, and image treatment;
-- component variants and interaction states;
-- desktop/mobile reading-path behavior;
-- loading, empty, error, and reduced-motion intent;
-- reusable assets that may legally ship in the repository.
+- radii, borders, shadows, cover aspect ratios, and missing-cover treatment;
+- component interaction, loading, empty, error, focus, and reduced-motion states;
+- desktop branching and the intentionally different mobile path;
+- which supplied or ComicVine assets may legally ship or display.
 
-After inspection, write `DESIGN.md` as the single exact implementation specification and note any difference between the Figma source and this brief.
+`DESIGN.md` is the exact implementation specification and must note any deliberate difference from the screenshot or written brief.
 
 ## Phase 3 design acceptance criteria
 
@@ -189,4 +204,4 @@ The UI phase is not complete until:
 - desktop branching and mobile vertical branching both work;
 - loading, error, empty, missing-cover, and partial-data states are intentional;
 - desktop, tablet, and mobile browser checks pass without overflow or console errors;
-- the implementation matches the approved Figma-derived `DESIGN.md` rather than ad hoc agent defaults.
+- the implementation matches the screenshot-grounded `DESIGN.md` rather than ad hoc agent defaults.
