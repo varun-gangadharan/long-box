@@ -1,36 +1,160 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Long Box
 
-## Getting Started
+**Explainable comic reading paths for people who do not know where to start.**
 
-First, run the development server:
+Long Box turns a character query such as **Daredevil** or **Spider-Man + Daredevil** into a grounded reading path. ComicVine supplies reference data; Long Box normalizes it in Postgres and will rank useful entry points with deterministic, inspectable logic instead of inventing reading orders.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+> Status: Phase 1 data foundation is implemented. The recommendation engine and product UI are intentionally deferred until ingestion is validated against a configured Supabase project.
+
+## Why this project exists
+
+Comic data is not a simple list of books. Characters cross titles, issue numbers restart across reboots, and story arcs span many-to-many relationships. Long Box treats that mess as a data and retrieval problem:
+
+- ingest typed ComicVine responses without exposing the API key;
+- normalize publishers, characters, volumes, issues, and story arcs locally;
+- preserve issue-to-character and issue-to-arc relationships;
+- answer set-intersection queries for multiple characters in SQL;
+- build explainable recommendations on top of verified facts.
+
+## Architecture
+
+```mermaid
+flowchart LR
+  CV[ComicVine REST API] -->|server-only typed client| I[Idempotent ingestion service]
+  I --> P[(Supabase Postgres)]
+  P --> Q[Validation and retrieval queries]
+  Q --> E[Reading-path engine — Phase 2]
+  E --> A[Next.js App Router API]
+  A --> U[Discovery UI — Phase 3]
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+The current code keeps boundaries small:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+src/lib/comicvine/   raw schemas, defensive parsing, normalized domain types
+src/lib/ingestion/   explicit ingestion orchestration and idempotent upserts
+src/lib/db/          server-side Supabase client and reusable queries
+supabase/migrations/ schema, indexes, RLS, and SQL retrieval functions
+supabase/tests/      deterministic database integration assertions
+scripts/             development seed and isolated Postgres test runner
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Phase 1 engineering highlights
 
-## Learn More
+- **Runtime validation:** Zod rejects malformed ComicVine payloads before persistence.
+- **Resilient API client:** pagination, timeouts, bounded retries, rate-limit responses, HTTP errors, and ComicVine application errors are handled explicitly.
+- **Separate data models:** raw ComicVine shapes do not leak into normalized application types.
+- **Idempotent persistence:** ComicVine IDs are unique per entity, join tables use composite primary keys, and ingestion uses conflict-aware upserts.
+- **SQL set intersection:** `issues_for_characters(text[])` returns only issues containing every requested character and includes the associated volume.
+- **Server-only secrets:** no credential uses a `NEXT_PUBLIC_` prefix; database tables have RLS enabled with no browser write policy.
+- **Deterministic validation:** unit fixtures require no network, and database assertions run in an ephemeral local Postgres cluster.
 
-To learn more about Next.js, take a look at the following resources:
+## Data model
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```mermaid
+erDiagram
+  PUBLISHERS ||--o{ CHARACTERS : publishes
+  PUBLISHERS ||--o{ VOLUMES : publishes
+  VOLUMES ||--o{ ISSUES : contains
+  ISSUES ||--o{ ISSUE_CHARACTERS : includes
+  CHARACTERS ||--o{ ISSUE_CHARACTERS : appears_in
+  ISSUES ||--o{ ISSUE_STORY_ARCS : belongs_to
+  STORY_ARCS ||--o{ ISSUE_STORY_ARCS : groups
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+All entities use internal UUID primary keys and unique ComicVine IDs. Lookup indexes cover case-insensitive character names, volume issues, reverse character joins, and reverse story-arc joins.
 
-## Deploy on Vercel
+## Run locally
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Prerequisites
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Node.js 22+
+- npm
+- a [ComicVine API key](https://comicvine.gamespot.com/api/)
+- a Supabase project
+- PostgreSQL command-line tools for `npm run test:db`
+
+### 1. Install
+
+```bash
+git clone https://github.com/varun-gangadharan/long-box.git
+cd long-box
+npm install
+cp .env.example .env.local
+```
+
+Set these server-only values in `.env.local`:
+
+```dotenv
+COMICVINE_API_KEY=...
+SUPABASE_URL=https://your-project.supabase.co
+SUPABASE_SERVICE_ROLE_KEY=...
+```
+
+Never commit `.env.local` or expose the service-role key to browser code.
+
+### 2. Apply the schema
+
+With the Supabase CLI linked to your project:
+
+```bash
+npx supabase link --project-ref YOUR_PROJECT_REF
+npx supabase db push
+```
+
+The migration is also readable at [`supabase/migrations/202608170001_phase_1_foundation.sql`](supabase/migrations/202608170001_phase_1_foundation.sql).
+
+### 3. Seed development data
+
+```bash
+npm run seed
+```
+
+This ingests up to 100 issues each for Daredevil and Spider-Man, then reports:
+
+- Daredevil issue count;
+- Spider-Man issue count;
+- issues containing both characters;
+- story arcs attached to Daredevil issues;
+- one shared issue with its volume.
+
+Pass a smaller per-character issue limit while developing:
+
+```bash
+npm run seed -- 25
+```
+
+Running the command again updates existing records and relationships instead of duplicating them.
+
+### 4. Validate
+
+```bash
+npm test
+npm run test:db
+npm run typecheck
+npm run lint
+npm run build
+```
+
+`npm run test:db` starts an isolated temporary Postgres instance, applies the migration, checks idempotent issue upserts, single-character retrieval, two-character intersection, story-arc retrieval, and volume joins, then removes the instance.
+
+## Current limitations
+
+- A live seed requires user-provided ComicVine and Supabase credentials; CI and unit tests never require paid or secret-backed network access.
+- ComicVine metadata can be incomplete. Nullable source fields are preserved, but a failed required detail request stops the run rather than overwriting known metadata with fallback nulls.
+- Relationship replacement is atomic, but the full multi-entity ingestion run spans several database requests; whole-run recovery hardening belongs in Phase 4.
+- Ranking and UI work have not started. Phase 2 will consume these validated SQL queries rather than bypassing them.
+
+## Roadmap
+
+1. **Foundation:** normalized schema, ComicVine client, ingestion, validation queries.
+2. **Reading-path engine:** deterministic candidate grouping, ranking, reasons, and API.
+3. **Product UI:** accessible multi-character search and recommendation details.
+4. **Production hardening:** measured query plans, caching where justified, CI, logging, and failure tests.
+5. **Optional intent parser:** an LLM may parse preferences, but factual recommendations remain database-backed.
+
+## Design principle
+
+> The model may interpret intent. Long Box determines facts.
+
+No LLM is required for the core product, and no LLM will be allowed to invent issue numbers, publication metadata, or reading order.
