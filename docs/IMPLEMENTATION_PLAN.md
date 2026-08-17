@@ -6,8 +6,8 @@ This document records phase gates and the product-design context that implementa
 
 | Phase | Status | Exit gate |
 | --- | --- | --- |
-| 1. Foundation and ingestion | In progress | Apply the migration to the configured Supabase project, run live ingestion twice, and verify all five validation queries. |
-| 2. Reading-path engine | Not started | Deterministic grouping, ranking, explanations, API tests, and measured queries. |
+| 1. Foundation and ingestion | Complete | Live migration, ingestion, duplicate rerun, and all five validation queries passed; see `PHASE_1_VALIDATION.md`. |
+| 2. Reading-path engine | Next | Deterministic grouping, ranking, explanations, API tests, and measured queries. |
 | 3. Product UI | Not started | Search and reading-path flows pass automated and real-browser validation. |
 | 4. Production hardening | Not started | Performance, reliability, security, CI, documentation, and smoke checks pass. |
 | 5. Optional intent parser | Deferred | Grounded structured intent improves usability without generating comic facts. |

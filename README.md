@@ -4,7 +4,7 @@
 
 Long Box turns a character query such as **Daredevil** or **Spider-Man + Daredevil** into a grounded reading path. ComicVine supplies reference data; Long Box normalizes it in Postgres and will rank useful entry points with deterministic, inspectable logic instead of inventing reading orders.
 
-> Status: Phase 1 data foundation is implemented. The recommendation engine and product UI are intentionally deferred until ingestion is validated against a configured Supabase project.
+> Status: Phase 1 is complete and [validated against live ComicVine and Supabase data](docs/PHASE_1_VALIDATION.md). Phase 2—the deterministic reading-path engine—is next; the product UI remains intentionally deferred.
 
 ## Why this project exists
 
