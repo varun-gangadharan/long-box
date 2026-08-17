@@ -9,7 +9,7 @@ export type ComicVineCharacter = {
   description: string | null;
   imageUrl: string | null;
   publisher: ComicVinePublisher | null;
-  issueCredits: ComicVineCredit[];
+  issueCredits: Array<{ comicvineId: number }>;
 };
 
 export type ComicVineVolume = {

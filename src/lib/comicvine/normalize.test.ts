@@ -12,6 +12,7 @@ describe("ComicVine normalization", () => {
       description: null,
       image: { original_url: "https://example.com/daredevil.jpg" },
       publisher: { id: 31, name: "Marvel" },
+      issue_credits: [{ id: 99, name: null }],
     });
 
     expect(normalizeCharacter(raw)).toEqual({
@@ -20,7 +21,7 @@ describe("ComicVine normalization", () => {
       description: "The Man Without Fear",
       imageUrl: "https://example.com/daredevil.jpg",
       publisher: { comicvineId: 31, name: "Marvel" },
-      issueCredits: [],
+      issueCredits: [{ comicvineId: 99 }],
     });
   });
 

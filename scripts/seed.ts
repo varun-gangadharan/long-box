@@ -15,25 +15,32 @@ if (!Number.isInteger(maxIssues) || maxIssues < 1 || maxIssues > 500) {
   throw new Error("Issue limit must be an integer from 1 to 500");
 }
 
-const database = databaseFromEnv();
-const comicVine = comicVineClientFromEnv();
+async function main() {
+  const database = databaseFromEnv();
+  const comicVine = comicVineClientFromEnv();
 
-for (const name of ["Daredevil", "Spider-Man"]) {
-  console.log(`Ingesting ${name}...`);
-  console.log(await ingestCharacter(database, comicVine, name, maxIssues));
+  for (const name of ["Daredevil", "Spider-Man"]) {
+    console.log(`Ingesting ${name}...`);
+    console.log(await ingestCharacter(database, comicVine, name, maxIssues));
+  }
+
+  const [daredevil, spiderMan, shared, arcs] = await Promise.all([
+    findIssuesForCharacters(database, ["Daredevil"]),
+    findIssuesForCharacters(database, ["Spider-Man"]),
+    findIssuesForCharacters(database, ["Daredevil", "Spider-Man"]),
+    findStoryArcsForCharacter(database, "Daredevil"),
+  ]);
+
+  console.log({
+    daredevilIssues: daredevil.length,
+    spiderManIssues: spiderMan.length,
+    sharedIssues: shared.length,
+    daredevilStoryArcs: arcs.length,
+    sampleSharedIssue: shared[0] ?? null,
+  });
 }
 
-const [daredevil, spiderMan, shared, arcs] = await Promise.all([
-  findIssuesForCharacters(database, ["Daredevil"]),
-  findIssuesForCharacters(database, ["Spider-Man"]),
-  findIssuesForCharacters(database, ["Daredevil", "Spider-Man"]),
-  findStoryArcsForCharacter(database, "Daredevil"),
-]);
-
-console.log({
-  daredevilIssues: daredevil.length,
-  spiderManIssues: spiderMan.length,
-  sharedIssues: shared.length,
-  daredevilStoryArcs: arcs.length,
-  sampleSharedIssue: shared[0] ?? null,
+main().catch((error: unknown) => {
+  console.error(error instanceof Error ? error.message : error);
+  process.exitCode = 1;
 });

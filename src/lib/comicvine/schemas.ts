@@ -23,7 +23,10 @@ export const rawCharacterSchema = z.object({
   description: nullableText,
   image: rawImageSchema,
   publisher: rawPublisherSchema,
-  issue_credits: z.array(rawCreditSchema).nullable().optional(),
+  issue_credits: z
+    .array(z.object({ id: z.number().int().positive(), name: nullableText }))
+    .nullable()
+    .optional(),
 });
 
 export const rawVolumeSchema = z.object({

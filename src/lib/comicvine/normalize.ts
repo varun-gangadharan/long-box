@@ -47,7 +47,7 @@ export function normalizeCharacter(raw: RawCharacter): ComicVineCharacter {
     description: cleanText(raw.description) ?? cleanText(raw.deck),
     imageUrl: imageUrl(raw.image),
     publisher: normalizePublisher(raw.publisher),
-    issueCredits: (raw.issue_credits ?? []).map(normalizeCredit),
+    issueCredits: (raw.issue_credits ?? []).map(({ id }) => ({ comicvineId: id })),
   };
 }
 

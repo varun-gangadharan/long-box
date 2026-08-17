@@ -217,8 +217,9 @@ export class ComicVineClient {
         }
         const parsed = schema.safeParse(json);
         if (!parsed.success) {
+          const issue = parsed.error.issues[0];
           throw new ComicVineError(
-            `ComicVine returned malformed data: ${parsed.error.issues[0]?.message ?? "unknown schema error"}`,
+            `ComicVine returned malformed data at ${issue?.path.join(".") || "response"}: ${issue?.message ?? "unknown schema error"}`,
           );
         }
         return parsed.data;
