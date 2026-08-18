@@ -15,8 +15,8 @@ export function ReadingPathView({ result }: { result: ReadingPathResult }) {
         <p className="section-kicker">No shared route yet</p>
         <h1>{title}</h1>
         <p>
-          These topics are in the catalog, but the current dataset has no matching issues.
-          Try one character at a time.
+          I found those characters, but not a clean shared reading route yet. Try one
+          character at a time, or pair characters who meet in the same books.
         </p>
         <Link className="primary-button" href="/">
           Try another search
@@ -33,14 +33,14 @@ export function ReadingPathView({ result }: { result: ReadingPathResult }) {
         <p className="section-kicker">Your reading path</p>
         <h1>{title}</h1>
         <p>
-          Start with one clear option. Then choose the direction that matches how far you
-          want to go.
+          Start with the easiest pick, then choose whether you want a short read or a
+          deeper dive.
         </p>
       </header>
 
       <section className="start-section" aria-labelledby="start-heading">
         <div className="section-heading">
-          <p className="section-kicker">The strongest entry point</p>
+          <p className="section-kicker">Best first pick</p>
           <h2 id="start-heading">Start here</h2>
         </div>
         <FeaturedRecommendation recommendation={start} />
@@ -50,14 +50,14 @@ export function ReadingPathView({ result }: { result: ReadingPathResult }) {
         <section className="branches" aria-labelledby="branches-heading">
           <div className="section-heading plain-heading">
             <h2 id="branches-heading">Where do you want to go next?</h2>
-            <p>Each branch stays grounded in the same issue and character data.</p>
+            <p>Pick a next step based on how much you want to read.</p>
           </div>
           {branches.map((branch) => (
             <details
               className="branch"
               key={branch.label}
               name="reading-branches"
-              open={branch.label === "Short route"}
+              open={branch.label === "Quick read"}
             >
               <summary>
                 <span>{branch.label}</span>
@@ -92,7 +92,7 @@ function FeaturedRecommendation({
         priority
       />
       <div className="featured-copy">
-        <p className="recommendation-score">Recommendation score {recommendation.score}</p>
+        <p className="recommendation-score">Best match · {Math.round(recommendation.score * 100)}%</p>
         <h3>{recommendation.title}</h3>
         <p className="issue-meta">{candidateMeta(recommendation)}</p>
         <ul className="reason-list">
@@ -101,7 +101,7 @@ function FeaturedRecommendation({
           ))}
         </ul>
         <details className="recommendation-detail">
-          <summary>View issues and reasoning</summary>
+          <summary>Show the exact issues</summary>
           <IssueList recommendation={recommendation} />
         </details>
       </div>
@@ -121,7 +121,7 @@ function CandidateNode({ candidate }: { candidate: RankedRecommendation }) {
         <h3>{candidate.title}</h3>
         <p>{candidateMeta(candidate)}</p>
         <details className="recommendation-detail">
-          <summary>Why this path?</summary>
+          <summary>Why this is here</summary>
           <ul className="reason-list">
             {candidate.reasons.map((reason) => (
               <li key={reason}>{reason}</li>
@@ -158,18 +158,18 @@ function candidateMeta(candidate: RankedRecommendation): string {
 function branchCandidates(candidates: RankedRecommendation[]) {
   const branches = [
     {
-      label: "Short route",
-      description: "A smaller commitment",
+      label: "Quick read",
+      description: "One sitting",
       items: [] as RankedRecommendation[],
     },
     {
-      label: "Modern",
-      description: "Published from 2000 onward",
+      label: "Recent picks",
+      description: "Newer books",
       items: [] as RankedRecommendation[],
     },
     {
-      label: "The classics",
-      description: "Earlier publication history",
+      label: "Older essentials",
+      description: "Earlier books",
       items: [] as RankedRecommendation[],
     },
   ];

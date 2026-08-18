@@ -15,7 +15,7 @@ import {
   parseReadingPathQuery,
 } from "@/lib/reading-path/service";
 
-export const maxDuration = 10;
+export const maxDuration = 60;
 
 export async function GET(request: Request): Promise<Response> {
   return handleReadingPathRequest(request, databaseFromEnv);

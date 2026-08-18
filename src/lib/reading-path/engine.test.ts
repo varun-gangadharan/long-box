@@ -91,8 +91,12 @@ describe("reading-path ranking", () => {
       isolatedAppearancePenalty: 0,
     });
     expect(ranked.score).toBe(1);
-    expect(ranked.reasons).toContain("All requested characters appear in every issue.");
-    expect(ranked.reasons).toContain("These issues share the “Shared Arc” story arc.");
+    expect(ranked.reasons).toContain(
+      "Every character you picked appears here, so this is a real crossover path.",
+    );
+    expect(ranked.reasons).toContain(
+      "The issues are tied together by the “Shared Arc” story arc.",
+    );
   });
 
   it("does not award arc continuity for unrelated arcs", () => {
@@ -126,7 +130,7 @@ describe("reading-path ranking", () => {
     const candidate = candidates.find(({ type }) => type === "story_arc")!;
     const [ranked] = rankCandidates([candidate]);
     expect(ranked.features.densityScore).toBe(0);
-    expect(ranked.reasons[0]).toBe("Every issue is attached to the requested story arc.");
+    expect(ranked.reasons[0]).toBe("This stays inside the story you searched for.");
   });
 
   it("penalizes an isolated appearance", () => {

@@ -1,9 +1,11 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
+import type { ComicVineClient } from "@/lib/comicvine/client";
 import { describe, expect, it, vi } from "vitest";
 
 import { handleCatalogSearch } from "./route";
 
 const database = {} as SupabaseClient;
+const comicVine = {} as ComicVineClient;
 
 describe("GET /api/search", () => {
   it("returns catalog matches", async () => {
@@ -12,12 +14,13 @@ describe("GET /api/search", () => {
       new Request("http://localhost/api/search?q=dare"),
       database,
       search,
+      comicVine,
     );
     expect(response.status).toBe(200);
     expect(await response.json()).toEqual({
       results: [{ type: "character", name: "Daredevil" }],
     });
-    expect(search).toHaveBeenCalledWith(database, "dare", 8);
+    expect(search).toHaveBeenCalledWith(database, comicVine, "dare", 8);
     expect(response.headers.get("cache-control")).toContain("s-maxage=60");
     expect(response.headers.get("x-request-id")).toBeNull();
   });
@@ -28,6 +31,7 @@ describe("GET /api/search", () => {
       new Request("http://localhost/api/search?q=d"),
       database,
       search,
+      comicVine,
     );
     expect(response.status).toBe(400);
     expect(search).not.toHaveBeenCalled();
@@ -39,20 +43,22 @@ describe("GET /api/search", () => {
       new Request("http://localhost/api/search?q=!!"),
       database,
       search,
+      comicVine,
     );
     expect(response.status).toBe(400);
     expect(search).not.toHaveBeenCalled();
   });
 
-  it("normalizes accented input before querying SQL", async () => {
+  it("accepts accented searches after app-side normalization", async () => {
     const search = vi.fn().mockResolvedValue([]);
     const response = await handleCatalogSearch(
       new Request("http://localhost/api/search?q=%C3%A9%C3%A9"),
       database,
       search,
+      comicVine,
     );
     expect(response.status).toBe(200);
-    expect(search).toHaveBeenCalledWith(database, "ee", 8);
+    expect(search).toHaveBeenCalledWith(database, comicVine, "éé", 8);
   });
 
   it("contains configuration failures", async () => {

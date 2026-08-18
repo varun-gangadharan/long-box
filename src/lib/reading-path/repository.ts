@@ -186,5 +186,6 @@ function toResolvedCharacter(row: z.infer<typeof resolvedRowSchema>): ResolvedCh
     description: null,
     imageUrl: row.image_url,
     publisherName: row.publisher_name,
+    isCanonical: row.is_canonical,
   };
 }

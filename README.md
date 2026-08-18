@@ -2,7 +2,7 @@
 
 **Explainable comic reading paths for people who do not know where to start.**
 
-Long Box turns a character query such as **Daredevil** or **Spider-Man + Daredevil** into a grounded reading path. ComicVine supplies reference data; Long Box normalizes it in Postgres and will rank useful entry points with deterministic, inspectable logic instead of inventing reading orders.
+Long Box turns a character query such as **Daredevil**, **Superman**, or **Batman + Wonder Woman** into a grounded reading path. ComicVine supplies reference data; Long Box searches live when a character is not in the local catalog, imports a small issue slice on demand, normalizes it in Postgres, and ranks useful entry points with deterministic, inspectable logic instead of inventing reading orders.
 
 > **Live:** <https://long-box.vercel.app>
 >
@@ -12,6 +12,7 @@ Long Box turns a character query such as **Daredevil** or **Spider-Man + Daredev
 
 Comic data is not a simple list of books. Characters cross titles, issue numbers restart across reboots, and story arcs span many-to-many relationships. Long Box treats that mess as a data and retrieval problem:
 
+- search local data first, then ComicVine for characters not loaded yet;
 - ingest typed ComicVine responses without exposing the API key;
 - normalize publishers, characters, volumes, issues, and story arcs locally;
 - preserve issue-to-character and issue-to-arc relationships;

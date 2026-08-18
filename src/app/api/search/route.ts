@@ -1,6 +1,7 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
-import { normalizeCatalogQuery, searchCatalog } from "@/lib/catalog/search";
+import { comicVineClientFromEnv, type ComicVineClient } from "@/lib/comicvine/client";
+import { normalizeCatalogQuery, searchCatalogEverywhere } from "@/lib/catalog/search";
 import { databaseFromEnv } from "@/lib/db/client";
 import { jsonResponse, requestId } from "@/lib/http/response";
 import { logError, logInfo } from "@/lib/observability/logger";
@@ -14,7 +15,8 @@ export async function GET(request: Request): Promise<Response> {
 export async function handleCatalogSearch(
   request: Request,
   database: SupabaseClient | (() => SupabaseClient),
-  search: typeof searchCatalog = searchCatalog,
+  search: typeof searchCatalogEverywhere = searchCatalogEverywhere,
+  comicVine: ComicVineClient | (() => ComicVineClient) = comicVineClientFromEnv,
 ): Promise<Response> {
   const id = requestId(request);
   const startedAt = performance.now();
@@ -32,7 +34,8 @@ export async function handleCatalogSearch(
       );
     }
     const client = typeof database === "function" ? database() : database;
-    const results = await search(client, normalizeCatalogQuery(query), 8);
+    const liveClient = typeof comicVine === "function" ? comicVine() : comicVine;
+    const results = await search(client, liveClient, query, 8);
     logInfo("Catalog search completed", {
       requestId: id,
       durationMs: Math.round(performance.now() - startedAt),

@@ -85,27 +85,27 @@ export function explainCandidate(
 ): string[] {
   const reasons = [
     candidate.queryType === "story_arc"
-      ? "Every issue is attached to the requested story arc."
+      ? "This stays inside the story you searched for."
       : candidate.issues[0].requestedCharacterCount === 1
-        ? "The requested character appears in every issue."
-        : "All requested characters appear in every issue.",
+        ? "Your character is in every issue here, so you are not guessing where to start."
+        : "Every character you picked appears here, so this is a real crossover path.",
   ];
 
   if (candidate.type === "story_arc" && candidate.storyArc) {
-    reasons.push(`These issues share the “${candidate.storyArc.name}” story arc.`);
+    reasons.push(`The issues are tied together by the “${candidate.storyArc.name}” story arc.`);
   }
   if (candidate.type === "issue_run") {
     reasons.push(
-      `The issues form a consecutive ${candidate.issues.length}-issue run in the same volume.`,
+      `You can read ${candidate.issues.length} issues in order without jumping between series.`,
     );
   }
   if (candidate.queryType === "characters" && features.densityScore >= 0.5) {
     reasons.push(
-      "Across this option, the requested characters average at least half of the credited cast.",
+      "The characters you picked are central to these issues, not background cameos.",
     );
   }
   if (candidate.issues.length <= 6) {
-    reasons.push(`This option contains ${candidate.issues.length} issue${candidate.issues.length === 1 ? "" : "s"}.`);
+    reasons.push(`It is a manageable ${candidate.issues.length}-issue read.`);
   }
 
   return reasons;

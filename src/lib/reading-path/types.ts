@@ -5,6 +5,7 @@ export type ResolvedCharacter = {
   description: string | null;
   imageUrl: string | null;
   publisherName: string | null;
+  isCanonical?: boolean;
 };
 
 export type ResolvedStoryArc = {
