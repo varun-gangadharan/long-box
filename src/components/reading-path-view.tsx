@@ -11,6 +11,12 @@ export function ReadingPathView({ result }: { result: ReadingPathResult }) {
   const title = result.query.storyArc
     ? result.query.storyArc.name
     : result.query.characters.map(({ name }) => name).join(" + ");
+  // Asking about one character is a different question from asking about two, and
+  // the page has to sound like it knows which was asked. Plural copy on a solo
+  // page reads as though the answer came from comparing them to somebody else.
+  const solo = !result.query.storyArc && result.query.characters.length === 1
+    ? result.query.characters[0].name
+    : null;
 
   if (!start) {
     return (
@@ -18,8 +24,9 @@ export function ReadingPathView({ result }: { result: ReadingPathResult }) {
         <p className="section-kicker">No shared route yet</p>
         <h1>{title}</h1>
         <p>
-          I found those characters, but not a clean shared reading route yet. Try one
-          character at a time, or pair characters who meet in the same books.
+          {solo
+            ? `I found ${solo}, but nothing solid enough to point you at yet. Try another name they go by, or a story arc instead.`
+            : "I found those characters, but not a clean shared reading route yet. Try one character at a time, or pair characters who meet in the same books."}
         </p>
         <Link className="primary-button" href="/">
           Try another search
@@ -34,18 +41,18 @@ export function ReadingPathView({ result }: { result: ReadingPathResult }) {
     return (
       <main className="reading-page">
         <header className="reading-intro">
-          <p className="section-kicker">No shared story yet</p>
+          <p className="section-kicker">{solo ? "Nothing central yet" : "No shared story yet"}</p>
           <h1>{title}</h1>
           <p>
-            These characters cross paths, but I could not find a book that is really
-            about them together. Here is everything they do share, so you can judge for
-            yourself.
+            {solo
+              ? `${solo} turns up in these books, but none of them is really about ${solo}. Here is everything I found, so you can judge for yourself.`
+              : "These characters cross paths, but I could not find a book that is really about them together. Here is everything they do share, so you can judge for yourself."}
           </p>
         </header>
 
         <section className="branches" aria-labelledby="thin-heading">
           <div className="section-heading plain-heading">
-            <h2 id="thin-heading">Where they overlap</h2>
+            <h2 id="thin-heading">{solo ? "Where they turn up" : "Where they overlap"}</h2>
           </div>
           <ol className="path-row">
             {result.recommendations.slice(0, 6).map((candidate) => (
@@ -67,8 +74,9 @@ export function ReadingPathView({ result }: { result: ReadingPathResult }) {
         <p className="section-kicker">Your reading path</p>
         <h1>{title}</h1>
         <p>
-          Start with the book these characters actually share, then choose how much
-          further you want to go.
+          {solo
+            ? `Start with the book that is most about ${solo}, then choose how much further you want to go.`
+            : "Start with the book these characters actually share, then choose how much further you want to go."}
         </p>
       </header>
 
@@ -240,7 +248,7 @@ function branchCandidates(candidates: RankedRecommendation[]) {
   const branches = [
     {
       label: "Longer runs",
-      description: "The full shared stretch",
+      description: "A longer run",
       items: [] as RankedRecommendation[],
       match: (candidate: RankedRecommendation) => candidate.type === "volume_run",
     },

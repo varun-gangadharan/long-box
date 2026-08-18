@@ -177,6 +177,21 @@ two comparable books, nowhere near enough to push a run that genuinely represent
 characters below a recent one that does not. The `modern-vs-classic` eval case states
 the rule directly, and a ranking invariant pins the size of the swing.
 
+**One character is a different question.** Asking about a single character asks what
+to read *about* them, not what they share with someone. `coAppearanceShare` is
+meaningless there — every candidate contains the one character — so its weight goes to
+`leadRoleScore`, which is what separates a character's own book from a team book they
+happen to be a regular in. Batman is in most of Justice League, so without it his own
+titles scored no better than JLA. The title is the strongest signal (comics are named
+after their leads); where it does not match, a small cast still suggests the character
+carries the book, which is how Detective Comics qualifies.
+
+Retrieval differs too. A character's defining stories are published under their own
+name as self-contained volumes — The Long Halloween is thirteen issues, The Dark Knight
+Returns is four — and no amount of sampling ten thousand appearances reliably finds
+them. A single filtered volumes request lists them, and a spread across the character's
+history goes into the pool for ranking to choose between.
+
 **The gate.** A candidate whose togetherness falls below `TOGETHERNESS_GATE` is never
 offered as a starting point, however approachable it looks. It is still listed, under
 "passing appearances", with a warning. Telling someone their characters have no shared

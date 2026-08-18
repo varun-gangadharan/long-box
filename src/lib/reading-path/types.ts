@@ -110,6 +110,11 @@ export type TogethernessFeatures = {
   publisherAffinity: number;
   /** Volume title names a requested character. */
   titleAffinity: number;
+  /**
+   * How central one character is to the book, for single-character queries:
+   * a book titled after them, or one with a small enough cast that they carry it.
+   */
+  leadRoleScore: number;
   /** One passing appearance in a book that is not about them. */
   cameoPenalty: number;
 };

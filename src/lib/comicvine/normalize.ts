@@ -2,6 +2,7 @@ import type {
   RawCharacter,
   RawIssue,
   RawIssueSummary,
+  RawVolumeSummary,
   RawStoryArc,
   RawVolume,
 } from "./schemas";
@@ -14,6 +15,7 @@ import type {
   ComicVinePublisher,
   ComicVineStoryArc,
   ComicVineVolume,
+  ComicVineVolumeSummary,
 } from "./types";
 
 function cleanText(value?: string | null): string | null {
@@ -88,6 +90,20 @@ export function normalizeVolume(raw: RawVolume): ComicVineVolume {
         ? []
         : [{ comicvineId: entry.id, name: entry.name.trim(), appearances }];
     }),
+  };
+}
+
+export function normalizeVolumeSummary(raw: RawVolumeSummary): ComicVineVolumeSummary {
+  const parsedYear = Number(raw.start_year);
+  return {
+    comicvineId: raw.id,
+    name: raw.name.trim(),
+    startYear:
+      Number.isInteger(parsedYear) && parsedYear >= 1800 && parsedYear <= 3000
+        ? parsedYear
+        : null,
+    issueCount: count(raw.count_of_issues),
+    publisher: normalizePublisher(raw.publisher),
   };
 }
 

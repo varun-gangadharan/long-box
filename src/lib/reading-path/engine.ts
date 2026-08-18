@@ -22,6 +22,25 @@ export const SCORE_WEIGHTS = {
   beginnerFriendliness: 0.38,
 } as const;
 
+/**
+ * A single-character query asks a different question: not "is this book about
+ * these two together" but "is this book about this character at all".
+ *
+ * `coAppearanceShare` is meaningless there — every candidate issue contains the
+ * one character, so it is 1.0 for everything and decides nothing. Its weight goes
+ * to lead role instead, which is what separates a character's own book from a
+ * team book they happen to be in. Without it, Batman's own titles score no better
+ * than Justice League.
+ */
+export const SOLO_TOGETHERNESS_WEIGHTS = {
+  coreCastScore: 0.34,
+  leadRoleScore: 0.3,
+  sustainedRunScore: 0.14,
+  publisherAffinity: 0.12,
+  sharedArcScore: 0.1,
+  cameoPenalty: 0.3,
+} as const;
+
 export const TOGETHERNESS_WEIGHTS = {
   coreCastScore: 0.38,
   coAppearanceShare: 0.18,
@@ -121,15 +140,16 @@ export function calculateFeatures(
   candidate: ReadingCandidate,
   options: RankingOptions = {},
 ): RankingFeatures {
+  const characterNames = options.characterNames ?? [];
   const together = togethernessFeatures(
     candidate,
-    options.characterNames ?? [],
+    characterNames,
     options.characterPublishers ?? [],
   );
   const beginner = beginnerFeatures(candidate);
 
   return {
-    togetherness: combineTogetherness(together),
+    togetherness: combineTogetherness(together, requestedCharacterCount(candidate, characterNames)),
     beginnerFriendliness: combineBeginner(beginner),
     metadataCompleteness: average(
       candidate.issues.map(
@@ -164,7 +184,7 @@ export function rankCandidates(
         ...candidate,
         score: scoreCandidate(features),
         features,
-        reasons: explainCandidate(candidate, features),
+        reasons: explainCandidate(candidate, features, options.characterNames ?? []),
         eligibleAsStart: features.togetherness >= TOGETHERNESS_GATE,
       };
     })
@@ -196,6 +216,7 @@ function togethernessFeatures(
       sharedArcScore: candidate.type === "story_arc" ? 1 : hasSharedStoryArc(candidate.issues) ? 0.6 : 0,
       publisherAffinity: 1,
       titleAffinity: 0,
+      leadRoleScore: 0,
       cameoPenalty: 0,
     };
   }
@@ -212,6 +233,7 @@ function togethernessFeatures(
     sharedArcScore: candidate.type === "story_arc" ? 1 : hasSharedStoryArc(candidate.issues) ? 0.6 : 0,
     publisherAffinity: publisherAffinity(candidate, characterPublishers),
     titleAffinity: titleAffinity(candidate, characterNames),
+    leadRoleScore: leadRoleScore(candidate, characterNames),
     cameoPenalty: cameoPenalty(candidate, coreCastScore),
   };
 }
@@ -298,7 +320,39 @@ function cameoPenalty(candidate: ReadingCandidate, coreCastScore: number): numbe
   return clamp((0.15 - coreCastScore) / 0.15);
 }
 
-function combineTogetherness(features: TogethernessFeatures): number {
+/**
+ * How central is this character to the book, as opposed to present in it.
+ *
+ * Comics are titled after their leads, so the title is the strongest signal
+ * available. Where it does not match, a small cast still suggests the character
+ * carries the book — Detective Comics is Batman's, and a Justice League issue
+ * with two dozen credited characters is nobody's in particular.
+ */
+function leadRoleScore(candidate: ReadingCandidate, characterNames: string[]): number {
+  const named = titleAffinity(candidate, characterNames);
+  if (named >= 1) return 1;
+
+  const casts = candidate.issues.map((issue) => issue.characterCount).filter((count) => count > 0);
+  // Cast size is only known for issues whose detail was fetched; stay neutral
+  // rather than rewarding missing data.
+  const castFocus = casts.length ? clamp(1 - (average(casts) - 8) / 18) : 0.5;
+  return clamp(Math.max(named, 0.85 * castFocus));
+}
+
+function combineTogetherness(
+  features: TogethernessFeatures,
+  requestedCount: number,
+): number {
+  if (requestedCount === 1) {
+    const solo =
+      features.coreCastScore * SOLO_TOGETHERNESS_WEIGHTS.coreCastScore +
+      features.leadRoleScore * SOLO_TOGETHERNESS_WEIGHTS.leadRoleScore +
+      features.sustainedRunScore * SOLO_TOGETHERNESS_WEIGHTS.sustainedRunScore +
+      features.publisherAffinity * SOLO_TOGETHERNESS_WEIGHTS.publisherAffinity +
+      features.sharedArcScore * SOLO_TOGETHERNESS_WEIGHTS.sharedArcScore;
+    return round(clamp(solo - features.cameoPenalty * SOLO_TOGETHERNESS_WEIGHTS.cameoPenalty));
+  }
+
   const positive =
     features.coreCastScore * TOGETHERNESS_WEIGHTS.coreCastScore +
     features.coAppearanceShare * TOGETHERNESS_WEIGHTS.coAppearanceShare +
@@ -307,6 +361,15 @@ function combineTogetherness(features: TogethernessFeatures): number {
     features.sharedArcScore * TOGETHERNESS_WEIGHTS.sharedArcScore +
     features.titleAffinity * TOGETHERNESS_WEIGHTS.titleAffinity;
   return round(clamp(positive - features.cameoPenalty * TOGETHERNESS_WEIGHTS.cameoPenalty));
+}
+
+/** Falls back to what the query told the database when no names are supplied. */
+function requestedCharacterCount(
+  candidate: ReadingCandidate,
+  characterNames: string[],
+): number {
+  if (characterNames.length) return characterNames.length;
+  return candidate.issues[0]?.requestedCharacterCount ?? 0;
 }
 
 // --- Beginner friendliness --------------------------------------------------
@@ -423,33 +486,51 @@ function combineBeginner(features: BeginnerFriendlinessFeatures): number {
 export function explainCandidate(
   candidate: ReadingCandidate,
   features: RankingFeatures,
+  characterNames: string[] = [],
 ): string[] {
   const reasons: string[] = [];
   const affinity = candidate.volumeAffinity;
+  // A single-character query is about one person, so the copy has to be about one
+  // person. "Your characters share" is wrong and reads as though the answer came
+  // from comparing them to somebody else.
+  const solo = characterNames.length === 1 ? characterNames[0] : null;
+  const subject = solo ?? "Your characters";
 
   if (candidate.queryType === "story_arc") {
     reasons.push("This stays inside the story you searched for.");
   } else if (affinity?.volumeIssueCount) {
     reasons.push(
-      `Your characters share ${affinity.coIssueCount} of this book's ${affinity.volumeIssueCount} issues.`,
+      solo
+        ? `${solo} is in ${affinity.coIssueCount} of this book's ${affinity.volumeIssueCount} issues.`
+        : `${subject} share ${affinity.coIssueCount} of this book's ${affinity.volumeIssueCount} issues.`,
     );
   } else {
     reasons.push(
-      `Every character you picked appears in all ${candidate.issues.length} of these issues.`,
+      solo
+        ? `${solo} appears in all ${candidate.issues.length} of these issues.`
+        : `Every character you picked appears in all ${candidate.issues.length} of these issues.`,
     );
   }
 
   if (features.together.cameoPenalty >= 0.5) {
     reasons.push(
-      "Be warned: this is a passing appearance rather than a story about them together.",
+      solo
+        ? "Be warned: this is a passing appearance rather than a story about them."
+        : "Be warned: this is a passing appearance rather than a story about them together.",
     );
-  } else if (features.together.coreCastScore >= 0.5) {
+  } else if (solo && features.together.leadRoleScore >= 0.9) {
+    reasons.push(`This is ${solo}'s own book, not a team appearance.`);
+  } else if (!solo && features.together.coreCastScore >= 0.5) {
     reasons.push("They are core cast here, not guest stars.");
+  } else if (solo && features.together.coreCastScore >= 0.5) {
+    reasons.push(`${solo} is a regular here, not a guest.`);
   }
 
   if (affinity && affinity.longestCoStreak >= 4) {
     reasons.push(
-      `They appear together across ${affinity.longestCoStreak} issues in a row, so the relationship actually develops.`,
+      solo
+        ? `It runs for ${affinity.longestCoStreak} issues without a break, so the story has room to build.`
+        : `They appear together across ${affinity.longestCoStreak} issues in a row, so the relationship actually develops.`,
     );
   }
 
@@ -463,7 +544,11 @@ export function explainCandidate(
   if (features.beginner.entryPointScore >= 1) {
     reasons.push("It starts at issue #1, so nothing is assumed.");
   } else if (features.beginner.entryPointScore >= 0.75) {
-    reasons.push("This is where they first share a book, so it is a clean way in.");
+    reasons.push(
+      solo
+        ? "This is the earliest of these issues, so it is a clean way in."
+        : "This is where they first share a book, so it is a clean way in.",
+    );
   }
 
   if (candidate.issues.length > 1 && features.beginner.commitmentScore >= 0.85) {

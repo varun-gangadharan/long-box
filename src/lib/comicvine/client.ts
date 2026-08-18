@@ -6,6 +6,7 @@ import {
   rawIssueSummarySchema,
   rawStoryArcSchema,
   rawVolumeSchema,
+  rawVolumeSummarySchema,
   responseSchema,
 } from "./schemas";
 import {
@@ -14,6 +15,7 @@ import {
   normalizeIssueSummary,
   normalizeStoryArc,
   normalizeVolume,
+  normalizeVolumeSummary,
 } from "./normalize";
 import type {
   ComicVineCharacter,
@@ -21,6 +23,7 @@ import type {
   ComicVineIssueSummary,
   ComicVineStoryArc,
   ComicVineVolume,
+  ComicVineVolumeSummary,
 } from "./types";
 
 const BASE_URL = "https://comicvine.gamespot.com/api";
@@ -145,6 +148,46 @@ export class ComicVineClient {
         "id,volume,issue_number,name,cover_date,deck,description,image,character_credits,story_arc_credits,person_credits",
     });
     return normalizeIssue(raw);
+  }
+
+  /**
+   * Volumes whose title contains a name — the books published *about* someone
+   * rather than the ones they appear in.
+   *
+   * This is where a character's defining stories live. The Long Halloween, Dark
+   * Victory and The Dark Knight Returns are each their own volume, and no amount
+   * of sampling a character's ten thousand appearances reliably finds a thirteen
+   * issue miniseries. One request does.
+   */
+  async getVolumesNamed(name: string, maxResults = 100): Promise<ComicVineVolumeSummary[]> {
+    if (!name.trim()) return [];
+    const raw = await this.getAllPages(
+      "/volumes/",
+      rawVolumeSummarySchema,
+      {
+        filter: `name:${name.trim()}`,
+        field_list: "id,name,start_year,count_of_issues,publisher",
+      },
+      maxResults,
+    );
+    return raw.map(normalizeVolumeSummary);
+  }
+
+  /**
+   * Every issue of one volume, 100 per request. Metadata only — the issues list
+   * endpoint never returns credits.
+   */
+  async getVolumeIssues(volumeComicvineId: number, maxResults = 200): Promise<ComicVineIssueSummary[]> {
+    const raw = await this.getAllPages(
+      "/issues/",
+      rawIssueSummarySchema,
+      {
+        filter: `volume:${volumeComicvineId}`,
+        field_list: "id,volume,issue_number,name,cover_date,deck,description,image",
+      },
+      maxResults,
+    );
+    return raw.map(normalizeIssueSummary);
   }
 
   /**

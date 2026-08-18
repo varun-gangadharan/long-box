@@ -145,6 +145,16 @@ begin
     raise exception 'candidate query returned no rows';
   end if;
 
+  -- A complete short book must survive alongside a long-running one. This is the
+  -- regression that hid The Long Halloween behind seven hundred issues of Batman.
+  if (
+    select count(*) from reading_path_issue_candidates(requested)
+    where volume_name = 'The Team Book'
+  ) <> 8 then
+    raise exception 'short volume was crowded out of the candidate pool: got %',
+      (select count(*) from reading_path_issue_candidates(requested) where volume_name = 'The Team Book');
+  end if;
+
   -- Both evidence sources count. Deleting the credit index must not lose a
   -- co-appearance that issue_characters already proves.
   delete from character_issue_credits;

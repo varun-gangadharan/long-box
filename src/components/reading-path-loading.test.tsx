@@ -23,7 +23,7 @@ describe("ReadingPathLoading", () => {
     const { container } = render(<ReadingPathLoading />);
     const lines = container.querySelectorAll(".stage-line");
     expect(lines.length).toBeGreaterThan(1);
-    expect(lines[0].textContent).toBe("Looking up both characters.");
+    expect(lines[0].textContent).toBe("Looking up who you asked for.");
   });
 
   it("schedules the stages to run in sequence without gaps", () => {

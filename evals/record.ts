@@ -45,9 +45,18 @@ async function main(): Promise<void> {
       const characters = await resolveCharacters(database, evalCase.characters);
       const characterIds = characters.map(({ id }) => id);
 
-      await ensureCreditIndex(database, comicVine, characterIds);
-      const ingestion = await ingestCoAppearances(database, comicVine, characterIds);
-      console.log(`  ingestion: ${JSON.stringify(ingestion)}`);
+      // Enrichment is best-effort. Recording is about capturing what retrieval
+      // currently returns, and a rate-limited upstream should not stop us
+      // snapshotting data that is already in the database.
+      try {
+        await ensureCreditIndex(database, comicVine, characterIds);
+        const ingestion = await ingestCoAppearances(database, comicVine, characterIds);
+        console.log(`  ingestion: ${JSON.stringify(ingestion)}`);
+      } catch (error) {
+        console.log(
+          `  ingestion skipped (${error instanceof Error ? error.message : String(error)}); recording what is stored`,
+        );
+      }
 
       const [issues, affinities] = await Promise.all([
         findCandidateIssues(database, characterIds),

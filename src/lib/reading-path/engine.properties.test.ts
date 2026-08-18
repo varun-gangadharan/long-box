@@ -356,3 +356,69 @@ describe("modernity as a nudge, not a verdict", () => {
     expect(score).toBeLessThan(1);
   });
 });
+
+describe("single-character queries", () => {
+  function bookFor(
+    volumeId: string,
+    volumeName: string,
+    volumeIssueCount: number,
+    cast: number,
+    appearances: number,
+  ) {
+    const issues = Array.from({ length: 8 }, (_, index) => ({
+      ...issueIn(volumeId, volumeName, volumeIssueCount, index + 1, { characterCount: cast }),
+      coverDate: `2015-0${(index % 9) + 1}-01`,
+    }));
+    return generateCandidates(issues, {
+      affinities: [
+        affinityFor(volumeId, volumeName, {
+          volumeIssueCount,
+          coIssueCount: 8,
+          longestCoStreak: 8,
+          minCharacterAppearances: appearances,
+        }),
+      ],
+    }).filter(({ type }) => type === "volume_run");
+  }
+
+  const solo = { characterNames: ["Batman"], characterPublishers: ["DC Comics"] };
+
+  it("ranks a character's own book above a team book they are a regular in", () => {
+    // Both have the character in nearly every issue, so core cast alone cannot
+    // separate them — which is exactly why Justice League used to win.
+    const ownBook = bookFor("own", "Batman", 40, 7, 39);
+    const teamBook = bookFor("team", "Justice League", 40, 22, 38);
+
+    const ranked = rankCandidates([...teamBook, ...ownBook], solo);
+    expect(ranked[0].issues[0].volume.name).toBe("Batman");
+  });
+
+  it("credits a small cast when the title does not name the character", () => {
+    // Detective Comics is Batman's book without saying so.
+    const detective = bookFor("detective", "Detective Comics", 40, 7, 39);
+    const ensemble = bookFor("ensemble", "Justice League", 40, 24, 39);
+
+    const focused = calculateFeatures(detective[0], solo).together.leadRoleScore;
+    const diffuse = calculateFeatures(ensemble[0], solo).together.leadRoleScore;
+    expect(focused).toBeGreaterThan(diffuse);
+    expect(calculateFeatures(detective[0], solo).togetherness).toBeGreaterThan(
+      calculateFeatures(ensemble[0], solo).togetherness,
+    );
+  });
+
+  it("does not let lead role override co-starring on a two-character query", () => {
+    // A book titled after one of the pair must not beat the book they share.
+    const pair = { characterNames: ["Nightwing", "Starfire"], characterPublishers: ["DC Comics"] };
+    const shared = bookFor("shared", "The New Teen Titans", 40, 11, 38);
+    const titledAfterOne = bookFor("solo-title", "Nightwing", 150, 6, 12);
+
+    const ranked = rankCandidates([...titledAfterOne, ...shared], pair);
+    expect(ranked[0].issues[0].volume.name).toBe("The New Teen Titans");
+  });
+
+  it("speaks about one character rather than several", () => {
+    const [ranked] = rankCandidates(bookFor("own", "Batman", 40, 7, 39), solo);
+    expect(ranked.reasons.join(" ")).toContain("Batman");
+    expect(ranked.reasons.join(" ")).not.toMatch(/Your characters|they appear together/i);
+  });
+});

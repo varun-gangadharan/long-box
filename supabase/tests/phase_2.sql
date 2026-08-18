@@ -119,8 +119,10 @@ begin
   from reading_path_issue_candidates(array[
     '10000000-0000-0000-0000-000000000010'::uuid
   ]);
-  if candidate_count <> 500 then
-    raise exception 'character candidate bound failed: got %', candidate_count;
+  -- One volume contributes its opening stretch and no more. It used to be able
+  -- to supply all 500 slots on its own, which shut every other book out.
+  if candidate_count <> 40 then
+    raise exception 'per-volume candidate cap failed: got %', candidate_count;
   end if;
 
   select count(*) into arc_issue_count

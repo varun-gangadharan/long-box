@@ -56,6 +56,7 @@ function recommendation(
         sustainedRunScore: 0.5,
         sharedArcScore: 0,
         publisherAffinity: 1,
+        leadRoleScore: 1,
         titleAffinity: 1,
         cameoPenalty: 0,
       },
@@ -122,7 +123,7 @@ describe("ReadingPathView", () => {
         }}
       />,
     );
-    expect(screen.getByText("No shared story yet")).toBeDefined();
+    expect(screen.getByText("Nothing central yet")).toBeDefined();
     expect(screen.queryByRole("heading", { name: "Start here" })).toBeNull();
   });
 

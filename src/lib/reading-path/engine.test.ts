@@ -157,7 +157,7 @@ describe("reading-path ranking", () => {
       generateCandidates(issues, { affinities: [affinity({ coIssueCount: 6 })] }).filter(
         ({ type }) => type === "volume_run",
       ),
-      { characterNames: ["Daredevil"] },
+      { characterNames: ["Daredevil", "Elektra"] },
     );
 
     expect(ranked.features.together.coreCastScore).toBe(1);

@@ -82,6 +82,16 @@ export const rawIssueSchema = z.object({
 
 // The issues list endpoint never returns credits of any kind, so it gets its own
 // schema rather than relying on every credit field being optional.
+// The volumes list endpoint carries no character array, so it gets its own
+// schema rather than making every field of the detail shape optional.
+export const rawVolumeSummarySchema = z.object({
+  id: z.number().int().positive(),
+  name: z.string().min(1),
+  start_year: z.union([z.string(), z.number()]).nullable().optional(),
+  count_of_issues: z.union([z.string(), z.number()]).nullable().optional(),
+  publisher: rawPublisherSchema,
+});
+
 export const rawIssueSummarySchema = z.object({
   id: z.number().int().positive(),
   volume: rawCreditSchema,
@@ -102,6 +112,7 @@ export const rawStoryArcSchema = z.object({
 
 export type RawCharacter = z.infer<typeof rawCharacterSchema>;
 export type RawVolume = z.infer<typeof rawVolumeSchema>;
+export type RawVolumeSummary = z.infer<typeof rawVolumeSummarySchema>;
 export type RawIssue = z.infer<typeof rawIssueSchema>;
 export type RawIssueSummary = z.infer<typeof rawIssueSummarySchema>;
 export type RawStoryArc = z.infer<typeof rawStoryArcSchema>;

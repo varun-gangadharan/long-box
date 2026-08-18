@@ -22,12 +22,12 @@
  * line describes work that genuinely happens rather than claiming a step is done.
  */
 const STAGES = [
-  { at: 0, message: "Looking up both characters." },
-  { at: 4, message: "Reading everything they have each appeared in." },
-  { at: 12, message: "Working out which books they genuinely share." },
+  { at: 0, message: "Looking up who you asked for." },
+  { at: 4, message: "Reading everything they have appeared in." },
+  { at: 12, message: "Working out which books are genuinely about them." },
   { at: 28, message: "Checking who else is in those issues, and who made them." },
   { at: 50, message: "Sorting the shared books into somewhere worth starting." },
-  { at: 75, message: "Nearly there. This pair is a big one." },
+  { at: 75, message: "Nearly there. This is a big one." },
 ] as const;
 
 export function ReadingPathLoading() {
@@ -38,7 +38,7 @@ export function ReadingPathLoading() {
 
         <div className="long-box-copy">
           <p className="section-kicker">Pulling the long box</p>
-          <h1>Reading around these characters</h1>
+          <h1>Reading around your search</h1>
 
           {/*
             The cycling lines are decorative timing, not content: a screen reader
@@ -64,12 +64,12 @@ export function ReadingPathLoading() {
           </p>
 
           <p className="visually-hidden" role="status">
-            Long Box is reading everything these characters have appeared in. This
-            usually takes about a minute.
+            Long Box is reading everything these comics have in common. This usually
+            takes about a minute.
           </p>
 
           <p className="loading-note">
-            The first search for a pair reads their whole shared history, which takes
+            A first search reads a character&rsquo;s whole publication history, which takes
             about a minute. Every search after this one is instant.
           </p>
         </div>

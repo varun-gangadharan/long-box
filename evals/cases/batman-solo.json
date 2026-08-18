@@ -1,0 +1,11 @@
+{
+  "name": "batman-solo",
+  "characters": ["Batman"],
+  "notes": "A single-character query asks what to read about one person, which is a different question from what two characters share. Batman is a regular in Justice League, so co-appearance measures alone rank team books as highly as his own — and they did. The answer should be a book published about Batman: his own title or one of the self-contained stories under his name. A Justice League book is not wrong about him, it is just not about him.",
+  "expect": {
+    "top1AnyOf": ["Batman"],
+    "top3AnyOf": ["Batman"],
+    "mustNotAppearTop3": ["Justice League", "JLA", "Super Friends", "The Brave and the Bold"],
+    "minTogetherness": 0.7
+  }
+}

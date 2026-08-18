@@ -213,8 +213,9 @@ function isSettledIdentity(character: {
 
 
 /**
- * Fills in what these characters actually share before ranking. Enrichment is
- * best-effort: if ComicVine is unavailable or rate-limited, the reading path is
+ * Fills in what to recommend before ranking: for several characters what they
+ * share, and for one character the books published about them. Enrichment is
+ * best-effort — if ComicVine is unavailable or rate-limited, the reading path is
  * still built from whatever is already stored rather than failing the request.
  */
 async function loadCoAppearances(
@@ -222,7 +223,7 @@ async function loadCoAppearances(
   characterIds: string[],
   comicVine: ComicVineClient | (() => ComicVineClient),
 ): Promise<void> {
-  if (characterIds.length < 2) return;
+  if (!characterIds.length) return;
 
   try {
     const client = typeof comicVine === "function" ? comicVine() : comicVine;

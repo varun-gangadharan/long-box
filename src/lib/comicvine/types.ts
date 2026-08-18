@@ -52,6 +52,9 @@ export type ComicVineCreatorCredit = {
   role: string;
 };
 
+/** The volumes list endpoint returns no character counts. */
+export type ComicVineVolumeSummary = Omit<ComicVineVolume, "characterCounts">;
+
 /** The issues list endpoint returns metadata only — never credits. */
 export type ComicVineIssueSummary = Omit<
   ComicVineIssue,
