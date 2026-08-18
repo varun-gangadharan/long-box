@@ -55,7 +55,7 @@ Results:
 - production homepage, readiness, and reading-path smoke checks passed;
 - production returned no `X-Powered-By` header and all configured security headers were present.
 
-GitHub CI evidence: <https://github.com/varun-gangadharan/long-box/actions/runs/32084911706>
+GitHub CI: <https://github.com/varun-gangadharan/long-box/actions/workflows/ci.yml>
 
 ## Measured production behavior
 
