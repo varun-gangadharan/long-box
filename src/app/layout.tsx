@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import type { ReactNode } from "react";
 import { Bodoni_Moda, Geist } from "next/font/google";
 import "./globals.css";
 
@@ -21,7 +22,7 @@ export const metadata: Metadata = {
     "Explainable starting points and reading paths for comic characters and story arcs.",
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`${geist.variable} ${bodoni.variable}`}>
       <body>{children}</body>
