@@ -3,6 +3,9 @@ import Link from "next/link";
 import { Cover } from "./cover";
 import type { RankedRecommendation, ReadingPathResult } from "@/lib/reading-path/types";
 
+/** Long runs list their opening issues rather than forty rows of metadata. */
+const VISIBLE_ISSUES = 8;
+
 export function ReadingPathView({ result }: { result: ReadingPathResult }) {
   const [start, ...remaining] = result.recommendations;
   const title = result.query.storyArc
@@ -25,6 +28,37 @@ export function ReadingPathView({ result }: { result: ReadingPathResult }) {
     );
   }
 
+  // Saying so is more useful than dressing a passing appearance up as a starting
+  // point, which is exactly what this engine was rebuilt to stop doing.
+  if (!start.eligibleAsStart) {
+    return (
+      <main className="reading-page">
+        <header className="reading-intro">
+          <p className="section-kicker">No shared story yet</p>
+          <h1>{title}</h1>
+          <p>
+            These characters cross paths, but I could not find a book that is really
+            about them together. Here is everything they do share, so you can judge for
+            yourself.
+          </p>
+        </header>
+
+        <section className="branches" aria-labelledby="thin-heading">
+          <div className="section-heading plain-heading">
+            <h2 id="thin-heading">Where they overlap</h2>
+          </div>
+          <ol className="path-row">
+            {result.recommendations.slice(0, 6).map((candidate) => (
+              <li key={candidate.id}>
+                <CandidateNode candidate={candidate} />
+              </li>
+            ))}
+          </ol>
+        </section>
+      </main>
+    );
+  }
+
   const branches = branchCandidates(remaining);
 
   return (
@@ -33,8 +67,8 @@ export function ReadingPathView({ result }: { result: ReadingPathResult }) {
         <p className="section-kicker">Your reading path</p>
         <h1>{title}</h1>
         <p>
-          Start with the easiest pick, then choose whether you want a short read or a
-          deeper dive.
+          Start with the book these characters actually share, then choose how much
+          further you want to go.
         </p>
       </header>
 
@@ -57,7 +91,7 @@ export function ReadingPathView({ result }: { result: ReadingPathResult }) {
               className="branch"
               key={branch.label}
               name="reading-branches"
-              open={branch.label === "Quick read"}
+              open={branch.label === branches[0].label}
             >
               <summary>
                 <span>{branch.label}</span>
@@ -92,11 +126,12 @@ function FeaturedRecommendation({
         priority
       />
       <div className="featured-copy">
-        <p className="recommendation-score">Best match · {Math.round(recommendation.score * 100)}%</p>
+        <ScoreSummary recommendation={recommendation} />
         <h3>{recommendation.title}</h3>
         <p className="issue-meta">{candidateMeta(recommendation)}</p>
+        <CreatorLine recommendation={recommendation} />
         <ul className="reason-list">
-          {recommendation.reasons.slice(0, 3).map((reason) => (
+          {recommendation.reasons.slice(0, 4).map((reason) => (
             <li key={reason}>{reason}</li>
           ))}
         </ul>
@@ -106,6 +141,29 @@ function FeaturedRecommendation({
         </details>
       </div>
     </article>
+  );
+}
+
+/**
+ * Two named numbers instead of one opaque percentage. A reader deciding what to
+ * buy needs to know which of the two questions a book actually answers.
+ */
+function ScoreSummary({ recommendation }: { recommendation: RankedRecommendation }) {
+  return (
+    <p className="recommendation-score">
+      <span>Together {percent(recommendation.features.togetherness)}</span>
+      {" · "}
+      <span>Beginner-friendly {percent(recommendation.features.beginnerFriendliness)}</span>
+    </p>
+  );
+}
+
+function CreatorLine({ recommendation }: { recommendation: RankedRecommendation }) {
+  if (!recommendation.creators.length) return null;
+  return (
+    <p className="issue-meta">
+      {recommendation.creators.map(({ name, role }) => `${name} (${role})`).join(" · ")}
+    </p>
   );
 }
 
@@ -135,54 +193,84 @@ function CandidateNode({ candidate }: { candidate: RankedRecommendation }) {
 }
 
 function IssueList({ recommendation }: { recommendation: RankedRecommendation }) {
+  const visible = recommendation.issues.slice(0, VISIBLE_ISSUES);
+  const hidden = recommendation.issues.length - visible.length;
+
   return (
-    <ol className="issue-list">
-      {recommendation.issues.map((issue) => (
-        <li key={issue.id}>
-          <span>
-            {issue.volume.name} #{issue.issueNumber}
-          </span>
-          <time dateTime={issue.coverDate ?? undefined}>{issue.coverDate ?? "Date unavailable"}</time>
-        </li>
-      ))}
-    </ol>
+    <>
+      <ol className="issue-list">
+        {visible.map((issue) => (
+          <li key={issue.id}>
+            <span>
+              {issue.volume.name} #{issue.issueNumber}
+            </span>
+            <time dateTime={issue.coverDate ?? undefined}>
+              {issue.coverDate ?? "Date unavailable"}
+            </time>
+          </li>
+        ))}
+      </ol>
+      {hidden > 0 && (
+        <p className="issue-meta">
+          and {hidden} more issue{hidden === 1 ? "" : "s"} through #
+          {recommendation.issues.at(-1)?.issueNumber}
+        </p>
+      )}
+    </>
   );
 }
 
 function candidateMeta(candidate: RankedRecommendation): string {
   const first = candidate.issues[0];
   const year = first.coverDate?.slice(0, 4) ?? first.volume.startYear;
-  return `${candidate.issues.length} issue${candidate.issues.length === 1 ? "" : "s"}${year ? ` · ${year}` : ""}`;
+  const count = candidate.issues.length;
+  return `${count} issue${count === 1 ? "" : "s"}${year ? ` · ${year}` : ""}`;
 }
 
+function percent(value: number): string {
+  return `${Math.round(value * 100)}%`;
+}
+
+/**
+ * Branches follow what the ranking actually found rather than the old
+ * fixed recency buckets, which sorted by publication year and told a reader
+ * nothing about why a book was worth their time.
+ */
 function branchCandidates(candidates: RankedRecommendation[]) {
   const branches = [
     {
-      label: "Quick read",
+      label: "Longer runs",
+      description: "The full shared stretch",
+      items: [] as RankedRecommendation[],
+      match: (candidate: RankedRecommendation) => candidate.type === "volume_run",
+    },
+    {
+      label: "Complete stories",
+      description: "One arc, start to finish",
+      items: [] as RankedRecommendation[],
+      match: (candidate: RankedRecommendation) => candidate.type === "story_arc",
+    },
+    {
+      label: "Short reads",
       description: "One sitting",
       items: [] as RankedRecommendation[],
+      match: (candidate: RankedRecommendation) => candidate.issues.length <= 3,
     },
     {
-      label: "Recent picks",
-      description: "Newer books",
+      label: "Passing appearances",
+      description: "They meet, but the book is not about them",
       items: [] as RankedRecommendation[],
-    },
-    {
-      label: "Older essentials",
-      description: "Earlier books",
-      items: [] as RankedRecommendation[],
+      match: (candidate: RankedRecommendation) => !candidate.eligibleAsStart,
     },
   ];
 
   for (const candidate of candidates) {
-    const year = Number(candidate.issues[0].coverDate?.slice(0, 4) ?? 0);
-    const branch =
-      candidate.issues.length <= 3 && branches[0].items.length < 3
-        ? branches[0]
-        : year >= 2000
-          ? branches[1]
-          : branches[2];
-    if (branch.items.length < 3) branch.items.push(candidate);
+    // Gated candidates are labelled as such wherever else they might fit.
+    const branch = candidate.eligibleAsStart
+      ? branches.find((entry) => entry.label !== "Passing appearances" && entry.match(candidate))
+      : branches.at(-1);
+    if (branch && branch.items.length < 3) branch.items.push(candidate);
   }
+
   return branches.filter(({ items }) => items.length > 0);
 }

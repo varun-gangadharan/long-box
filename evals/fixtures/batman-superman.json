@@ -1,0 +1,838 @@
+{
+  "name": "batman-superman",
+  "source": "authored",
+  "note": "Both characters headline two shared titles. Only a slice of World's Finest is ingested locally, so this also checks that ComicVine's per-volume character counts carry the core-cast signal on their own.",
+  "characterPublishers": [
+    "DC Comics",
+    "DC Comics"
+  ],
+  "issues": [
+    {
+      "id": "cv-worldsfinest-1941-0071",
+      "comicvineId": 19410071,
+      "issueNumber": "71",
+      "name": "World's Finest Comics 71",
+      "coverDate": "1954-01-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0072",
+      "comicvineId": 19410072,
+      "issueNumber": "72",
+      "name": "World's Finest Comics 72",
+      "coverDate": "1954-02-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0073",
+      "comicvineId": 19410073,
+      "issueNumber": "73",
+      "name": "World's Finest Comics 73",
+      "coverDate": "1954-03-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0074",
+      "comicvineId": 19410074,
+      "issueNumber": "74",
+      "name": "World's Finest Comics 74",
+      "coverDate": "1954-04-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0075",
+      "comicvineId": 19410075,
+      "issueNumber": "75",
+      "name": "World's Finest Comics 75",
+      "coverDate": "1954-05-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0076",
+      "comicvineId": 19410076,
+      "issueNumber": "76",
+      "name": "World's Finest Comics 76",
+      "coverDate": "1954-06-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0077",
+      "comicvineId": 19410077,
+      "issueNumber": "77",
+      "name": "World's Finest Comics 77",
+      "coverDate": "1954-07-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0078",
+      "comicvineId": 19410078,
+      "issueNumber": "78",
+      "name": "World's Finest Comics 78",
+      "coverDate": "1954-08-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0079",
+      "comicvineId": 19410079,
+      "issueNumber": "79",
+      "name": "World's Finest Comics 79",
+      "coverDate": "1954-09-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0080",
+      "comicvineId": 19410080,
+      "issueNumber": "80",
+      "name": "World's Finest Comics 80",
+      "coverDate": "1954-10-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0081",
+      "comicvineId": 19410081,
+      "issueNumber": "81",
+      "name": "World's Finest Comics 81",
+      "coverDate": "1954-11-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0082",
+      "comicvineId": 19410082,
+      "issueNumber": "82",
+      "name": "World's Finest Comics 82",
+      "coverDate": "1954-12-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0083",
+      "comicvineId": 19410083,
+      "issueNumber": "83",
+      "name": "World's Finest Comics 83",
+      "coverDate": "1955-01-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0084",
+      "comicvineId": 19410084,
+      "issueNumber": "84",
+      "name": "World's Finest Comics 84",
+      "coverDate": "1955-02-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0085",
+      "comicvineId": 19410085,
+      "issueNumber": "85",
+      "name": "World's Finest Comics 85",
+      "coverDate": "1955-03-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0086",
+      "comicvineId": 19410086,
+      "issueNumber": "86",
+      "name": "World's Finest Comics 86",
+      "coverDate": "1955-04-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0087",
+      "comicvineId": 19410087,
+      "issueNumber": "87",
+      "name": "World's Finest Comics 87",
+      "coverDate": "1955-05-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0088",
+      "comicvineId": 19410088,
+      "issueNumber": "88",
+      "name": "World's Finest Comics 88",
+      "coverDate": "1955-06-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0089",
+      "comicvineId": 19410089,
+      "issueNumber": "89",
+      "name": "World's Finest Comics 89",
+      "coverDate": "1955-07-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0090",
+      "comicvineId": 19410090,
+      "issueNumber": "90",
+      "name": "World's Finest Comics 90",
+      "coverDate": "1955-08-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0091",
+      "comicvineId": 19410091,
+      "issueNumber": "91",
+      "name": "World's Finest Comics 91",
+      "coverDate": "1955-09-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0092",
+      "comicvineId": 19410092,
+      "issueNumber": "92",
+      "name": "World's Finest Comics 92",
+      "coverDate": "1955-10-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0093",
+      "comicvineId": 19410093,
+      "issueNumber": "93",
+      "name": "World's Finest Comics 93",
+      "coverDate": "1955-11-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0094",
+      "comicvineId": 19410094,
+      "issueNumber": "94",
+      "name": "World's Finest Comics 94",
+      "coverDate": "1955-12-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0095",
+      "comicvineId": 19410095,
+      "issueNumber": "95",
+      "name": "World's Finest Comics 95",
+      "coverDate": "1956-01-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0096",
+      "comicvineId": 19410096,
+      "issueNumber": "96",
+      "name": "World's Finest Comics 96",
+      "coverDate": "1956-02-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0097",
+      "comicvineId": 19410097,
+      "issueNumber": "97",
+      "name": "World's Finest Comics 97",
+      "coverDate": "1956-03-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0098",
+      "comicvineId": 19410098,
+      "issueNumber": "98",
+      "name": "World's Finest Comics 98",
+      "coverDate": "1956-04-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0099",
+      "comicvineId": 19410099,
+      "issueNumber": "99",
+      "name": "World's Finest Comics 99",
+      "coverDate": "1956-05-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-worldsfinest-1941-0100",
+      "comicvineId": 19410100,
+      "issueNumber": "100",
+      "name": "World's Finest Comics 100",
+      "coverDate": "1956-06-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-worldsfinest-1941",
+        "name": "World's Finest Comics",
+        "startYear": 1941,
+        "issueCount": 323
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-batmansuperman-2013-0001",
+      "comicvineId": 20130001,
+      "issueNumber": "1",
+      "name": "Batman/Superman 1",
+      "coverDate": "2013-01-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-batmansuperman-2013",
+        "name": "Batman/Superman",
+        "startYear": 2013,
+        "issueCount": 32
+      },
+      "characterCount": 7,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-batmansuperman-2013-0002",
+      "comicvineId": 20130002,
+      "issueNumber": "2",
+      "name": "Batman/Superman 2",
+      "coverDate": "2013-02-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-batmansuperman-2013",
+        "name": "Batman/Superman",
+        "startYear": 2013,
+        "issueCount": 32
+      },
+      "characterCount": 7,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-batmansuperman-2013-0003",
+      "comicvineId": 20130003,
+      "issueNumber": "3",
+      "name": "Batman/Superman 3",
+      "coverDate": "2013-03-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-batmansuperman-2013",
+        "name": "Batman/Superman",
+        "startYear": 2013,
+        "issueCount": 32
+      },
+      "characterCount": 7,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-batmansuperman-2013-0004",
+      "comicvineId": 20130004,
+      "issueNumber": "4",
+      "name": "Batman/Superman 4",
+      "coverDate": "2013-04-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-batmansuperman-2013",
+        "name": "Batman/Superman",
+        "startYear": 2013,
+        "issueCount": 32
+      },
+      "characterCount": 7,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-batmansuperman-2013-0005",
+      "comicvineId": 20130005,
+      "issueNumber": "5",
+      "name": "Batman/Superman 5",
+      "coverDate": "2013-05-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-batmansuperman-2013",
+        "name": "Batman/Superman",
+        "startYear": 2013,
+        "issueCount": 32
+      },
+      "characterCount": 7,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-batmansuperman-2013-0006",
+      "comicvineId": 20130006,
+      "issueNumber": "6",
+      "name": "Batman/Superman 6",
+      "coverDate": "2013-06-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-batmansuperman-2013",
+        "name": "Batman/Superman",
+        "startYear": 2013,
+        "issueCount": 32
+      },
+      "characterCount": 7,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-batmansuperman-2013-0007",
+      "comicvineId": 20130007,
+      "issueNumber": "7",
+      "name": "Batman/Superman 7",
+      "coverDate": "2013-07-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-batmansuperman-2013",
+        "name": "Batman/Superman",
+        "startYear": 2013,
+        "issueCount": 32
+      },
+      "characterCount": 7,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-batmansuperman-2013-0008",
+      "comicvineId": 20130008,
+      "issueNumber": "8",
+      "name": "Batman/Superman 8",
+      "coverDate": "2013-08-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-batmansuperman-2013",
+        "name": "Batman/Superman",
+        "startYear": 2013,
+        "issueCount": 32
+      },
+      "characterCount": 7,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-batmansuperman-2013-0009",
+      "comicvineId": 20130009,
+      "issueNumber": "9",
+      "name": "Batman/Superman 9",
+      "coverDate": "2013-09-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-batmansuperman-2013",
+        "name": "Batman/Superman",
+        "startYear": 2013,
+        "issueCount": 32
+      },
+      "characterCount": 7,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-batmansuperman-2013-0010",
+      "comicvineId": 20130010,
+      "issueNumber": "10",
+      "name": "Batman/Superman 10",
+      "coverDate": "2013-10-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-batmansuperman-2013",
+        "name": "Batman/Superman",
+        "startYear": 2013,
+        "issueCount": 32
+      },
+      "characterCount": 7,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-batmansuperman-2013-0011",
+      "comicvineId": 20130011,
+      "issueNumber": "11",
+      "name": "Batman/Superman 11",
+      "coverDate": "2013-11-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-batmansuperman-2013",
+        "name": "Batman/Superman",
+        "startYear": 2013,
+        "issueCount": 32
+      },
+      "characterCount": 7,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-batmansuperman-2013-0012",
+      "comicvineId": 20130012,
+      "issueNumber": "12",
+      "name": "Batman/Superman 12",
+      "coverDate": "2013-12-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-batmansuperman-2013",
+        "name": "Batman/Superman",
+        "startYear": 2013,
+        "issueCount": 32
+      },
+      "characterCount": 7,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    },
+    {
+      "id": "cv-action-1938-0904",
+      "comicvineId": 19380904,
+      "issueNumber": "904",
+      "name": "Action Comics 904",
+      "coverDate": "2011-01-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "cv-action-1938",
+        "name": "Action Comics",
+        "startYear": 1938,
+        "issueCount": 904
+      },
+      "characterCount": 21,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": []
+    }
+  ],
+  "affinities": [
+    {
+      "volumeId": "cv-worldsfinest-1941",
+      "volumeName": "World's Finest Comics",
+      "volumeStartYear": 1941,
+      "volumeIssueCount": 323,
+      "publisherName": "DC Comics",
+      "localIssueCount": 30,
+      "coIssueCount": 30,
+      "minCharacterAppearances": 250,
+      "longestCoStreak": 30,
+      "firstCoIssueNumber": "71",
+      "lastCoIssueNumber": "100",
+      "firstCoDate": "1954-07-01",
+      "lastCoDate": "1959-03-01",
+      "topWriter": null,
+      "topArtist": null
+    },
+    {
+      "volumeId": "cv-batmansuperman-2013",
+      "volumeName": "Batman/Superman",
+      "volumeStartYear": 2013,
+      "volumeIssueCount": 32,
+      "publisherName": "DC Comics",
+      "localIssueCount": 12,
+      "coIssueCount": 12,
+      "minCharacterAppearances": 32,
+      "longestCoStreak": 12,
+      "firstCoIssueNumber": "1",
+      "lastCoIssueNumber": "12",
+      "firstCoDate": "2013-08-01",
+      "lastCoDate": "2014-08-01",
+      "topWriter": null,
+      "topArtist": null
+    },
+    {
+      "volumeId": "cv-action-1938",
+      "volumeName": "Action Comics",
+      "volumeStartYear": 1938,
+      "volumeIssueCount": 904,
+      "publisherName": "DC Comics",
+      "localIssueCount": 1,
+      "coIssueCount": 1,
+      "minCharacterAppearances": 1,
+      "longestCoStreak": 1,
+      "firstCoIssueNumber": "904",
+      "lastCoIssueNumber": "904",
+      "firstCoDate": "2011-10-01",
+      "lastCoDate": "2011-10-01",
+      "topWriter": null,
+      "topArtist": null
+    }
+  ]
+}

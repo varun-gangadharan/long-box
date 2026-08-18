@@ -1,0 +1,9 @@
+{
+  "name": "starfire-punisher",
+  "characters": ["Starfire", "Punisher"],
+  "notes": "Characters from different publishers whose only shared books are company crossovers. Hiding those would be unhelpful — they are genuinely the only place the two meet — but presenting a one-shot crossover as a book about the pair would be a lie. The crossover should surface while scoring low enough that the page frames it honestly rather than as a co-starring run.",
+  "expect": {
+    "top1AnyOf": ["DC Versus Marvel", "JLA / Avengers"],
+    "maxTogetherness": 0.6
+  }
+}

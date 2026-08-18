@@ -23,17 +23,37 @@ export const rawCharacterSchema = z.object({
   description: nullableText,
   image: rawImageSchema,
   publisher: rawPublisherSchema,
+  // Newline-separated, and the separator varies between \n and \r\n.
+  aliases: nullableText,
+  count_of_issue_appearances: z.union([z.string(), z.number()]).nullable().optional(),
   issue_credits: z
     .array(z.object({ id: z.number().int().positive(), name: nullableText }))
     .nullable()
     .optional(),
 });
 
+// Per-character appearance counts for a volume. The API documentation calls this
+// field `character_credits` while live responses have been observed using
+// `characters`; both are accepted so a rename on either side cannot silently
+// drop the strongest core-cast signal we have.
+const rawCharacterCountSchema = z.array(
+  z.object({
+    id: z.number().int().positive(),
+    name: z.string().min(1),
+    count: z.union([z.string(), z.number()]).nullable().optional(),
+  }),
+)
+  .nullable()
+  .optional();
+
 export const rawVolumeSchema = z.object({
   id: z.number().int().positive(),
   name: z.string().min(1),
   start_year: z.union([z.string(), z.number()]).nullable().optional(),
+  count_of_issues: z.union([z.string(), z.number()]).nullable().optional(),
   publisher: rawPublisherSchema,
+  characters: rawCharacterCountSchema,
+  character_credits: rawCharacterCountSchema,
 });
 
 export const rawIssueSchema = z.object({
@@ -47,6 +67,30 @@ export const rawIssueSchema = z.object({
   image: rawImageSchema,
   character_credits: z.array(rawCreditSchema).nullable().optional(),
   story_arc_credits: z.array(rawCreditSchema).nullable().optional(),
+  person_credits: z
+    .array(
+      z.object({
+        id: z.number().int().positive(),
+        name: z.string().min(1),
+        // A single comma-separated string such as "writer, cover", not an array.
+        role: nullableText,
+      }),
+    )
+    .nullable()
+    .optional(),
+});
+
+// The issues list endpoint never returns credits of any kind, so it gets its own
+// schema rather than relying on every credit field being optional.
+export const rawIssueSummarySchema = z.object({
+  id: z.number().int().positive(),
+  volume: rawCreditSchema,
+  issue_number: z.union([z.string(), z.number()]),
+  name: nullableText,
+  cover_date: nullableText,
+  deck: nullableText,
+  description: nullableText,
+  image: rawImageSchema,
 });
 
 export const rawStoryArcSchema = z.object({
@@ -59,6 +103,7 @@ export const rawStoryArcSchema = z.object({
 export type RawCharacter = z.infer<typeof rawCharacterSchema>;
 export type RawVolume = z.infer<typeof rawVolumeSchema>;
 export type RawIssue = z.infer<typeof rawIssueSchema>;
+export type RawIssueSummary = z.infer<typeof rawIssueSummarySchema>;
 export type RawStoryArc = z.infer<typeof rawStoryArcSchema>;
 
 export function responseSchema<T extends z.ZodType>(resultSchema: T) {

@@ -1,0 +1,209 @@
+{
+  "name": "starfire-punisher",
+  "source": "recorded",
+  "recordedAt": "2026-08-18T04:58:33.956Z",
+  "note": "Characters from different publishers who share only one crowded crossover issue. Saying there is no shared story is the correct answer; promoting the crossover as a starting point is the failure mode this case guards.",
+  "characterPublishers": [
+    "DC Comics"
+  ],
+  "issues": [
+    {
+      "id": "ba03d8a8-f4e1-4bbf-8074-c6dde4b7e252",
+      "comicvineId": 1076425,
+      "issueNumber": "1",
+      "name": "HC",
+      "coverDate": "2024-10-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/11182/111829875/9528423-img_6350.jpeg",
+      "volume": {
+        "id": "8eda3700-42f2-480c-a1fb-54d0284572a4",
+        "name": "DC Versus Marvel Omnibus",
+        "startYear": 2024,
+        "issueCount": 1
+      },
+      "characterCount": 123,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "Alan Grant",
+          "role": "writer"
+        },
+        {
+          "name": "Barry Kitson",
+          "role": "penciler"
+        },
+        {
+          "name": "Chris Claremont",
+          "role": "writer"
+        },
+        {
+          "name": "Chuck Dixon",
+          "role": "writer"
+        },
+        {
+          "name": "Dan Jurgens",
+          "role": "penciler"
+        },
+        {
+          "name": "Dan Jurgens",
+          "role": "writer"
+        },
+        {
+          "name": "Daniel G. Chichester",
+          "role": "writer"
+        },
+        {
+          "name": "Darryl Banks",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis O'Neil",
+          "role": "writer"
+        },
+        {
+          "name": "Eduardo Barreto",
+          "role": "penciler"
+        },
+        {
+          "name": "George Pérez",
+          "role": "writer"
+        },
+        {
+          "name": "Gerry Conway",
+          "role": "writer"
+        },
+        {
+          "name": "Graham Nolan",
+          "role": "penciler"
+        },
+        {
+          "name": "J.M. DeMatteis",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Shooter",
+          "role": "writer"
+        },
+        {
+          "name": "John Buscema",
+          "role": "penciler"
+        },
+        {
+          "name": "John Byrne",
+          "role": "penciler"
+        },
+        {
+          "name": "John Byrne",
+          "role": "writer"
+        },
+        {
+          "name": "John Romita Jr.",
+          "role": "penciler"
+        },
+        {
+          "name": "José Luis García-López",
+          "role": "penciler"
+        },
+        {
+          "name": "Len Wein",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Marv Wolfman",
+          "role": "writer"
+        },
+        {
+          "name": "Roger Stern",
+          "role": "writer"
+        },
+        {
+          "name": "Ron Lim",
+          "role": "penciler"
+        },
+        {
+          "name": "Ron Marz",
+          "role": "writer"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        },
+        {
+          "name": "Scott McDaniel",
+          "role": "penciler"
+        },
+        {
+          "name": "Steve Rude",
+          "role": "penciler"
+        },
+        {
+          "name": "Walter Simonson",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "bc07e068-5256-49a1-b357-3c3d10eacdb1",
+      "comicvineId": 200201,
+      "issueNumber": "1",
+      "name": "JLA / Avengers",
+      "coverDate": "2008-11-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/5/54045/1153427-jla_avengers.png",
+      "volume": {
+        "id": "62851168-0b3a-4cfa-9158-8422efe73636",
+        "name": "JLA / Avengers",
+        "startYear": 2008,
+        "issueCount": 1
+      },
+      "characterCount": 345,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        }
+      ]
+    }
+  ],
+  "affinities": [
+    {
+      "volumeId": "62851168-0b3a-4cfa-9158-8422efe73636",
+      "volumeName": "JLA / Avengers",
+      "volumeStartYear": 2008,
+      "volumeIssueCount": 1,
+      "publisherName": "Marvel",
+      "localIssueCount": 1,
+      "coIssueCount": 1,
+      "minCharacterAppearances": 1,
+      "longestCoStreak": 1,
+      "firstCoIssueNumber": "1",
+      "lastCoIssueNumber": "1",
+      "firstCoDate": "2008-11-01",
+      "lastCoDate": "2008-11-01",
+      "topWriter": "Kurt Busiek",
+      "topArtist": null
+    },
+    {
+      "volumeId": "8eda3700-42f2-480c-a1fb-54d0284572a4",
+      "volumeName": "DC Versus Marvel Omnibus",
+      "volumeStartYear": 2024,
+      "volumeIssueCount": 1,
+      "publisherName": "DC Comics",
+      "localIssueCount": 1,
+      "coIssueCount": 1,
+      "minCharacterAppearances": 1,
+      "longestCoStreak": 1,
+      "firstCoIssueNumber": "1",
+      "lastCoIssueNumber": "1",
+      "firstCoDate": "2024-10-01",
+      "lastCoDate": "2024-10-01",
+      "topWriter": "Alan Grant",
+      "topArtist": "Barry Kitson"
+    }
+  ]
+}

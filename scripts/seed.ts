@@ -19,7 +19,18 @@ async function main() {
   const database = databaseFromEnv();
   const comicVine = comicVineClientFromEnv();
 
-  for (const name of ["Daredevil", "Spider-Man"]) {
+  // Characters used by the eval cases are seeded alongside the originals so a
+  // fresh database can produce fixtures with `npm run eval:record`.
+  const characters = [
+    "Daredevil",
+    "Spider-Man",
+    "Nightwing",
+    "Starfire",
+    "Batman",
+    "Superman",
+  ];
+
+  for (const name of characters) {
     console.log(`Ingesting ${name}...`);
     console.log(await ingestCharacter(database, comicVine, name, maxIssues));
   }

@@ -13,6 +13,8 @@ describe("ComicVine normalization", () => {
       image: { original_url: "https://example.com/daredevil.jpg" },
       publisher: { id: 31, name: "Marvel" },
       issue_credits: [{ id: 99, name: null }],
+      aliases: "Matt Murdock\r\nThe Man Without Fear\n",
+      count_of_issue_appearances: "1234",
     });
 
     expect(normalizeCharacter(raw)).toEqual({
@@ -22,6 +24,8 @@ describe("ComicVine normalization", () => {
       imageUrl: "https://example.com/daredevil.jpg",
       publisher: { comicvineId: 31, name: "Marvel" },
       issueCredits: [{ comicvineId: 99 }],
+      aliases: ["Matt Murdock", "The Man Without Fear"],
+      issueAppearanceCount: 1234,
     });
   });
 

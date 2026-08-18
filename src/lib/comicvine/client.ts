@@ -3,6 +3,7 @@ import { z } from "zod";
 import {
   rawCharacterSchema,
   rawIssueSchema,
+  rawIssueSummarySchema,
   rawStoryArcSchema,
   rawVolumeSchema,
   responseSchema,
@@ -10,19 +11,24 @@ import {
 import {
   normalizeCharacter,
   normalizeIssue,
+  normalizeIssueSummary,
   normalizeStoryArc,
   normalizeVolume,
 } from "./normalize";
 import type {
   ComicVineCharacter,
   ComicVineIssue,
+  ComicVineIssueSummary,
   ComicVineStoryArc,
   ComicVineVolume,
 } from "./types";
 
 const BASE_URL = "https://comicvine.gamespot.com/api";
 const DEFAULT_PAGE_SIZE = 100;
-const RETRYABLE_STATUSES = new Set([429, 500, 502, 503, 504]);
+// ComicVine answers a rate-limited request with 420, not 429.
+const RETRYABLE_STATUSES = new Set([420, 429, 500, 502, 503, 504]);
+/** Pipe-separated ID filters are capped at the page size. */
+const MAX_IDS_PER_REQUEST = 100;
 
 export class ComicVineError extends Error {
   constructor(
@@ -72,7 +78,13 @@ export class ComicVineClient {
     const raw = await this.getAllPages(
       "/search/",
       rawCharacterSchema,
-      { query, resources: "character" },
+      {
+        query,
+        resources: "character",
+        // Aliases and appearance counts are what let the caller tell the famous
+        // owner of a name from an obscure character who merely shares it.
+        field_list: "id,name,deck,image,publisher,aliases,count_of_issue_appearances",
+      },
       limit,
     );
     return raw.map(normalizeCharacter);
@@ -83,12 +95,19 @@ export class ComicVineClient {
       `/character/4005-${comicvineId}/`,
       rawCharacterSchema,
       {
-        field_list: "id,name,deck,description,image,publisher,issue_credits",
+        field_list:
+          "id,name,deck,description,image,publisher,issue_credits,aliases,count_of_issue_appearances",
       },
     );
     return normalizeCharacter(raw);
   }
 
+  /**
+   * One volume request carries `count_of_issues` and the per-character appearance
+   * counts that tell a co-starring book from a guest spot. Those counts exist
+   * nowhere else short of fetching every issue's credits individually, which the
+   * 200-requests-per-hour limit makes impossible.
+   */
   async getVolume(comicvineId: number): Promise<ComicVineVolume> {
     const raw = await this.getOne(
       `/volume/4050-${comicvineId}/`,
@@ -105,19 +124,57 @@ export class ComicVineClient {
     return normalizeStoryArc(raw);
   }
 
+  /**
+   * Full issue detail, including credits. One request per issue, so callers must
+   * budget: the issue resource allows roughly 200 requests per hour.
+   */
   async getIssues(
     issueCredits: Array<{ comicvineId: number }>,
     maxResults = 200,
   ): Promise<ComicVineIssue[]> {
     const issues: ComicVineIssue[] = [];
     for (const { comicvineId } of issueCredits.slice(0, maxResults)) {
-      const raw = await this.getOne(`/issue/4000-${comicvineId}/`, rawIssueSchema, {
-        field_list:
-          "id,volume,issue_number,name,cover_date,deck,description,image,character_credits,story_arc_credits",
-      });
-      issues.push(normalizeIssue(raw));
+      issues.push(await this.getIssue(comicvineId));
     }
     return issues;
+  }
+
+  async getIssue(comicvineId: number): Promise<ComicVineIssue> {
+    const raw = await this.getOne(`/issue/4000-${comicvineId}/`, rawIssueSchema, {
+      field_list:
+        "id,volume,issue_number,name,cover_date,deck,description,image,character_credits,story_arc_credits,person_credits",
+    });
+    return normalizeIssue(raw);
+  }
+
+  /**
+   * Metadata for many issues at once, 100 per request, via a pipe-separated id
+   * filter. The list endpoint never returns character, story-arc, or person
+   * credits — only `getIssue` has those — so this is for hydrating volume and
+   * publication data across a large co-appearance set cheaply.
+   *
+   * ComicVine silently omits IDs it no longer holds, so the result may be
+   * shorter than the request.
+   */
+  async getIssueSummaries(comicvineIds: number[]): Promise<ComicVineIssueSummary[]> {
+    const unique = [...new Set(comicvineIds)];
+    const summaries: ComicVineIssueSummary[] = [];
+
+    for (let start = 0; start < unique.length; start += MAX_IDS_PER_REQUEST) {
+      const batch = unique.slice(start, start + MAX_IDS_PER_REQUEST);
+      const page = await this.getAllPages(
+        "/issues/",
+        rawIssueSummarySchema,
+        {
+          filter: `id:${batch.join("|")}`,
+          field_list: "id,volume,issue_number,name,cover_date,deck,description,image",
+        },
+        batch.length,
+      );
+      summaries.push(...page.map(normalizeIssueSummary));
+    }
+
+    return summaries;
   }
 
   private async getOne<T>(
