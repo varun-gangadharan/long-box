@@ -751,6 +751,154 @@ footer p {
   to { transform: translateX(350%); }
 }
 
+/* Long box loader ------------------------------------------------------------
+   Covers standing in a storage box, riffled one at a time. Uses the cover
+   language already in the system (2:3 frames, paper placeholder) rather than
+   speech bubbles or sound effects, and moves only transform and opacity. */
+
+.loading-page {
+  display: grid;
+  min-height: 60vh;
+  place-content: center;
+}
+
+.long-box-loader {
+  display: grid;
+  max-width: 640px;
+  gap: 48px;
+  justify-items: center;
+  text-align: center;
+}
+
+.long-box {
+  position: relative;
+  display: flex;
+  height: 82px;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+/* The front panel of the box, drawn over the lower part of the issues so they
+   stand up out of it the way they do in a shop. */
+.long-box::after {
+  position: absolute;
+  z-index: 2;
+  right: -20px;
+  bottom: 0;
+  left: -20px;
+  height: 30px;
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  background: var(--card);
+  box-shadow: 0 -12px 20px -14px rgba(0, 0, 0, 0.9);
+  content: "";
+}
+
+.long-box-issue {
+  position: relative;
+  z-index: 1;
+  width: 44px;
+  height: 78px;
+  border: 1px solid #33322f;
+  border-radius: 2px 2px 0 0;
+  /* Stands in for cover art, which is the only real colour in the system. */
+  background: linear-gradient(168deg, #35342f 0%, #26251f 55%, #1c1c1a 100%);
+  animation: riffle 2.4s cubic-bezier(0.23, 1, 0.32, 1) infinite;
+}
+
+/* A little variation so the row reads as different comics, not a repeated tile. */
+.long-box-issue:nth-child(2) { background: linear-gradient(168deg, #2c3038 0%, #212429 55%, #1a1b1d 100%); }
+.long-box-issue:nth-child(3) { background: linear-gradient(168deg, #3a332f 0%, #2a2522 55%, #1d1b19 100%); }
+.long-box-issue:nth-child(4) { background: linear-gradient(168deg, #2f3430 0%, #232722 55%, #1a1c1a 100%); }
+.long-box-issue:nth-child(5) { background: linear-gradient(168deg, #383036 0%, #282228 55%, #1c1a1c 100%); }
+
+@keyframes riffle {
+  0%, 55%, 100% {
+    transform: translateY(0);
+    border-color: var(--border);
+  }
+  20% {
+    transform: translateY(-14px);
+    border-color: var(--primary);
+  }
+}
+
+.long-box-copy h1 {
+  margin: 8px 0 0;
+  font-size: clamp(1.75rem, 3.5vw, 2.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+/* The stage lines are stacked in one grid cell and cross-faded by CSS alone, so
+   they still advance inside a Suspense fallback that React never hydrates. */
+.loading-stage {
+  display: grid;
+  min-height: 3.2em; /* Holds the tallest line so wrapping never shifts layout. */
+  margin: 20px 0 0;
+  color: var(--foreground);
+  font-size: 1rem;
+}
+
+.stage-line {
+  grid-area: 1 / 1;
+  opacity: 0;
+  animation-name: stage-cycle;
+  animation-timing-function: ease;
+  animation-fill-mode: both;
+}
+
+.stage-line-last {
+  animation-name: stage-final;
+}
+
+@keyframes stage-cycle {
+  0% { opacity: 0; }
+  8% { opacity: 1; }
+  92% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+@keyframes stage-final {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.visually-hidden {
+  position: absolute;
+  overflow: hidden;
+  width: 1px;
+  height: 1px;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.loading-note {
+  max-width: 46ch;
+  margin: 16px auto 0;
+  color: var(--muted-foreground);
+  font-size: 0.875rem;
+  line-height: 1.45;
+}
+
+@media (max-width: 767px) {
+  .long-box-loader { gap: 36px; }
+  .long-box { height: 68px; gap: 6px; }
+  .long-box::after { height: 26px; }
+  .long-box-issue { width: 36px; height: 64px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The global rule collapses animations to a single instant frame, so pin the
+     resting state and leave the first stage line legible. */
+  .long-box-issue { transform: none; border-color: var(--border); }
+  /* The animation has to be switched off, not just shortened: a filled
+     animation value outranks a plain declaration, so an instantly-completed
+     cross-fade would hold its final frame and leave no message on screen. */
+  .stage-line { animation: none !important; opacity: 0; }
+  .stage-line:first-child { opacity: 1; }
+}
+
 @media (max-width: 1024px) {
   :root { --page-gutter: 24px; }
   .character-grid { grid-template-columns: repeat(2, 1fr); }
