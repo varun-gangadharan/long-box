@@ -34,6 +34,7 @@ declare
   candidate_characters integer;
   candidate_arcs integer;
   arc_issue_count integer;
+  search_count integer;
 begin
   select count(*) into resolved_count
   from resolve_character_names(array['spider man']);
@@ -73,6 +74,18 @@ begin
   from reading_path_story_arc_issues('10000000-0000-0000-0000-000000000040');
   if arc_issue_count <> 2 then
     raise exception 'story arc issue lookup failed: got %', arc_issue_count;
+  end if;
+
+  update characters
+  set is_canonical = true
+  where id = '10000000-0000-0000-0000-000000000010';
+  select count(*) into search_count from search_catalog('dare devil', 8);
+  if search_count <> 1 then
+    raise exception 'catalog character search failed: got %', search_count;
+  end if;
+  select count(*) into search_count from search_catalog('test arc', 8);
+  if search_count <> 1 then
+    raise exception 'catalog story arc search failed: got %', search_count;
   end if;
 end;
 $$;

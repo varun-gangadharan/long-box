@@ -1,69 +1,154 @@
-import Image from "next/image";
+import { connection } from "next/server";
+import Link from "next/link";
 
-export default function Home() {
+import { Cover } from "@/components/cover";
+import { SearchBox } from "@/components/search-box";
+import { SiteHeader } from "@/components/site-header";
+import { databaseFromEnv } from "@/lib/db/client";
+
+type DiscoveryCharacter = {
+  id: string;
+  name: string;
+  image_url: string | null;
+  publisher: { name: string } | null;
+};
+type DiscoveryIssue = {
+  id: string;
+  name: string | null;
+  issue_number: string;
+  image_url: string | null;
+  volume: { name: string } | null;
+};
+
+export default async function Home() {
+  await connection();
+  const { characters, issues, pairingIssues } = await loadDiscovery();
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <SiteHeader />
+      <main>
+        <section className="home-hero">
+          <p className="section-kicker">Comic reading, without the homework</p>
+          <h1>Find your way into comics</h1>
+          <p>
+            Pick a character or story. Long Box finds a clear place to begin and a few
+            useful directions to follow.
           </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+          <SearchBox />
+        </section>
+
+        <section className="editorial-section" aria-labelledby="start-new-heading">
+          <div className="section-heading">
+            <p className="section-kicker">Character index</p>
+            <h2 id="start-new-heading">Start somewhere new</h2>
+          </div>
+          <div className="character-grid">
+            {characters.map((character) => (
+              <Link
+                className="character-tile"
+                href={`/read?characters=${encodeURIComponent(character.name)}`}
+                key={character.id}
+              >
+                <Cover
+                  imageUrl={character.image_url}
+                  alt={`${character.name} character artwork`}
+                />
+                <h3>{character.name}</h3>
+                <p>{character.publisher?.name ?? "Comic character"}</p>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className="editorial-section" aria-labelledby="from-box-heading">
+          <div className="section-heading plain-heading">
+            <h2 id="from-box-heading">From the long box</h2>
+            <p>Recent covers from the locally indexed catalog.</p>
+          </div>
+          <div className="issue-strip">
+            {issues.slice(0, 3).map((issue) => (
+              <article className="issue-preview" key={issue.id}>
+                <Cover
+                  imageUrl={issue.image_url}
+                  alt={`${issue.volume?.name ?? "Comic"} issue ${issue.issue_number} cover`}
+                />
+                <div>
+                  <h3>{issue.name || `${issue.volume?.name ?? "Issue"} #${issue.issue_number}`}</h3>
+                  <p>
+                    {issue.volume?.name} #{issue.issue_number}
+                  </p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+
+        <section className="editorial-section pairing-section" aria-labelledby="pairing-heading">
+          <div>
+            <h2 id="pairing-heading">Interesting pairing</h2>
+            <p>
+              Find issues where Spider-Man and Daredevil both appear, then choose a short
+              route into their shared history.
+            </p>
+            <Link className="text-link" href="/read?characters=Spider-Man%2CDaredevil">
+              Explore the pairing
+            </Link>
+          </div>
+          <div className="paired-covers" aria-hidden="true">
+            {pairingIssues.slice(0, 2).map((issue) => (
+              <Cover imageUrl={issue.image_url} alt="" key={issue.id} />
+            ))}
+          </div>
+        </section>
       </main>
-    </div>
+      <footer>
+        <span className="wordmark">Long Box</span>
+        <p>Comic facts from ComicVine. Reading paths by Long Box.</p>
+      </footer>
+    </>
   );
+}
+
+async function loadDiscovery(): Promise<{
+  characters: DiscoveryCharacter[];
+  issues: DiscoveryIssue[];
+  pairingIssues: DiscoveryIssue[];
+}> {
+  try {
+    const database = databaseFromEnv();
+    const [charactersResult, issuesResult, pairingResult] = await Promise.all([
+      database
+        .from("characters")
+        .select("id,name,image_url,publisher:publishers(name)")
+        .eq("is_canonical", true)
+        .order("name")
+        .limit(4),
+      database
+        .from("issues")
+        .select("id,name,issue_number,image_url,volume:volumes(name)")
+        .not("image_url", "is", null)
+        .order("cover_date", { ascending: false })
+        .limit(5),
+      database.rpc("issues_for_characters", {
+        requested_names: ["Spider-Man", "Daredevil"],
+      }),
+    ]);
+    if (charactersResult.error || issuesResult.error || pairingResult.error) {
+      throw new Error("discovery query failed");
+    }
+    return {
+      characters: (charactersResult.data ?? []) as unknown as DiscoveryCharacter[],
+      issues: (issuesResult.data ?? []) as unknown as DiscoveryIssue[],
+      pairingIssues: (pairingResult.data ?? []).map((issue) => ({
+        id: issue.issue_id,
+        name: issue.issue_name,
+        issue_number: issue.issue_number,
+        image_url: issue.image_url,
+        volume: { name: issue.volume_name },
+      })),
+    };
+  } catch {
+    return { characters: [], issues: [], pairingIssues: [] };
+  }
 }
