@@ -53,7 +53,12 @@ export function ReadingPathView({ result }: { result: ReadingPathResult }) {
             <p>Each branch stays grounded in the same issue and character data.</p>
           </div>
           {branches.map((branch) => (
-            <details className="branch" key={branch.label} open={branch.label === "Short route"}>
+            <details
+              className="branch"
+              key={branch.label}
+              name="reading-branches"
+              open={branch.label === "Short route"}
+            >
               <summary>
                 <span>{branch.label}</span>
                 <small>{branch.description}</small>

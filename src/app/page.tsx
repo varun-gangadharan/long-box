@@ -12,6 +12,14 @@ type DiscoveryCharacter = {
   image_url: string | null;
   publisher: { name: string } | null;
 };
+type PairingIssueRow = {
+  issue_id: string;
+  issue_name: string | null;
+  issue_number: string;
+  image_url: string | null;
+  volume_name: string;
+};
+
 type DiscoveryIssue = {
   id: string;
   name: string | null;
@@ -140,7 +148,7 @@ async function loadDiscovery(): Promise<{
     return {
       characters: (charactersResult.data ?? []) as unknown as DiscoveryCharacter[],
       issues: (issuesResult.data ?? []) as unknown as DiscoveryIssue[],
-      pairingIssues: (pairingResult.data ?? []).map((issue) => ({
+      pairingIssues: ((pairingResult.data ?? []) as PairingIssueRow[]).map((issue) => ({
         id: issue.issue_id,
         name: issue.issue_name,
         issue_number: issue.issue_number,
