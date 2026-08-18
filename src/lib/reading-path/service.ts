@@ -138,9 +138,6 @@ async function resolveCharactersWithIngestion(
   let resolved;
   try {
     resolved = await resolveCharacters(database, names);
-    // An alias-only match is not settled: the character who actually carries the
-    // name may simply not be in the catalog yet. Searching ComicVine is what
-    // stops "Batman" resolving to Dick Grayson because he once wore the cowl.
     if (resolved.every(isSettledIdentity)) return resolved;
   } catch (error) {
     if (error instanceof AmbiguousCharacterError) {
@@ -150,45 +147,70 @@ async function resolveCharactersWithIngestion(
     }
   }
 
+  // Names whose ComicVine search has already been done and produced nothing
+  // better. Asking again on every request costs a round trip on the critical
+  // path and a slice of a small hourly budget, for an answer that will not have
+  // changed.
+  const alreadySearched = await namesAlreadySearched(database, names);
+
   const client = typeof comicVine === "function" ? comicVine() : comicVine;
-  for (const name of names) {
+  for (const [index, name] of names.entries()) {
+    const existing = resolved?.[index];
+    if (existing && alreadySearched.has(normalizeEntityName(name))) continue;
+
     try {
       await ingestCharacter(database, client, name, ON_DEMAND_ISSUES);
+      await recordNameSearch(database, name);
     } catch {
-      // An alias match already in the catalog is a usable answer, so a failed
-      // lookup for a better one is not fatal.
-      if (!resolved?.some((character) => matchesRequest(character, name))) {
-        throw new CharacterNotFoundError(name);
-      }
+      // Whatever the catalog already holds for this name is a usable answer —
+      // including one reached through an alias, which is the normal case for a
+      // codename. Only a name with no match at all is genuinely not found.
+      if (!existing) throw new CharacterNotFoundError(name);
+      await recordNameSearch(database, name);
     }
   }
+
   return resolveCharacters(database, names);
+}
+
+async function namesAlreadySearched(
+  database: SupabaseClient,
+  names: string[],
+): Promise<Set<string>> {
+  const normalized = names.map(normalizeEntityName);
+  const { data, error } = await database
+    .from("name_searches")
+    .select("normalized_name")
+    .in("normalized_name", normalized);
+  if (error) return new Set();
+  return new Set((data ?? []).map((row) => String(row.normalized_name)));
+}
+
+async function recordNameSearch(database: SupabaseClient, name: string): Promise<void> {
+  await database
+    .from("name_searches")
+    .upsert(
+      { normalized_name: normalizeEntityName(name), searched_at: new Date().toISOString() },
+      { onConflict: "normalized_name" },
+    );
 }
 
 /**
  * Whether a resolved character can be trusted without checking ComicVine.
  *
  * An alias-only match may be standing in for a character who is simply not in
- * the catalog yet, and a row with no appearance count was created as a credit
- * stub rather than looked up — an obscure "Superman" with a handful of credits
- * can hold the name against the real one.
+ * the catalog yet, and a row without details was created as a credit stub rather
+ * than looked up — an obscure "Superman" with a handful of credits can hold the
+ * name against the real one.
  */
 function isSettledIdentity(character: {
   isCanonical?: boolean;
   matchedAlias?: boolean;
-  issueAppearanceCount?: number | null;
+  hasDetails?: boolean;
 }): boolean {
-  return Boolean(
-    character.isCanonical &&
-      !character.matchedAlias &&
-      character.issueAppearanceCount !== null &&
-      character.issueAppearanceCount !== undefined,
-  );
+  return Boolean(character.isCanonical && !character.matchedAlias && character.hasDetails);
 }
 
-function matchesRequest(character: { name: string }, requestedName: string): boolean {
-  return normalizeEntityName(character.name) === normalizeEntityName(requestedName);
-}
 
 /**
  * Fills in what these characters actually share before ranking. Enrichment is

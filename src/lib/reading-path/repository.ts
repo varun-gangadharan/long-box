@@ -24,6 +24,7 @@ const resolvedRowSchema = z.object({
   issue_appearance_count: z.number().int().nullable(),
   matched_alias: z.boolean(),
   alias_position: z.number().int().nullable(),
+  has_details: z.boolean(),
 });
 
 const storyArcRowSchema = z.object({
@@ -267,5 +268,6 @@ function toResolvedCharacter(row: z.infer<typeof resolvedRowSchema>): ResolvedCh
     isCanonical: row.is_canonical,
     matchedAlias: row.matched_alias,
     issueAppearanceCount: row.issue_appearance_count,
+    hasDetails: row.has_details,
   };
 }

@@ -1,6 +1,8 @@
+import type { ComicVineClient } from "@/lib/comicvine/client";
 import { describe, expect, it } from "vitest";
 
 import {
+  buildReadingPath,
   InvalidReadingPathQueryError,
   parseCharacterQuery,
   parseReadingPathQuery,
@@ -54,5 +56,69 @@ describe("reading-path query parsing", () => {
     expect(() => parseCharacterQuery("Spider-Man, spider man")).toThrow(
       new InvalidReadingPathQueryError("Duplicate characters are not allowed."),
     );
+  });
+});
+
+describe("character resolution fallback", () => {
+  const dickGrayson = {
+    requested_name: "Nightwing",
+    id: "40000000-0000-4000-8000-000000000001",
+    comicvine_id: 1691,
+    name: "Dick Grayson",
+    description: null,
+    image_url: null,
+    publisher_name: "DC Comics",
+    is_canonical: true,
+    issue_appearance_count: 10221,
+    matched_alias: true,
+    alias_position: 2,
+    has_details: true,
+  };
+
+  function databaseReturning(rows: unknown[]) {
+    return {
+      rpc: async (name: string) =>
+        name === "resolve_character_names"
+          ? { data: rows, error: null }
+          : { data: [], error: null },
+      from: () => ({
+        select: () => ({ in: async () => ({ data: [], error: null }) }),
+        upsert: async () => ({ error: null }),
+      }),
+    } as unknown as Parameters<typeof buildReadingPath>[0];
+  }
+
+  it("keeps an alias match when ComicVine cannot be reached", async () => {
+    // The alias match is a usable answer already in the catalog. Losing it
+    // because an upstream lookup failed turned a working query into a 404.
+    const failingComicVine = {
+      searchCharacters: async () => {
+        throw new Error("ComicVine request failed with HTTP 420");
+      },
+    } as unknown as ComicVineClient;
+
+    const result = await buildReadingPath(
+      databaseReturning([dickGrayson]),
+      { type: "characters", names: ["Nightwing"] },
+      failingComicVine,
+    );
+
+    expect(result.query.characters[0].name).toBe("Dick Grayson");
+  });
+
+  it("still reports a name that resolves to nothing at all", async () => {
+    const failingComicVine = {
+      searchCharacters: async () => {
+        throw new Error("ComicVine request failed with HTTP 420");
+      },
+    } as unknown as ComicVineClient;
+
+    await expect(
+      buildReadingPath(
+        databaseReturning([]),
+        { type: "characters", names: ["Nobody"] },
+        failingComicVine,
+      ),
+    ).rejects.toThrow(/not found/i);
   });
 });

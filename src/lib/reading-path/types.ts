@@ -8,12 +8,12 @@ export type ResolvedCharacter = {
   isCanonical?: boolean;
   /** True when the requested name was one of this character's aliases, not their name. */
   matchedAlias?: boolean;
-  /**
-   * Null on a stub row created from an issue credit rather than fetched in its
-   * own right. Such a row can hold a name it does not deserve, so the absence of
-   * a count is a signal that the identity is not settled.
-   */
   issueAppearanceCount?: number | null;
+  /**
+   * False on a stub row created from another issue's credit list rather than
+   * fetched in its own right. Such a row can hold a name it does not deserve.
+   */
+  hasDetails?: boolean;
 };
 
 export type ResolvedStoryArc = {

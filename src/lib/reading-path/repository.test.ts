@@ -22,6 +22,7 @@ const baseRow = {
   issue_appearance_count: 500,
   matched_alias: false,
   alias_position: null,
+  has_details: true,
 };
 const storyArcRow = {
   requested_name: "Civil War",
@@ -55,6 +56,7 @@ describe("character resolution", () => {
       issue_appearance_count: 400,
       matched_alias: false,
       alias_position: null,
+      has_details: true,
     };
     const [resolved] = await resolveCharacters(
       databaseReturning([stub, baseRow]),
@@ -125,6 +127,7 @@ describe("character identity precedence", () => {
             issue_appearance_count: 10221,
             matched_alias: true,
             alias_position: 2,
+            has_details: true,
           },
           {
             requested_name: "Batman",
@@ -138,6 +141,7 @@ describe("character identity precedence", () => {
             issue_appearance_count: 26000,
             matched_alias: false,
             alias_position: null,
+            has_details: true,
           },
         ],
         error: null,
@@ -165,6 +169,7 @@ describe("character identity precedence", () => {
             issue_appearance_count: 10221,
             matched_alias: true,
             alias_position: 2,
+            has_details: true,
           },
         ],
         error: null,
