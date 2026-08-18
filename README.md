@@ -134,13 +134,70 @@ Running the command again updates existing records and relationships instead of 
 
 ```bash
 npm test
+npm run eval
 npm run test:db
 npm run typecheck
 npm run lint
 npm run build
 ```
 
+`npm run eval` is the recommendation-quality gate. See [How recommendations are
+ranked](#how-recommendations-are-ranked) below.
+
 `npm run test:db` starts an isolated temporary Postgres instance, applies the migration, checks idempotent issue upserts, single-character retrieval, two-character intersection, story-arc retrieval, and volume joins, then removes the instance.
+
+## How recommendations are ranked
+
+Presence is not the same as co-starring. Two characters being credited in the same
+issue says almost nothing; what a reader wants to know is whether a book is *about*
+them together, and whether they can start there. The engine scores those two
+questions separately and reports both.
+
+**Togetherness** — is this book actually about these characters?
+
+The dominant signal is `co_issue_count / volume_issue_count`, taken from ComicVine's
+per-volume character appearance counts. A forty-issue team book the pair headline
+scores near 1; a seven-hundred-issue title one of them guest-starred in once scores
+near 0. Sustained consecutive appearances, how densely the shared issues sit inside
+the run, shared story arcs, and the volume title carry the rest.
+
+**Beginner friendliness** — can somebody who has read nothing start here?
+
+Entry point (does it begin at a `#1`), how deep into a volume it starts, whether the
+story is self-contained rather than an event tie-in, cast size, whether one writer
+holds the run together, and a commitment curve that peaks at a short run — a single
+issue cannot show a relationship, and a hundred issues is not a starting point.
+
+**The gate.** A candidate whose togetherness falls below `TOGETHERNESS_GATE` is never
+offered as a starting point, however approachable it looks. It is still listed, under
+"passing appearances", with a warning. Telling someone their characters have no shared
+story is more useful than dressing up a cameo.
+
+Retrieval matters as much as ranking. Each character's complete ComicVine appearance
+list is cached in `character_issue_credits`, so the shared set is a real intersection
+rather than an overlap between two arbitrary samples. Metadata for those issues is
+hydrated a hundred per request, and the expensive per-issue detail calls — capped at
+roughly 200 per hour by ComicVine — are spent only on the issues that might be
+recommended.
+
+### Evaluating the engine
+
+| Check | Command | Runs in CI |
+| --- | --- | --- |
+| Golden cases against frozen fixtures | `npm run eval` | yes |
+| Ranking invariants | `npm test` | yes |
+| Capture real retrieval into fixtures | `npm run eval:record` | no |
+| Whole pipeline against live ComicVine | `npm run eval:live -- "Nightwing+Starfire"` | no |
+| Qualitative second opinion | `npm run eval:judge` | no |
+
+Cases live in `evals/cases/` and name both what a good answer looks like and the
+specific wrong answer we have seen. Fixtures marked `authored` encode known facts
+about well-documented comics so the gate works without credentials; `recorded` ones
+are real RPC output and also exercise retrieval. The scorecard reports precision@1,
+recall@3, and the rate at which known bad answers are recommended.
+
+`eval:judge` asks a model to grade saved output. It is advisory, never gates CI, and
+never feeds ranking — the design principle below still holds.
 
 ## Current limitations
 

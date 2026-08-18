@@ -1,13 +1,31 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 
+import { bestClaim } from "@/lib/characters/identity";
 import { ComicVineClient } from "@/lib/comicvine/client";
 import type {
   ComicVineCharacter,
-  ComicVineCredit,
   ComicVineIssue,
   ComicVineStoryArc,
   ComicVineVolume,
 } from "@/lib/comicvine/types";
+
+import { normalizeEntityName } from "@/lib/reading-path/names";
+
+import {
+  dedupeByComicVineId,
+  replaceCharacterIssueCredits,
+  upsertCanonicalCharacter,
+  upsertCharacterStubs,
+  upsertCreatorLinks,
+  upsertCreators,
+  upsertIssues,
+  upsertPublishers,
+  upsertRelationships,
+  upsertStoryArcs,
+  upsertVolumes,
+} from "./upserts";
+
+export { dedupeByComicVineId };
 
 export type IngestionResult = {
   character: string;
@@ -17,14 +35,11 @@ export type IngestionResult = {
   relationships: number;
 };
 
-type DatabaseId = { id: string; comicvine_id: number };
-
-export function dedupeByComicVineId<T extends { comicvineId: number }>(
-  values: T[],
-): T[] {
-  return [...new Map(values.map((value) => [value.comicvineId, value])).values()];
-}
-
+/**
+ * Ingests one character and a slice of their issues. Whatever `maxIssues`
+ * allows, the character's complete appearance list is always cached, so later
+ * co-appearance queries see every shared issue rather than only the sampled few.
+ */
 export async function ingestCharacter(
   database: SupabaseClient,
   comicVine: ComicVineClient,
@@ -32,13 +47,11 @@ export async function ingestCharacter(
   maxIssues = 200,
 ): Promise<IngestionResult> {
   const searchResults = await comicVine.searchCharacters(requestedName, 10);
-  const match = searchResults.find(
-    ({ name }) => name.localeCompare(requestedName.trim(), undefined, { sensitivity: "accent" }) === 0,
-  );
+  const match = selectCharacterMatch(searchResults, requestedName);
   if (!match) {
     const suggestions = searchResults.map(({ name }) => name).join(", ");
     throw new Error(
-      `No exact ComicVine character match for "${requestedName}"${suggestions ? `. Matches: ${suggestions}` : ""}`,
+      `No ComicVine character match for "${requestedName}"${suggestions ? `. Matches: ${suggestions}` : ""}`,
     );
   }
 
@@ -53,10 +66,15 @@ export async function ingestCharacter(
     character.publisher,
     ...volumes.map(({ publisher }) => publisher),
   ]);
-  const characterIds = await upsertCharacters(database, character, issues, publisherIds);
+  await upsertCanonicalCharacter(database, character, publisherIds);
+  const characterIds = await upsertCharacterStubs(database, [
+    { comicvineId: character.comicvineId, name: character.name },
+    ...issues.flatMap(({ characters }) => characters),
+  ]);
   const volumeIds = await upsertVolumes(database, volumes, publisherIds);
   const issueIds = await upsertIssues(database, issues, volumeIds);
   const storyArcIds = await upsertStoryArcs(database, storyArcs);
+  const creatorIds = await upsertCreators(database, issues.flatMap(({ creators }) => creators));
   const relationships = await upsertRelationships(
     database,
     issues,
@@ -64,6 +82,16 @@ export async function ingestCharacter(
     characterIds,
     storyArcIds,
   );
+  await upsertCreatorLinks(database, issues, issueIds, creatorIds);
+
+  const characterId = characterIds.get(character.comicvineId);
+  if (characterId) {
+    await replaceCharacterIssueCredits(
+      database,
+      characterId,
+      character.issueCredits.map(({ comicvineId }) => comicvineId),
+    );
+  }
 
   return {
     character: character.name,
@@ -98,173 +126,50 @@ async function resolveStoryArcs(
   return arcs;
 }
 
-async function upsertPublishers(
-  database: SupabaseClient,
-  values: Array<ComicVineCharacter["publisher"] | ComicVineVolume["publisher"]>,
-): Promise<Map<number, string>> {
-  const publishers = dedupeByComicVineId(values.filter((value) => value !== null));
-  if (!publishers.length) return new Map();
+/**
+ * Picks which character somebody means by a name, from ComicVine search results.
+ * Shares its judgement with catalog lookup so the two cannot disagree.
+ */
+export function selectCharacterMatch(
+  candidates: ComicVineCharacter[],
+  requestedName: string,
+): ComicVineCharacter | null {
+  const requested = normalizeEntityName(requestedName);
 
-  const { data, error } = await database
-    .from("publishers")
-    .upsert(
-      publishers.map(({ comicvineId, name }) => ({ comicvine_id: comicvineId, name })),
-      { onConflict: "comicvine_id" },
-    )
-    .select("id,comicvine_id");
-  if (error) throw new Error(`Publisher upsert failed: ${error.message}`);
-  return idMap(data as DatabaseId[]);
-}
+  type Claim = {
+    candidate: ComicVineCharacter;
+    isNameMatch: boolean;
+    aliasPosition: number | null;
+  };
 
-async function upsertCharacters(
-  database: SupabaseClient,
-  character: ComicVineCharacter,
-  issues: ComicVineIssue[],
-  publisherIds: Map<number, string>,
-): Promise<Map<number, string>> {
-  const { error: characterError } = await database.from("characters").upsert(
-    {
-      comicvine_id: character.comicvineId,
-      name: character.name,
-      description: character.description,
-      image_url: character.imageUrl,
-      publisher_id: character.publisher
-        ? publisherIds.get(character.publisher.comicvineId)
-        : null,
-      details_loaded_at: new Date().toISOString(),
-      is_canonical: true,
-    },
-    { onConflict: "comicvine_id" },
-  );
-  if (characterError) throw new Error(`Character upsert failed: ${characterError.message}`);
-
-  const credits = dedupeByComicVineId(issues.flatMap(({ characters }) => characters));
-  if (credits.length) {
-    const { error } = await database.from("characters").upsert(
-      credits.map(({ comicvineId, name }) => ({ comicvine_id: comicvineId, name })),
-      { onConflict: "comicvine_id" },
+  const claims = candidates.flatMap((candidate): Claim[] => {
+    if (normalizeEntityName(candidate.name) === requested) {
+      return [{ candidate, isNameMatch: true, aliasPosition: null }];
+    }
+    const aliasPosition = candidate.aliases.findIndex(
+      (alias) => normalizeEntityName(alias) === requested,
     );
-    if (error) throw new Error(`Character credit upsert failed: ${error.message}`);
-  }
-
-  const ids = dedupeByComicVineId<ComicVineCredit>([
-    { comicvineId: character.comicvineId, name: character.name },
-    ...credits,
-  ]).map(({ comicvineId }) => comicvineId);
-  const { data, error } = await database
-    .from("characters")
-    .select("id,comicvine_id")
-    .in("comicvine_id", ids);
-  if (error) throw new Error(`Character ID lookup failed: ${error.message}`);
-  return idMap(data as DatabaseId[]);
-}
-
-async function upsertVolumes(
-  database: SupabaseClient,
-  volumes: ComicVineVolume[],
-  publisherIds: Map<number, string>,
-): Promise<Map<number, string>> {
-  if (!volumes.length) return new Map();
-  const { data, error } = await database
-    .from("volumes")
-    .upsert(
-      volumes.map((volume) => ({
-        comicvine_id: volume.comicvineId,
-        name: volume.name,
-        start_year: volume.startYear,
-        publisher_id: volume.publisher
-          ? publisherIds.get(volume.publisher.comicvineId)
-          : null,
-      })),
-      { onConflict: "comicvine_id" },
-    )
-    .select("id,comicvine_id");
-  if (error) throw new Error(`Volume upsert failed: ${error.message}`);
-  return idMap(data as DatabaseId[]);
-}
-
-async function upsertIssues(
-  database: SupabaseClient,
-  issues: ComicVineIssue[],
-  volumeIds: Map<number, string>,
-): Promise<Map<number, string>> {
-  if (!issues.length) return new Map();
-  const rows = issues.map((issue) => {
-    const volumeId = volumeIds.get(issue.volume.comicvineId);
-    if (!volumeId) throw new Error(`Missing volume ${issue.volume.comicvineId}`);
-    return {
-      comicvine_id: issue.comicvineId,
-      volume_id: volumeId,
-      issue_number: issue.issueNumber,
-      name: issue.name,
-      cover_date: issue.coverDate,
-      description: issue.description,
-      image_url: issue.imageUrl,
-    };
+    return aliasPosition === -1
+      ? []
+      : [{ candidate, isNameMatch: false, aliasPosition }];
   });
-  const { data, error } = await database
-    .from("issues")
-    .upsert(rows, { onConflict: "comicvine_id" })
-    .select("id,comicvine_id");
-  if (error) throw new Error(`Issue upsert failed: ${error.message}`);
-  return idMap(data as DatabaseId[]);
-}
+  if (!claims.length) return null;
+  if (claims.length === 1) return claims[0].candidate;
 
-async function upsertStoryArcs(
-  database: SupabaseClient,
-  arcs: ComicVineStoryArc[],
-): Promise<Map<number, string>> {
-  if (!arcs.length) return new Map();
-  const { data, error } = await database
-    .from("story_arcs")
-    .upsert(
-      arcs.map(({ comicvineId, name, description }) => ({
-        comicvine_id: comicvineId,
-        name,
-        description,
-      })),
-      { onConflict: "comicvine_id" },
-    )
-    .select("id,comicvine_id");
-  if (error) throw new Error(`Story arc upsert failed: ${error.message}`);
-  return idMap(data as DatabaseId[]);
-}
+  const winner = bestClaim(claims, (claim) => ({
+    isNameMatch: claim.isNameMatch,
+    aliasPosition: claim.aliasPosition,
+    appearanceCount: claim.candidate.issueAppearanceCount,
+  }));
 
-async function upsertRelationships(
-  database: SupabaseClient,
-  issues: ComicVineIssue[],
-  issueIds: Map<number, string>,
-  characterIds: Map<number, string>,
-  storyArcIds: Map<number, string>,
-): Promise<number> {
-  const ingestedIssueIds = [...issueIds.values()];
-  const characterRows = issues.flatMap((issue) =>
-    issue.characters.flatMap((character) => {
-      const issueId = issueIds.get(issue.comicvineId);
-      const characterId = characterIds.get(character.comicvineId);
-      return issueId && characterId ? [{ issue_id: issueId, character_id: characterId }] : [];
-    }),
+  // Ingestion has to commit to something, so on a genuine tie take the most
+  // published candidate rather than refusing to ingest at all.
+  return (
+    winner?.candidate ??
+    claims.reduce((best, claim) =>
+      (claim.candidate.issueAppearanceCount ?? 0) > (best.candidate.issueAppearanceCount ?? 0)
+        ? claim
+        : best,
+    ).candidate
   );
-  const storyArcRows = issues.flatMap((issue) =>
-    issue.storyArcs.flatMap((storyArc) => {
-      const issueId = issueIds.get(issue.comicvineId);
-      const storyArcId = storyArcIds.get(storyArc.comicvineId);
-      return issueId && storyArcId ? [{ issue_id: issueId, story_arc_id: storyArcId }] : [];
-    }),
-  );
-
-  if (ingestedIssueIds.length) {
-    const { error } = await database.rpc("replace_issue_relationships", {
-      p_issue_ids: ingestedIssueIds,
-      p_character_links: characterRows,
-      p_story_arc_links: storyArcRows,
-    });
-    if (error) throw new Error(`Issue relationship replacement failed: ${error.message}`);
-  }
-
-  return characterRows.length + storyArcRows.length;
-}
-
-function idMap(rows: DatabaseId[]): Map<number, string> {
-  return new Map(rows.map(({ comicvine_id, id }) => [Number(comicvine_id), id]));
 }

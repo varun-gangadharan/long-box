@@ -15,7 +15,10 @@ import {
   parseReadingPathQuery,
 } from "@/lib/reading-path/service";
 
-export const maxDuration = 60;
+// A pair nobody has searched before triggers a full co-appearance ingestion,
+// which measured about 95s for two characters with a thousand shared issues.
+// Every later request for that pair is served from the database in ~1s.
+export const maxDuration = 300;
 
 export async function GET(request: Request): Promise<Response> {
   return handleReadingPathRequest(request, databaseFromEnv);

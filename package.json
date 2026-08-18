@@ -13,6 +13,10 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:db": "scripts/test-db.sh",
+    "eval": "tsx evals/run-eval.ts",
+    "eval:record": "tsx evals/record.ts",
+    "eval:live": "tsx evals/live-eval.ts",
+    "eval:judge": "tsx evals/judge.ts",
     "smoke": "scripts/smoke.sh",
     "seed": "tsx scripts/seed.ts"
   },
@@ -25,6 +29,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
+    "@anthropic-ai/sdk": "^0.117.1",
     "@tailwindcss/postcss": "^4",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/react": "^16.3.2",

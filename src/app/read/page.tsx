@@ -3,11 +3,22 @@ import Link from "next/link";
 import { ReadingPathView } from "@/components/reading-path-view";
 import { SiteHeader } from "@/components/site-header";
 import { databaseFromEnv } from "@/lib/db/client";
+import { logError } from "@/lib/observability/logger";
+import {
+  AmbiguousCharacterError,
+  AmbiguousStoryArcError,
+  CharacterNotFoundError,
+  StoryArcNotFoundError,
+} from "@/lib/reading-path/repository";
 import {
   buildReadingPath,
+  InvalidReadingPathQueryError,
   parseReadingPathQuery,
 } from "@/lib/reading-path/service";
 import type { ReadingPathResult } from "@/lib/reading-path/types";
+
+// Matches the API route: a first-time character pair pays for ingestion once.
+export const maxDuration = 300;
 
 export default async function ReadPage({
   searchParams,
@@ -52,8 +63,29 @@ async function loadReadingPath(
       result: await buildReadingPath(databaseFromEnv(), parseReadingPathQuery(params)),
     };
   } catch (error) {
-    return {
-      error: error instanceof Error ? error.message : "The reading path is unavailable.",
-    };
+    logError("Reading path page failed", error);
+    return { error: readerFacingMessage(error) };
   }
+}
+
+/**
+ * Mirrors the API route's error taxonomy. Only messages we wrote ourselves reach
+ * the page; anything else — a database or upstream failure whose text could
+ * carry internals — becomes a generic line.
+ */
+function readerFacingMessage(error: unknown): string {
+  if (error instanceof InvalidReadingPathQueryError) return error.message;
+  if (error instanceof CharacterNotFoundError) {
+    return `I could not find a character called “${error.requestedName}”. Check the spelling, or try another name they go by.`;
+  }
+  if (error instanceof StoryArcNotFoundError) {
+    return `I could not find a story arc called “${error.requestedName}”.`;
+  }
+  if (error instanceof AmbiguousCharacterError) {
+    return `More than one character is called “${error.requestedName}”. Try a more specific name.`;
+  }
+  if (error instanceof AmbiguousStoryArcError) {
+    return `More than one story arc is called “${error.requestedName}”. Try a more specific name.`;
+  }
+  return "The reading path is unavailable right now. Please try again.";
 }

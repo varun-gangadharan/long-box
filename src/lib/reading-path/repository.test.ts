@@ -19,6 +19,9 @@ const baseRow = {
   image_url: null,
   publisher_name: "Marvel",
   is_canonical: true,
+  issue_appearance_count: 500,
+  matched_alias: false,
+  alias_position: null,
 };
 const storyArcRow = {
   requested_name: "Civil War",
@@ -49,6 +52,9 @@ describe("character resolution", () => {
       id: "40000000-0000-4000-8000-000000000002",
       comicvine_id: 2,
       is_canonical: false,
+      issue_appearance_count: 400,
+      matched_alias: false,
+      alias_position: null,
     };
     const [resolved] = await resolveCharacters(
       databaseReturning([stub, baseRow]),
@@ -99,5 +105,74 @@ describe("story arc resolution", () => {
         "Civil War",
       ),
     ).rejects.toBeInstanceOf(AmbiguousStoryArcError);
+  });
+});
+
+describe("character identity precedence", () => {
+  it("prefers the character named by the request over one who lists it as an alias", async () => {
+    const database = {
+      rpc: async () => ({
+        data: [
+          {
+            requested_name: "Batman",
+            id: "10000000-0000-4000-8000-000000000001",
+            comicvine_id: 1691,
+            name: "Dick Grayson",
+            description: null,
+            image_url: null,
+            publisher_name: "DC Comics",
+            is_canonical: true,
+            issue_appearance_count: 10221,
+            matched_alias: true,
+            alias_position: 2,
+          },
+          {
+            requested_name: "Batman",
+            id: "10000000-0000-4000-8000-000000000002",
+            comicvine_id: 1699,
+            name: "Batman",
+            description: null,
+            image_url: null,
+            publisher_name: "DC Comics",
+            is_canonical: true,
+            issue_appearance_count: 26000,
+            matched_alias: false,
+            alias_position: null,
+          },
+        ],
+        error: null,
+      }),
+    } as unknown as Parameters<typeof resolveCharacters>[0];
+
+    const [resolved] = await resolveCharacters(database, ["Batman"]);
+    expect(resolved.comicvineId).toBe(1699);
+    expect(resolved.matchedAlias).toBe(false);
+  });
+
+  it("falls back to an alias match when nobody carries the name", async () => {
+    const database = {
+      rpc: async () => ({
+        data: [
+          {
+            requested_name: "Nightwing",
+            id: "10000000-0000-4000-8000-000000000003",
+            comicvine_id: 1691,
+            name: "Dick Grayson",
+            description: null,
+            image_url: null,
+            publisher_name: "DC Comics",
+            is_canonical: true,
+            issue_appearance_count: 10221,
+            matched_alias: true,
+            alias_position: 2,
+          },
+        ],
+        error: null,
+      }),
+    } as unknown as Parameters<typeof resolveCharacters>[0];
+
+    const [resolved] = await resolveCharacters(database, ["Nightwing"]);
+    expect(resolved.comicvineId).toBe(1691);
+    expect(resolved.matchedAlias).toBe(true);
   });
 });

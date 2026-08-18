@@ -1,0 +1,11 @@
+{
+  "name": "nightwing-starfire",
+  "characters": ["Nightwing", "Starfire"],
+  "notes": "The reported failure. The engine returned a Detective Comics issue that Nightwing appears in and Starfire is merely credited in. The right answers are the runs they co-star in: the Wolfman/Perez New Teen Titans for the definitive relationship, and Titans (2016) for the modern dynamic.",
+  "expect": {
+    "top1AnyOf": ["The New Teen Titans"],
+    "top3AnyOf": ["Titans"],
+    "mustNotAppearTop3": ["Detective Comics"],
+    "minTogetherness": 0.7
+  }
+}

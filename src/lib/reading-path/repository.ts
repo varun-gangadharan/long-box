@@ -1,10 +1,15 @@
 import type { SupabaseClient } from "@supabase/supabase-js";
 import { z } from "zod";
 
+import { bestClaim } from "@/lib/characters/identity";
+
+export { normalizeEntityName } from "./names";
+
 import type {
   CandidateIssue,
   ResolvedCharacter,
   ResolvedStoryArc,
+  VolumeAffinity,
 } from "./types";
 
 const resolvedRowSchema = z.object({
@@ -16,6 +21,9 @@ const resolvedRowSchema = z.object({
   image_url: z.string().nullable(),
   publisher_name: z.string().nullable(),
   is_canonical: z.boolean(),
+  issue_appearance_count: z.number().int().nullable(),
+  matched_alias: z.boolean(),
+  alias_position: z.number().int().nullable(),
 });
 
 const storyArcRowSchema = z.object({
@@ -36,6 +44,7 @@ const candidateRowSchema = z.object({
   volume_id: z.string().uuid(),
   volume_name: z.string(),
   volume_start_year: z.number().int().nullable(),
+  volume_issue_count: z.number().int().nullable(),
   character_count: z.number().int().nonnegative(),
   requested_character_count: z.number().int().nonnegative(),
   story_arcs: z.array(
@@ -45,6 +54,25 @@ const candidateRowSchema = z.object({
       name: z.string(),
     }),
   ),
+  creators: z.array(z.object({ name: z.string(), role: z.string() })),
+});
+
+const volumeAffinityRowSchema = z.object({
+  volume_id: z.string().uuid(),
+  volume_name: z.string(),
+  volume_start_year: z.number().int().nullable(),
+  volume_issue_count: z.number().int().nullable(),
+  volume_publisher_name: z.string().nullable(),
+  local_issue_count: z.number().int().nonnegative(),
+  co_issue_count: z.number().int().nonnegative(),
+  min_character_appearances: z.number().int().nullable(),
+  longest_co_streak: z.number().int().nonnegative(),
+  first_co_issue_number: z.string(),
+  last_co_issue_number: z.string(),
+  first_co_date: z.string().nullable(),
+  last_co_date: z.string().nullable(),
+  top_writer: z.string().nullable(),
+  top_artist: z.string().nullable(),
 });
 
 export class CharacterNotFoundError extends Error {
@@ -81,13 +109,6 @@ export class AmbiguousStoryArcError extends Error {
   }
 }
 
-export function normalizeEntityName(value: string): string {
-  return value
-    .normalize("NFKD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "");
-}
 
 export async function resolveCharacters(
   database: SupabaseClient,
@@ -103,8 +124,7 @@ export async function resolveCharacters(
     const matches = rows.filter((row) => row.requested_name === requestedName);
     if (!matches.length) throw new CharacterNotFoundError(requestedName);
 
-    const canonical = matches.filter((row) => row.is_canonical);
-    const selected = matches.length === 1 ? matches[0] : canonical.length === 1 ? canonical[0] : null;
+    const selected = preferredMatch(matches);
     if (!selected) {
       throw new AmbiguousCharacterError(requestedName, matches.map(toResolvedCharacter));
     }
@@ -162,10 +182,68 @@ function mapCandidateRows(data: unknown): CandidateIssue[] {
       id: row.volume_id,
       name: row.volume_name,
       startYear: row.volume_start_year,
+      issueCount: row.volume_issue_count,
     },
     characterCount: row.character_count,
     requestedCharacterCount: row.requested_character_count,
     storyArcs: row.story_arcs,
+    creators: row.creators,
+  }));
+}
+
+/**
+ * Chooses between characters who answer to the same name.
+ *
+ * Canonical status comes first: a row the catalog has already rejected as the
+ * owner of a name must not win it back. Within that pool the shared identity
+ * scoring decides, so a lookup agrees with what ingestion chose.
+ */
+function preferredMatch(
+  matches: Array<z.infer<typeof resolvedRowSchema>>,
+): z.infer<typeof resolvedRowSchema> | null {
+  if (matches.length === 1) return matches[0];
+
+  const canonical = matches.filter((row) => row.is_canonical);
+  const pool = canonical.length ? canonical : matches;
+  if (pool.length === 1) return pool[0];
+
+  return bestClaim(pool, (row) => ({
+    isNameMatch: !row.matched_alias,
+    // SQL reports a 1-based position; the scorer expects 0-based.
+    aliasPosition: row.alias_position === null ? null : row.alias_position - 1,
+    appearanceCount: row.issue_appearance_count,
+  }));
+}
+
+/**
+ * Per-volume co-appearance profile for the requested characters. This is the
+ * evidence the engine needs to tell co-starring apart from co-occurrence, and
+ * it is fetched alongside the candidate issues rather than derived from them.
+ */
+export async function findVolumeAffinities(
+  database: SupabaseClient,
+  characterIds: string[],
+): Promise<VolumeAffinity[]> {
+  const { data, error } = await database.rpc("volume_pair_affinity", {
+    requested_character_ids: characterIds,
+  });
+  if (error) throw new Error(`Volume affinity lookup failed: ${error.message}`);
+  return z.array(volumeAffinityRowSchema).parse(data ?? []).map((row) => ({
+    volumeId: row.volume_id,
+    volumeName: row.volume_name,
+    volumeStartYear: row.volume_start_year,
+    volumeIssueCount: row.volume_issue_count,
+    publisherName: row.volume_publisher_name,
+    localIssueCount: row.local_issue_count,
+    coIssueCount: row.co_issue_count,
+    minCharacterAppearances: row.min_character_appearances,
+    longestCoStreak: row.longest_co_streak,
+    firstCoIssueNumber: row.first_co_issue_number,
+    lastCoIssueNumber: row.last_co_issue_number,
+    firstCoDate: row.first_co_date,
+    lastCoDate: row.last_co_date,
+    topWriter: row.top_writer,
+    topArtist: row.top_artist,
   }));
 }
 
@@ -187,5 +265,7 @@ function toResolvedCharacter(row: z.infer<typeof resolvedRowSchema>): ResolvedCh
     imageUrl: row.image_url,
     publisherName: row.publisher_name,
     isCanonical: row.is_canonical,
+    matchedAlias: row.matched_alias,
+    issueAppearanceCount: row.issue_appearance_count,
   };
 }

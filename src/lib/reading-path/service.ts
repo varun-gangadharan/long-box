@@ -2,11 +2,17 @@ import type { SupabaseClient } from "@supabase/supabase-js";
 
 import { comicVineClientFromEnv, type ComicVineClient } from "@/lib/comicvine/client";
 import { ingestCharacter } from "@/lib/ingestion/ingest-character";
+import {
+  ensureCreditIndex,
+  ingestCoAppearances,
+} from "@/lib/ingestion/ingest-co-appearances";
+import { logError, logInfo } from "@/lib/observability/logger";
 
 import { generateCandidates, rankCandidates } from "./engine";
 import {
   findCandidateIssues,
   findStoryArcCandidateIssues,
+  findVolumeAffinities,
   AmbiguousCharacterError,
   CharacterNotFoundError,
   normalizeEntityName,
@@ -94,22 +100,33 @@ export async function buildReadingPath(
     return {
       query: { characters: [], storyArc },
       recommendations: rankCandidates(
-        generateCandidates(issues, "story_arc", storyArc.id),
+        generateCandidates(issues, {
+          queryType: "story_arc",
+          requestedStoryArcId: storyArc.id,
+        }),
       ).slice(0, MAX_RECOMMENDATIONS),
     };
   }
 
   const characters = await resolveCharactersWithIngestion(database, query.names, comicVine);
-  const issues = await findCandidateIssues(
-    database,
-    characters.map(({ id }) => id),
-  );
+  const characterIds = characters.map(({ id }) => id);
+  await loadCoAppearances(database, characterIds, comicVine);
+
+  // The affinity profile is what lets the engine rank a book the characters
+  // co-star in above one that merely credits them both once.
+  const [issues, affinities] = await Promise.all([
+    findCandidateIssues(database, characterIds),
+    findVolumeAffinities(database, characterIds),
+  ]);
+
   return {
     query: { characters, storyArc: null },
-    recommendations: rankCandidates(generateCandidates(issues)).slice(
-      0,
-      MAX_RECOMMENDATIONS,
-    ),
+    recommendations: rankCandidates(generateCandidates(issues, { affinities }), {
+      characterNames: characters.map(({ name }) => name),
+      characterPublishers: characters.flatMap(({ publisherName }) =>
+        publisherName ? [publisherName] : [],
+      ),
+    }).slice(0, MAX_RECOMMENDATIONS),
   };
 }
 
@@ -121,7 +138,10 @@ async function resolveCharactersWithIngestion(
   let resolved;
   try {
     resolved = await resolveCharacters(database, names);
-    if (resolved.every(({ isCanonical }) => isCanonical)) return resolved;
+    // An alias-only match is not settled: the character who actually carries the
+    // name may simply not be in the catalog yet. Searching ComicVine is what
+    // stops "Batman" resolving to Dick Grayson because he once wore the cowl.
+    if (resolved.every(isSettledIdentity)) return resolved;
   } catch (error) {
     if (error instanceof AmbiguousCharacterError) {
       if (error.matches.some(({ isCanonical }) => isCanonical)) throw error;
@@ -135,8 +155,61 @@ async function resolveCharactersWithIngestion(
     try {
       await ingestCharacter(database, client, name, ON_DEMAND_ISSUES);
     } catch {
-      throw new CharacterNotFoundError(name);
+      // An alias match already in the catalog is a usable answer, so a failed
+      // lookup for a better one is not fatal.
+      if (!resolved?.some((character) => matchesRequest(character, name))) {
+        throw new CharacterNotFoundError(name);
+      }
     }
   }
   return resolveCharacters(database, names);
+}
+
+/**
+ * Whether a resolved character can be trusted without checking ComicVine.
+ *
+ * An alias-only match may be standing in for a character who is simply not in
+ * the catalog yet, and a row with no appearance count was created as a credit
+ * stub rather than looked up — an obscure "Superman" with a handful of credits
+ * can hold the name against the real one.
+ */
+function isSettledIdentity(character: {
+  isCanonical?: boolean;
+  matchedAlias?: boolean;
+  issueAppearanceCount?: number | null;
+}): boolean {
+  return Boolean(
+    character.isCanonical &&
+      !character.matchedAlias &&
+      character.issueAppearanceCount !== null &&
+      character.issueAppearanceCount !== undefined,
+  );
+}
+
+function matchesRequest(character: { name: string }, requestedName: string): boolean {
+  return normalizeEntityName(character.name) === normalizeEntityName(requestedName);
+}
+
+/**
+ * Fills in what these characters actually share before ranking. Enrichment is
+ * best-effort: if ComicVine is unavailable or rate-limited, the reading path is
+ * still built from whatever is already stored rather than failing the request.
+ */
+async function loadCoAppearances(
+  database: SupabaseClient,
+  characterIds: string[],
+  comicVine: ComicVineClient | (() => ComicVineClient),
+): Promise<void> {
+  if (characterIds.length < 2) return;
+
+  try {
+    const client = typeof comicVine === "function" ? comicVine() : comicVine;
+    await ensureCreditIndex(database, client, characterIds);
+    const result = await ingestCoAppearances(database, client, characterIds);
+    if (!result.skipped) {
+      logInfo("Co-appearance ingestion completed", { ...result });
+    }
+  } catch (error) {
+    logError("Co-appearance ingestion failed", error, { characterCount: characterIds.length });
+  }
 }

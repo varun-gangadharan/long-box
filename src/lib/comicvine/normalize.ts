@@ -1,13 +1,16 @@
 import type {
   RawCharacter,
   RawIssue,
+  RawIssueSummary,
   RawStoryArc,
   RawVolume,
 } from "./schemas";
 import type {
   ComicVineCharacter,
+  ComicVineCreatorCredit,
   ComicVineCredit,
   ComicVineIssue,
+  ComicVineIssueSummary,
   ComicVinePublisher,
   ComicVineStoryArc,
   ComicVineVolume,
@@ -40,6 +43,11 @@ function normalizePublisher(
   return raw ? normalizeCredit(raw) : null;
 }
 
+function count(value?: string | number | null): number | null {
+  const parsed = Number(value);
+  return Number.isInteger(parsed) && parsed >= 0 ? parsed : null;
+}
+
 export function normalizeCharacter(raw: RawCharacter): ComicVineCharacter {
   return {
     comicvineId: raw.id,
@@ -48,11 +56,22 @@ export function normalizeCharacter(raw: RawCharacter): ComicVineCharacter {
     imageUrl: imageUrl(raw.image),
     publisher: normalizePublisher(raw.publisher),
     issueCredits: (raw.issue_credits ?? []).map(({ id }) => ({ comicvineId: id })),
+    aliases: splitAliases(raw.aliases),
+    issueAppearanceCount: count(raw.count_of_issue_appearances),
   };
+}
+
+/** ComicVine packs aliases into one string, separated by \n or \r\n. */
+function splitAliases(value?: string | null): string[] {
+  return (value ?? "")
+    .split(/\r?\n/)
+    .map((alias) => alias.trim())
+    .filter(Boolean);
 }
 
 export function normalizeVolume(raw: RawVolume): ComicVineVolume {
   const parsedYear = Number(raw.start_year);
+  const characterCounts = raw.characters ?? raw.character_credits ?? [];
 
   return {
     comicvineId: raw.id,
@@ -61,11 +80,18 @@ export function normalizeVolume(raw: RawVolume): ComicVineVolume {
       Number.isInteger(parsedYear) && parsedYear >= 1800 && parsedYear <= 3000
         ? parsedYear
         : null,
+    issueCount: count(raw.count_of_issues),
     publisher: normalizePublisher(raw.publisher),
+    characterCounts: characterCounts.flatMap((entry) => {
+      const appearances = count(entry.count);
+      return appearances === null
+        ? []
+        : [{ comicvineId: entry.id, name: entry.name.trim(), appearances }];
+    }),
   };
 }
 
-export function normalizeIssue(raw: RawIssue): ComicVineIssue {
+export function normalizeIssueSummary(raw: RawIssueSummary): ComicVineIssueSummary {
   return {
     comicvineId: raw.id,
     volume: normalizeCredit(raw.volume),
@@ -74,9 +100,32 @@ export function normalizeIssue(raw: RawIssue): ComicVineIssue {
     coverDate: date(raw.cover_date),
     description: cleanText(raw.description) ?? cleanText(raw.deck),
     imageUrl: imageUrl(raw.image),
+  };
+}
+
+export function normalizeIssue(raw: RawIssue): ComicVineIssue {
+  return {
+    ...normalizeIssueSummary(raw),
     characters: (raw.character_credits ?? []).map(normalizeCredit),
     storyArcs: (raw.story_arc_credits ?? []).map(normalizeCredit),
+    creators: normalizeCreatorCredits(raw.person_credits),
   };
+}
+
+/**
+ * ComicVine packs every role a person had on an issue into one comma-separated
+ * string ("writer, cover"), so one credit becomes one row per role.
+ */
+function normalizeCreatorCredits(
+  raw: RawIssue["person_credits"],
+): ComicVineCreatorCredit[] {
+  return (raw ?? []).flatMap((credit) =>
+    (cleanText(credit.role) ?? "")
+      .split(",")
+      .map((role) => role.trim().toLowerCase())
+      .filter(Boolean)
+      .map((role) => ({ comicvineId: credit.id, name: credit.name.trim(), role })),
+  );
 }
 
 export function normalizeStoryArc(raw: RawStoryArc): ComicVineStoryArc {
