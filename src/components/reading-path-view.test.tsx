@@ -64,6 +64,7 @@ function recommendation(
         selfContainment: 0.6,
         prerequisiteDepth: 1,
         commitmentScore: 0.35,
+        modernityScore: 0.9,
         castManageability: 1,
         creativeTeamCohesion: 1,
       },

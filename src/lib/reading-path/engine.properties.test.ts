@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 
-import { calculateFeatures, generateCandidates, rankCandidates } from "./engine";
+import { calculateFeatures, generateCandidates, rankCandidates, scoreCandidate } from "./engine";
 import type { CandidateIssue, VolumeAffinity } from "./types";
 
 /**
@@ -286,5 +286,73 @@ describe("evidence weighting", () => {
       affinities: [{ ...teamBookAffinity, volumeIssueCount: 12, minCharacterAppearances: 12 }],
     }).filter(({ type }) => type === "volume_run");
     expect(calculateFeatures(long[0]).together.coreCastScore).toBe(1);
+  });
+});
+
+describe("modernity as a nudge, not a verdict", () => {
+  const modern = { volumeStartYear: 2021, coverYear: 2021 };
+  const classic = { volumeStartYear: 1984, coverYear: 1984 };
+
+  function runIn(era: { volumeStartYear: number; coverYear: number }, options: Partial<VolumeAffinity>) {
+    const volumeId = `vol-${era.coverYear}-${options.minCharacterAppearances ?? "x"}`;
+    const issues = Array.from({ length: 8 }, (_, index) => ({
+      ...issueIn(volumeId, `A Book ${era.coverYear}`, 40, index + 1),
+      coverDate: `${era.coverYear}-0${(index % 9) + 1}-01`,
+    }));
+    return generateCandidates(issues, {
+      affinities: [
+        affinityFor(volumeId, `A Book ${era.coverYear}`, {
+          volumeStartYear: era.volumeStartYear,
+          coIssueCount: 8,
+          longestCoStreak: 8,
+          minCharacterAppearances: 40,
+          ...options,
+        }),
+      ],
+    }).filter(({ type }) => type === "volume_run");
+  }
+
+  it("prefers the newer book when everything else is equal", () => {
+    const newer = calculateFeatures(runIn(modern, {})[0]);
+    const older = calculateFeatures(runIn(classic, {})[0]);
+    expect(newer.beginnerFriendliness).toBeGreaterThan(older.beginnerFriendliness);
+  });
+
+  it("cannot outweigh a real difference in how well a book represents the pair", () => {
+    // The classic is the book about these characters; the modern one is a book
+    // they pass through. Recency must not be able to buy its way past that.
+    const classicAboutThem = calculateFeatures(runIn(classic, { minCharacterAppearances: 40 })[0]);
+    const modernPassingThrough = calculateFeatures(
+      runIn(modern, { volumeIssueCount: 400, minCharacterAppearances: 9 })[0],
+    );
+
+    expect(modernPassingThrough.beginnerFriendliness).toBeGreaterThan(
+      classicAboutThem.beginnerFriendliness,
+    );
+    expect(scoreCandidate(classicAboutThem)).toBeGreaterThan(scoreCandidate(modernPassingThrough));
+  });
+
+  it("moves a final score by only a few points across six decades", () => {
+    const newest = calculateFeatures(runIn({ volumeStartYear: 2025, coverYear: 2025 }, {})[0]);
+    const oldest = calculateFeatures(runIn({ volumeStartYear: 1960, coverYear: 1960 }, {})[0]);
+    const swing = scoreCandidate(newest) - scoreCandidate(oldest);
+
+    // Enough to settle a tie, nowhere near enough to reorder the list on its own.
+    expect(swing).toBeGreaterThan(0);
+    expect(swing).toBeLessThan(0.05);
+  });
+
+  it("does not punish a book for having no publication dates", () => {
+    const undated = generateCandidates(
+      Array.from({ length: 8 }, (_, index) => ({
+        ...issueIn("undated", "Undated", 40, index + 1),
+        coverDate: null,
+      })),
+      { affinities: [affinityFor("undated", "Undated", { coIssueCount: 8 })] },
+    ).filter(({ type }) => type === "volume_run");
+
+    const score = calculateFeatures(undated[0]).beginner.modernityScore;
+    expect(score).toBeGreaterThan(0.25);
+    expect(score).toBeLessThan(1);
   });
 });

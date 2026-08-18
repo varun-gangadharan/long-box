@@ -121,6 +121,11 @@ export type BeginnerFriendlinessFeatures = {
   prerequisiteDepth: number;
   /** Peaks at a few issues; one issue and a hundred issues both score low. */
   commitmentScore: number;
+  /**
+   * How recent the story is. Newer art and pacing read more easily cold, but
+   * recency is not quality, so this is the lightest approachability signal.
+   */
+  modernityScore: number;
   castManageability: number;
   creativeTeamCohesion: number;
 };

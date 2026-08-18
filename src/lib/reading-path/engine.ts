@@ -33,13 +33,38 @@ export const TOGETHERNESS_WEIGHTS = {
 } as const;
 
 export const BEGINNER_WEIGHTS = {
-  entryPointScore: 0.24,
-  commitmentScore: 0.22,
-  prerequisiteDepth: 0.18,
-  selfContainment: 0.16,
-  castManageability: 0.1,
-  creativeTeamCohesion: 0.1,
+  entryPointScore: 0.21,
+  commitmentScore: 0.19,
+  prerequisiteDepth: 0.16,
+  selfContainment: 0.14,
+  modernityScore: 0.12,
+  creativeTeamCohesion: 0.09,
+  castManageability: 0.09,
 } as const;
+
+/**
+ * Recency is a nudge, never a verdict.
+ *
+ * Newer art, lettering and pacing are genuinely easier to read cold, so a recent
+ * book is a slightly kinder place to start. But recency is not quality — plenty
+ * of modern books are poor, and the medium's landmarks are mostly old. So this
+ * is deliberately the smallest of the approachability signals, and it sits in
+ * beginner-friendliness rather than togetherness: it can settle a close call
+ * between two comparable books and cannot overturn a real difference in how well
+ * a book represents the characters.
+ *
+ * At its weight the gap between a book from this decade and one from the sixties
+ * is worth about 0.03 of a final score, against a 0-1 range.
+ */
+const ERA_FLOOR_YEAR = 1960;
+/**
+ * Fixed rather than "now", so a score is reproducible and the recorded eval
+ * fixtures do not drift. Worth nudging forward every few years; doing so shifts
+ * every candidate together and changes little.
+ */
+const ERA_REFERENCE_YEAR = 2025;
+/** Even the oldest book keeps most of its approachability from other signals. */
+const OLDEST_ERA_SCORE = 0.25;
 
 /**
  * Below this, a candidate is never offered as the starting point however
@@ -303,6 +328,7 @@ function beginnerFeatures(candidate: ReadingCandidate): BeginnerFriendlinessFeat
   return {
     entryPointScore,
     commitmentScore: commitmentScore(candidate.issues.length),
+    modernityScore: modernityScore(candidate.issues),
     // Starting a hundred issues deep asks a newcomer to carry continuity they
     // do not have.
     prerequisiteDepth: firstNumber === null ? 0.5 : clamp(1 - (firstNumber - 1) / 100),
@@ -310,6 +336,26 @@ function beginnerFeatures(candidate: ReadingCandidate): BeginnerFriendlinessFeat
     castManageability: castManageability(candidate.issues),
     creativeTeamCohesion: creativeTeamCohesion(candidate),
   };
+}
+
+/**
+ * How recent the story is, on a gentle ramp from the sixties to the present.
+ *
+ * Measured from when the story starts rather than when it ends, because the
+ * opening issue is what a newcomer actually picks up and its idiom is what they
+ * have to get past. A run with no dates at all sits mid-scale rather than being
+ * punished for missing metadata.
+ */
+function modernityScore(issues: CandidateIssue[]): number {
+  const years = issues
+    .map((issue) => Number(issue.coverDate?.slice(0, 4)))
+    .filter((year) => Number.isInteger(year) && year > 1800);
+  if (!years.length) return 0.5;
+
+  const startedIn = Math.min(...years);
+  const span = ERA_REFERENCE_YEAR - ERA_FLOOR_YEAR;
+  const position = clamp((startedIn - ERA_FLOOR_YEAR) / span);
+  return round(OLDEST_ERA_SCORE + (1 - OLDEST_ERA_SCORE) * position);
 }
 
 /**
@@ -363,6 +409,7 @@ function combineBeginner(features: BeginnerFriendlinessFeatures): number {
     clamp(
       features.entryPointScore * BEGINNER_WEIGHTS.entryPointScore +
         features.commitmentScore * BEGINNER_WEIGHTS.commitmentScore +
+        features.modernityScore * BEGINNER_WEIGHTS.modernityScore +
         features.prerequisiteDepth * BEGINNER_WEIGHTS.prerequisiteDepth +
         features.selfContainment * BEGINNER_WEIGHTS.selfContainment +
         features.castManageability * BEGINNER_WEIGHTS.castManageability +
@@ -421,6 +468,12 @@ export function explainCandidate(
 
   if (candidate.issues.length > 1 && features.beginner.commitmentScore >= 0.85) {
     reasons.push(`It is a manageable ${candidate.issues.length}-issue read.`);
+  }
+
+  // Said only of genuinely recent books, and never said in reverse: an older
+  // book is not worse, it just asks a little more of a newcomer.
+  if (features.beginner.modernityScore >= 0.85) {
+    reasons.push("Recent enough that the art and pacing will feel familiar.");
   }
 
   return reasons;

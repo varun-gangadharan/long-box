@@ -1,0 +1,758 @@
+{
+  "name": "modern-vs-classic",
+  "source": "authored",
+  "note": "Calibration case for how much recency is allowed to matter. Newer art and pacing are easier to read cold, so among books that represent the pair equally well the modern one should lead. But recency is not quality: a landmark run must stay in view, and a recent book the pair merely pass through must not rank at all.",
+  "characterPublishers": [
+    "DC Comics",
+    "DC Comics"
+  ],
+  "issues": [
+    {
+      "id": "v-classic-0001",
+      "comicvineId": 19840001,
+      "issueNumber": "1",
+      "name": "The Classic Run 1",
+      "coverDate": "1984-01-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-classic",
+        "name": "The Classic Run",
+        "startYear": 1984,
+        "issueCount": 40
+      },
+      "characterCount": 9,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Classic Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Classic Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-classic-0002",
+      "comicvineId": 19840002,
+      "issueNumber": "2",
+      "name": "The Classic Run 2",
+      "coverDate": "1984-02-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-classic",
+        "name": "The Classic Run",
+        "startYear": 1984,
+        "issueCount": 40
+      },
+      "characterCount": 9,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Classic Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Classic Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-classic-0003",
+      "comicvineId": 19840003,
+      "issueNumber": "3",
+      "name": "The Classic Run 3",
+      "coverDate": "1984-03-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-classic",
+        "name": "The Classic Run",
+        "startYear": 1984,
+        "issueCount": 40
+      },
+      "characterCount": 9,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Classic Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Classic Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-classic-0004",
+      "comicvineId": 19840004,
+      "issueNumber": "4",
+      "name": "The Classic Run 4",
+      "coverDate": "1984-04-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-classic",
+        "name": "The Classic Run",
+        "startYear": 1984,
+        "issueCount": 40
+      },
+      "characterCount": 9,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Classic Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Classic Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-classic-0005",
+      "comicvineId": 19840005,
+      "issueNumber": "5",
+      "name": "The Classic Run 5",
+      "coverDate": "1984-05-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-classic",
+        "name": "The Classic Run",
+        "startYear": 1984,
+        "issueCount": 40
+      },
+      "characterCount": 9,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Classic Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Classic Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-classic-0006",
+      "comicvineId": 19840006,
+      "issueNumber": "6",
+      "name": "The Classic Run 6",
+      "coverDate": "1984-06-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-classic",
+        "name": "The Classic Run",
+        "startYear": 1984,
+        "issueCount": 40
+      },
+      "characterCount": 9,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Classic Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Classic Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-classic-0007",
+      "comicvineId": 19840007,
+      "issueNumber": "7",
+      "name": "The Classic Run 7",
+      "coverDate": "1984-07-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-classic",
+        "name": "The Classic Run",
+        "startYear": 1984,
+        "issueCount": 40
+      },
+      "characterCount": 9,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Classic Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Classic Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-classic-0008",
+      "comicvineId": 19840008,
+      "issueNumber": "8",
+      "name": "The Classic Run 8",
+      "coverDate": "1984-08-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-classic",
+        "name": "The Classic Run",
+        "startYear": 1984,
+        "issueCount": 40
+      },
+      "characterCount": 9,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Classic Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Classic Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-classic-0009",
+      "comicvineId": 19840009,
+      "issueNumber": "9",
+      "name": "The Classic Run 9",
+      "coverDate": "1984-09-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-classic",
+        "name": "The Classic Run",
+        "startYear": 1984,
+        "issueCount": 40
+      },
+      "characterCount": 9,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Classic Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Classic Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-classic-0010",
+      "comicvineId": 19840010,
+      "issueNumber": "10",
+      "name": "The Classic Run 10",
+      "coverDate": "1984-10-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-classic",
+        "name": "The Classic Run",
+        "startYear": 1984,
+        "issueCount": 40
+      },
+      "characterCount": 9,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Classic Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Classic Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-classic-0011",
+      "comicvineId": 19840011,
+      "issueNumber": "11",
+      "name": "The Classic Run 11",
+      "coverDate": "1984-11-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-classic",
+        "name": "The Classic Run",
+        "startYear": 1984,
+        "issueCount": 40
+      },
+      "characterCount": 9,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Classic Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Classic Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-classic-0012",
+      "comicvineId": 19840012,
+      "issueNumber": "12",
+      "name": "The Classic Run 12",
+      "coverDate": "1984-12-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-classic",
+        "name": "The Classic Run",
+        "startYear": 1984,
+        "issueCount": 40
+      },
+      "characterCount": 9,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Classic Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Classic Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-modern-0001",
+      "comicvineId": 20220001,
+      "issueNumber": "1",
+      "name": "The Modern Run 1",
+      "coverDate": "2022-01-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-modern",
+        "name": "The Modern Run",
+        "startYear": 2022,
+        "issueCount": 32
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Modern Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Modern Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-modern-0002",
+      "comicvineId": 20220002,
+      "issueNumber": "2",
+      "name": "The Modern Run 2",
+      "coverDate": "2022-02-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-modern",
+        "name": "The Modern Run",
+        "startYear": 2022,
+        "issueCount": 32
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Modern Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Modern Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-modern-0003",
+      "comicvineId": 20220003,
+      "issueNumber": "3",
+      "name": "The Modern Run 3",
+      "coverDate": "2022-03-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-modern",
+        "name": "The Modern Run",
+        "startYear": 2022,
+        "issueCount": 32
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Modern Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Modern Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-modern-0004",
+      "comicvineId": 20220004,
+      "issueNumber": "4",
+      "name": "The Modern Run 4",
+      "coverDate": "2022-04-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-modern",
+        "name": "The Modern Run",
+        "startYear": 2022,
+        "issueCount": 32
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Modern Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Modern Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-modern-0005",
+      "comicvineId": 20220005,
+      "issueNumber": "5",
+      "name": "The Modern Run 5",
+      "coverDate": "2022-05-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-modern",
+        "name": "The Modern Run",
+        "startYear": 2022,
+        "issueCount": 32
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Modern Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Modern Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-modern-0006",
+      "comicvineId": 20220006,
+      "issueNumber": "6",
+      "name": "The Modern Run 6",
+      "coverDate": "2022-06-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-modern",
+        "name": "The Modern Run",
+        "startYear": 2022,
+        "issueCount": 32
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Modern Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Modern Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-modern-0007",
+      "comicvineId": 20220007,
+      "issueNumber": "7",
+      "name": "The Modern Run 7",
+      "coverDate": "2022-07-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-modern",
+        "name": "The Modern Run",
+        "startYear": 2022,
+        "issueCount": 32
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Modern Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Modern Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-modern-0008",
+      "comicvineId": 20220008,
+      "issueNumber": "8",
+      "name": "The Modern Run 8",
+      "coverDate": "2022-08-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-modern",
+        "name": "The Modern Run",
+        "startYear": 2022,
+        "issueCount": 32
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Modern Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Modern Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-modern-0009",
+      "comicvineId": 20220009,
+      "issueNumber": "9",
+      "name": "The Modern Run 9",
+      "coverDate": "2022-09-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-modern",
+        "name": "The Modern Run",
+        "startYear": 2022,
+        "issueCount": 32
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Modern Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Modern Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-modern-0010",
+      "comicvineId": 20220010,
+      "issueNumber": "10",
+      "name": "The Modern Run 10",
+      "coverDate": "2022-10-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-modern",
+        "name": "The Modern Run",
+        "startYear": 2022,
+        "issueCount": 32
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Modern Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Modern Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-modern-0011",
+      "comicvineId": 20220011,
+      "issueNumber": "11",
+      "name": "The Modern Run 11",
+      "coverDate": "2022-11-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-modern",
+        "name": "The Modern Run",
+        "startYear": 2022,
+        "issueCount": 32
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Modern Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Modern Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-modern-0012",
+      "comicvineId": 20220012,
+      "issueNumber": "12",
+      "name": "The Modern Run 12",
+      "coverDate": "2022-12-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-modern",
+        "name": "The Modern Run",
+        "startYear": 2022,
+        "issueCount": 32
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Modern Writer",
+          "role": "writer"
+        },
+        {
+          "name": "A Modern Artist",
+          "role": "penciler"
+        }
+      ]
+    },
+    {
+      "id": "v-modern-weak-0210",
+      "comicvineId": 20230210,
+      "issueNumber": "210",
+      "name": "A Modern Ongoing 210",
+      "coverDate": "2023-01-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-modern-weak",
+        "name": "A Modern Ongoing",
+        "startYear": 2023,
+        "issueCount": 300
+      },
+      "characterCount": 22,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Modern Writer",
+          "role": "writer"
+        }
+      ]
+    },
+    {
+      "id": "v-modern-weak-0211",
+      "comicvineId": 20230211,
+      "issueNumber": "211",
+      "name": "A Modern Ongoing 211",
+      "coverDate": "2023-02-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/cover.jpg",
+      "volume": {
+        "id": "v-modern-weak",
+        "name": "A Modern Ongoing",
+        "startYear": 2023,
+        "issueCount": 300
+      },
+      "characterCount": 22,
+      "requestedCharacterCount": 2,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "A Modern Writer",
+          "role": "writer"
+        }
+      ]
+    }
+  ],
+  "affinities": [
+    {
+      "volumeId": "v-classic",
+      "volumeName": "The Classic Run",
+      "volumeStartYear": 1984,
+      "volumeIssueCount": 40,
+      "publisherName": "DC Comics",
+      "localIssueCount": 12,
+      "coIssueCount": 12,
+      "minCharacterAppearances": 38,
+      "longestCoStreak": 12,
+      "firstCoIssueNumber": "1",
+      "lastCoIssueNumber": "12",
+      "firstCoDate": "1984-01-01",
+      "lastCoDate": "1985-01-01",
+      "topWriter": "A Classic Writer",
+      "topArtist": "A Classic Artist"
+    },
+    {
+      "volumeId": "v-modern",
+      "volumeName": "The Modern Run",
+      "volumeStartYear": 2022,
+      "volumeIssueCount": 32,
+      "publisherName": "DC Comics",
+      "localIssueCount": 12,
+      "coIssueCount": 12,
+      "minCharacterAppearances": 30,
+      "longestCoStreak": 12,
+      "firstCoIssueNumber": "1",
+      "lastCoIssueNumber": "12",
+      "firstCoDate": "2022-01-01",
+      "lastCoDate": "2023-01-01",
+      "topWriter": "A Modern Writer",
+      "topArtist": "A Modern Artist"
+    },
+    {
+      "volumeId": "v-modern-weak",
+      "volumeName": "A Modern Ongoing",
+      "volumeStartYear": 2023,
+      "volumeIssueCount": 300,
+      "publisherName": "DC Comics",
+      "localIssueCount": 2,
+      "coIssueCount": 2,
+      "minCharacterAppearances": 2,
+      "longestCoStreak": 2,
+      "firstCoIssueNumber": "210",
+      "lastCoIssueNumber": "211",
+      "firstCoDate": "2023-01-01",
+      "lastCoDate": "2024-01-01",
+      "topWriter": "A Modern Writer",
+      "topArtist": "A Modern Artist"
+    }
+  ]
+}

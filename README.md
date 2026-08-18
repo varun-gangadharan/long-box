@@ -168,6 +168,15 @@ story is self-contained rather than an event tie-in, cast size, whether one writ
 holds the run together, and a commitment curve that peaks at a short run — a single
 issue cannot show a relationship, and a hundred issues is not a starting point.
 
+**Recency is a nudge, not a verdict.** Newer art, lettering and pacing are easier to
+read cold, so `modernityScore` gives a recent book a small edge. It lives here rather
+than in togetherness because newer books are easier to start with, not better — most
+of the medium's landmarks are old, and plenty of modern books are poor. Across six
+decades it moves a final score by under `0.05`: enough to settle a close call between
+two comparable books, nowhere near enough to push a run that genuinely represents the
+characters below a recent one that does not. The `modern-vs-classic` eval case states
+the rule directly, and a ranking invariant pins the size of the swing.
+
 **The gate.** A candidate whose togetherness falls below `TOGETHERNESS_GATE` is never
 offered as a starting point, however approachable it looks. It is still listed, under
 "passing appearances", with a warning. Telling someone their characters have no shared

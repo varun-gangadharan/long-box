@@ -1,0 +1,20 @@
+{
+  "name": "modern-vs-classic",
+  "characters": [
+    "Acrobat",
+    "Comet"
+  ],
+  "notes": "Encodes the rule that recency is a nudge and not a verdict. The modern run and the classic run represent the pair about equally well, so the modern one should lead on approachability alone \u2014 but the classic must remain in the top three rather than being pushed out by its age, and a recent ongoing the pair only pass through must stay below both.",
+  "expect": {
+    "top1AnyOf": [
+      "The Modern Run"
+    ],
+    "top3AnyOf": [
+      "The Classic Run"
+    ],
+    "mustNotAppearTop3": [
+      "A Modern Ongoing"
+    ],
+    "minTogetherness": 0.7
+  }
+}
