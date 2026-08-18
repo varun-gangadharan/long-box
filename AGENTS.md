@@ -7,3 +7,14 @@ This version has breaking changes — APIs, conventions, and file structure may 
 This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
 
 <!-- END:nextjs-agent-rules -->
+
+## Observability
+
+| What | Command |
+| --- | --- |
+| Local structured logs | `npm start` |
+| Readiness check | `curl -fsS http://localhost:3000/api/health` |
+| Production smoke test | `npm run smoke -- https://your-deployment.example` |
+| Vercel logs | `vercel logs <deployment-url>` |
+
+Server logs are JSON and must never include query values, credentials, or personal data.

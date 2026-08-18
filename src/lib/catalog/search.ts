@@ -11,6 +11,10 @@ const searchResultSchema = z.object({
   context: z.string().nullable(),
 });
 
+export function normalizeCatalogQuery(value: string): string {
+  return value.normalize("NFKD").replace(/[\u0300-\u036f]/g, "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+}
+
 export type CatalogSearchResult = {
   type: "character" | "story_arc";
   id: string;

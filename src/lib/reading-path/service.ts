@@ -10,6 +10,8 @@ import {
 } from "./repository";
 import type { ReadingPathResult } from "./types";
 
+const MAX_RECOMMENDATIONS = 12;
+
 export type ReadingPathQuery =
   | { type: "characters"; names: string[] }
   | { type: "story_arc"; name: string };
@@ -86,7 +88,7 @@ export async function buildReadingPath(
       query: { characters: [], storyArc },
       recommendations: rankCandidates(
         generateCandidates(issues, "story_arc", storyArc.id),
-      ),
+      ).slice(0, MAX_RECOMMENDATIONS),
     };
   }
 
@@ -97,6 +99,9 @@ export async function buildReadingPath(
   );
   return {
     query: { characters, storyArc: null },
-    recommendations: rankCandidates(generateCandidates(issues)),
+    recommendations: rankCandidates(generateCandidates(issues)).slice(
+      0,
+      MAX_RECOMMENDATIONS,
+    ),
   };
 }

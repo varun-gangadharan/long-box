@@ -2,6 +2,9 @@
   "name": "long-box",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=22"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,6 +13,7 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:db": "scripts/test-db.sh",
+    "smoke": "scripts/smoke.sh",
     "seed": "tsx scripts/seed.ts"
   },
   "dependencies": {

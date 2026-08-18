@@ -90,4 +90,45 @@ begin
 end;
 $$;
 
+insert into issues (id, comicvine_id, volume_id, issue_number, name, cover_date)
+select
+  gen_random_uuid(),
+  10000 + series,
+  '10000000-0000-0000-0000-000000000020',
+  'B' || series,
+  'Bound fixture ' || series,
+  date '2000-01-01' + series
+from generate_series(1, 501) as series;
+
+insert into issue_characters (issue_id, character_id)
+select id, '10000000-0000-0000-0000-000000000010'
+from issues
+where comicvine_id between 10001 and 10501;
+
+insert into issue_story_arcs (issue_id, story_arc_id)
+select id, '10000000-0000-0000-0000-000000000040'
+from issues
+where comicvine_id between 10001 and 10501;
+
+do $$
+declare
+  candidate_count integer;
+  arc_issue_count integer;
+begin
+  select count(*) into candidate_count
+  from reading_path_issue_candidates(array[
+    '10000000-0000-0000-0000-000000000010'::uuid
+  ]);
+  if candidate_count <> 500 then
+    raise exception 'character candidate bound failed: got %', candidate_count;
+  end if;
+
+  select count(*) into arc_issue_count
+  from reading_path_story_arc_issues('10000000-0000-0000-0000-000000000040');
+  if arc_issue_count <> 100 then
+    raise exception 'story arc candidate bound failed: got %', arc_issue_count;
+  end if;
+end;
+$$;
+
 rollback;

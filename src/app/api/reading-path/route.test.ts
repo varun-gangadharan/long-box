@@ -41,6 +41,8 @@ describe("GET /api/reading-path", () => {
       type: "characters",
       names: ["Daredevil"],
     });
+    expect(response.headers.get("cache-control")).toContain("s-maxage=60");
+    expect(response.headers.get("x-request-id")).toBeNull();
   });
 
   it("accepts a story arc query", async () => {
