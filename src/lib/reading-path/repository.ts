@@ -174,7 +174,7 @@ function toResolvedStoryArc(row: z.infer<typeof storyArcRowSchema>): ResolvedSto
     id: row.id,
     comicvineId: row.comicvine_id,
     name: row.name,
-    description: row.description,
+    description: null,
   };
 }
 
@@ -183,7 +183,7 @@ function toResolvedCharacter(row: z.infer<typeof resolvedRowSchema>): ResolvedCh
     id: row.id,
     comicvineId: row.comicvine_id,
     name: row.name,
-    description: row.description,
+    description: null,
     imageUrl: row.image_url,
     publisherName: row.publisher_name,
   };

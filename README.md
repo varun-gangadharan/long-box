@@ -4,7 +4,9 @@
 
 Long Box turns a character query such as **Daredevil** or **Spider-Man + Daredevil** into a grounded reading path. ComicVine supplies reference data; Long Box normalizes it in Postgres and will rank useful entry points with deterministic, inspectable logic instead of inventing reading orders.
 
-> Status: Phases 1–3 are complete. The [data foundation](docs/PHASE_1_VALIDATION.md), [deterministic reading-path engine](docs/PHASE_2_VALIDATION.md), and [editorial product UI](docs/PHASE_3_VALIDATION.md) are validated against fixtures, live Supabase data, and real browser flows. Production hardening is next.
+> **Live:** <https://long-box.vercel.app>
+>
+> Status: Phases 1–4 are complete. The [data foundation](docs/PHASE_1_VALIDATION.md), [deterministic reading-path engine](docs/PHASE_2_VALIDATION.md), [editorial product UI](docs/PHASE_3_VALIDATION.md), and [production deployment](docs/PHASE_4_VALIDATION.md) are validated against fixtures, live Supabase data, CI, and production smoke tests.
 
 ## Why this project exists
 
@@ -23,9 +25,10 @@ flowchart LR
   CV[ComicVine REST API] -->|server-only typed client| I[Idempotent ingestion service]
   I --> P[(Supabase Postgres)]
   P --> Q[Validation and retrieval queries]
-  Q --> E[Reading-path engine — Phase 2]
+  Q --> E[Deterministic reading-path engine]
   E --> A[Next.js App Router API]
-  A --> U[Discovery UI — Phase 3]
+  A --> U[Editorial discovery UI]
+  U --> V[Vercel production deployment]
 ```
 
 The current code keeps boundaries small:

@@ -40,7 +40,7 @@ export async function searchCatalog(
     id: row.id,
     comicvineId: row.comicvine_id,
     name: row.name,
-    description: row.description,
+    description: null,
     imageUrl: row.image_url,
     context: row.context,
   }));
