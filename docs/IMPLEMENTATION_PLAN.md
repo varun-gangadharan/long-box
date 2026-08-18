@@ -8,8 +8,8 @@ This document records phase gates and the product-design context that implementa
 | --- | --- | --- |
 | 1. Foundation and ingestion | Complete | Live migration, ingestion, duplicate rerun, and all five validation queries passed; see `PHASE_1_VALIDATION.md`. |
 | 2. Reading-path engine | Complete | Deterministic grouping, ranking, explanations, character/arc APIs, tests, live queries, and query plans passed; see `PHASE_2_VALIDATION.md`. |
-| 3. Product UI | Next | Search and reading-path flows pass automated and real-browser validation. |
-| 4. Production hardening | Not started | Performance, reliability, security, CI, documentation, and smoke checks pass. |
+| 3. Product UI | Complete | Search, character/arc reading pages, responsive branching, system states, component tests, and real-browser checks passed; see `PHASE_3_VALIDATION.md`. |
+| 4. Production hardening | Next | Performance, reliability, security, CI, documentation, and smoke checks pass. |
 | 5. Optional intent parser | Deferred | Grounded structured intent improves usability without generating comic facts. |
 
 Later phases do not begin until the current phase exit gate passes.
