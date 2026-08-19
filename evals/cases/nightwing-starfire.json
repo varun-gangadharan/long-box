@@ -1,11 +1,21 @@
 {
   "name": "nightwing-starfire",
-  "characters": ["Nightwing", "Starfire"],
-  "notes": "The reported failure. The engine returned a Detective Comics issue that Nightwing appears in and Starfire is merely credited in. The right answers are the runs they co-star in: the Wolfman/Perez New Teen Titans for the definitive relationship, and Titans (2016) for the modern dynamic.",
+  "characters": [
+    "Nightwing",
+    "Starfire"
+  ],
+  "notes": "The reported failure. The engine returned a Detective Comics issue that Nightwing appears in and Starfire is merely credited in. The right answers are the runs they co-star in. Note that Tales of the Teen Titans is not a different book: DC renamed The New Teen Titans in 1984 mid-run, same Wolfman and Perez team, so The Judas Contract is part of the same definitive run and counts as a correct top answer.",
   "expect": {
-    "top1AnyOf": ["The New Teen Titans"],
-    "top3AnyOf": ["Titans"],
-    "mustNotAppearTop3": ["Detective Comics"],
+    "top1AnyOf": [
+      "The New Teen Titans",
+      "Tales of the Teen Titans"
+    ],
+    "top3AnyOf": [
+      "Titans"
+    ],
+    "mustNotAppearTop3": [
+      "Detective Comics"
+    ],
     "minTogetherness": 0.7
   }
 }

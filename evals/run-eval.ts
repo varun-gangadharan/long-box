@@ -99,15 +99,33 @@ function evaluate(evalCase: EvalCase, fixture: Fixture): CaseResult {
     );
   }
 
+  // "Any of" means any of. Several titles can each be a correct answer — a pair
+  // with three shared books does not owe the top three to all of them — so this
+  // requires one, while recall@3 stays as a reported measure of breadth.
   const wanted = evalCase.expect.top3AnyOf;
   const found = wanted.filter((expected) =>
     top.some((candidate) => matches(candidate.title, expected)),
   );
-  const recallAt3 = wanted.length ? found.length / wanted.length : 1;
-  if (recallAt3 < THRESHOLDS.recallAt3) {
-    const missing = wanted.filter((expected) => !found.includes(expected));
-    failures.push(`missing from the top three: ${missing.join(", ")}`);
+  if (wanted.length && !found.length) {
+    failures.push(`none of these reached the top three: ${wanted.join(", ")}`);
   }
+
+  const required = evalCase.expect.top3AllOf;
+  const missingRequired = required.filter(
+    (expected) => !top.some((candidate) => matches(candidate.title, expected)),
+  );
+  if (missingRequired.length) {
+    failures.push(`missing from the top three: ${missingRequired.join(", ")}`);
+  }
+
+  // Recall is measured over what a case *requires* in the top three, not over a
+  // list of alternatives — five acceptable answers cannot all appear in three
+  // slots, and scoring them as misses made a passing case look like a failure.
+  const foundRequired = required.filter((expected) =>
+    top.some((candidate) => matches(candidate.title, expected)),
+  );
+  const recallAt3 = required.length ? foundRequired.length / required.length : 1;
+  void found;
 
   // A known bad answer counts as a trap only when it is offered as a real
   // recommendation. The product labels gated candidates as passing appearances

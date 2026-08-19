@@ -21,8 +21,10 @@ export const evalCaseSchema = z.object({
   expect: z.object({
     /** The top result must match one of these. */
     top1AnyOf: z.array(z.string()).default([]),
-    /** These should show up somewhere in the top three. */
+    /** At least one of these must show up in the top three. */
     top3AnyOf: z.array(z.string()).default([]),
+    /** Every one of these must show up in the top three. */
+    top3AllOf: z.array(z.string()).default([]),
     /** Known bad answers. Any of these in the top three is a trap hit. */
     mustNotAppearTop3: z.array(z.string()).default([]),
     /** Floor for the top result's togetherness score. */

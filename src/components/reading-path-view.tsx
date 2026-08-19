@@ -162,6 +162,12 @@ function ScoreSummary({ recommendation }: { recommendation: RankedRecommendation
       <span>Together {percent(recommendation.features.togetherness)}</span>
       {" · "}
       <span>Beginner-friendly {percent(recommendation.features.beginnerFriendliness)}</span>
+      {recommendation.features.acclaim > 0.35 && (
+        <>
+          {" · "}
+          <span>Acclaim {percent(recommendation.features.acclaim)}</span>
+        </>
+      )}
     </p>
   );
 }

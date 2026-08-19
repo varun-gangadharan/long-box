@@ -1,0 +1,11 @@
+{
+  "name": "acclaim-batman",
+  "characters": ["Batman"],
+  "notes": "Every other ranking feature is structural, so a landmark and a competent forgotten book of the same shape scored the same: before acclaim existed, Batman: Journey Into Knight led at 0.887 and The Long Halloween sat third at 0.873, both being twelve-ish self-contained issues titled after Batman starting at #1. Acclaim is the only signal that comes from outside the catalog. The Long Halloween carries an Eisner recorded in Wikidata; Year One and Hush are runs inside the ongoing title, so they depend on curated entries and on the candidate pool not truncating them.",
+  "expect": {
+    "top1AnyOf": ["Batman: The Long Halloween"],
+    "top3AnyOf": ["Hush", "Year One", "Batman #404", "Batman #608", "Batman #426"],
+    "mustNotAppearTop3": ["Justice League", "JLA"],
+    "minTogetherness": 0.7
+  }
+}

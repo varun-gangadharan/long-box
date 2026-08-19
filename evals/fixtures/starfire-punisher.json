@@ -1,8 +1,8 @@
 {
   "name": "starfire-punisher",
   "source": "recorded",
-  "recordedAt": "2026-08-18T04:58:33.956Z",
-  "note": "Characters from different publishers who share only one crowded crossover issue. Saying there is no shared story is the correct answer; promoting the crossover as a starting point is the failure mode this case guards.",
+  "recordedAt": "2026-08-19T00:53:18.228Z",
+  "note": "Characters from different publishers whose only shared books are company crossovers. Hiding those would be unhelpful — they are genuinely the only place the two meet — but presenting a one-shot crossover as a book about the pair would be a lie. The crossover should surface while scoring low enough that the page frames it honestly rather than as a co-starring run.",
   "characterPublishers": [
     "DC Comics"
   ],
@@ -144,7 +144,8 @@
           "name": "Walter Simonson",
           "role": "penciler"
         }
-      ]
+      ],
+      "acclaim": null
     },
     {
       "id": "bc07e068-5256-49a1-b357-3c3d10eacdb1",
@@ -167,7 +168,8 @@
           "name": "Kurt Busiek",
           "role": "writer"
         }
-      ]
+      ],
+      "acclaim": null
     }
   ],
   "affinities": [
@@ -186,7 +188,8 @@
       "firstCoDate": "2008-11-01",
       "lastCoDate": "2008-11-01",
       "topWriter": "Kurt Busiek",
-      "topArtist": null
+      "topArtist": null,
+      "acclaim": null
     },
     {
       "volumeId": "8eda3700-42f2-480c-a1fb-54d0284572a4",
@@ -203,7 +206,8 @@
       "firstCoDate": "2024-10-01",
       "lastCoDate": "2024-10-01",
       "topWriter": "Alan Grant",
-      "topArtist": "Barry Kitson"
+      "topArtist": "Barry Kitson",
+      "acclaim": null
     }
   ]
 }

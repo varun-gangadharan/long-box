@@ -18,7 +18,8 @@
     "eval:live": "tsx evals/live-eval.ts",
     "eval:judge": "tsx evals/judge.ts",
     "smoke": "scripts/smoke.sh",
-    "seed": "tsx scripts/seed.ts"
+    "seed": "tsx scripts/seed.ts",
+    "enrich:acclaim": "tsx scripts/enrich-acclaim.ts"
   },
   "dependencies": {
     "@next/env": "^16.3.1",

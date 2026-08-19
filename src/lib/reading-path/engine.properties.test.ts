@@ -29,6 +29,7 @@ function issueIn(
     requestedCharacterCount: 2,
     storyArcs: [],
     creators: [{ name: "A Writer", role: "writer" }],
+    acclaim: null,
     ...options,
   };
 }
@@ -54,6 +55,7 @@ function affinityFor(
     lastCoDate: "1984-01-01",
     topWriter: "A Writer",
     topArtist: "An Artist",
+    acclaim: null,
     ...options,
   };
 }
@@ -420,5 +422,127 @@ describe("single-character queries", () => {
     const [ranked] = rankCandidates(bookFor("own", "Batman", 40, 7, 39), solo);
     expect(ranked.reasons.join(" ")).toContain("Batman");
     expect(ranked.reasons.join(" ")).not.toMatch(/Your characters|they appear together/i);
+  });
+});
+
+describe("acclaim as recognition, not a verdict", () => {
+  const publishers = { characterPublishers: ["DC Comics"] };
+
+  function book(
+    volumeId: string,
+    options: {
+      acclaim?: Partial<VolumeAffinity["acclaim"]> | null;
+      minCharacterAppearances?: number;
+      volumeIssueCount?: number;
+    } = {},
+  ) {
+    const acclaim = options.acclaim
+      ? {
+          curatedTier: null,
+          curatedStory: null,
+          awardCount: 0,
+          topAward: null,
+          monthlyPageviews: null,
+          ...options.acclaim,
+        }
+      : null;
+    const issues = Array.from({ length: 8 }, (_, index) =>
+      issueIn(volumeId, `Book ${volumeId}`, options.volumeIssueCount ?? 40, index + 1),
+    );
+    return generateCandidates(issues, {
+      affinities: [
+        affinityFor(volumeId, `Book ${volumeId}`, {
+          volumeIssueCount: options.volumeIssueCount ?? 40,
+          coIssueCount: 8,
+          longestCoStreak: 8,
+          minCharacterAppearances: options.minCharacterAppearances ?? 40,
+          acclaim,
+        }),
+      ],
+    }).filter(({ type }) => type === "volume_run");
+  }
+
+  it("does not penalise a book nobody has catalogued", () => {
+    // Almost nothing in the catalog has acclaim data. If absence scored zero this
+    // would stop being a mark of distinction and become a tax on obscurity.
+    const unknown = calculateFeatures(book("unknown")[0], publishers);
+    expect(unknown.acclaim).toBe(0.35);
+
+    const catalogued = calculateFeatures(book("known", { acclaim: {} })[0], publishers);
+    expect(catalogued.acclaim).toBeGreaterThanOrEqual(unknown.acclaim);
+  });
+
+  it("ranks an award winner above an equivalent book without one", () => {
+    const winner = book("winner", { acclaim: { awardCount: 1, topAward: "Eisner Award" } });
+    const plain = book("plain");
+    expect(calculateFeatures(winner[0], publishers).acclaim).toBeGreaterThan(
+      calculateFeatures(plain[0], publishers).acclaim,
+    );
+    const ranked = rankCandidates([...plain, ...winner], publishers);
+    expect(ranked[0].issues[0].volume.id).toBe("winner");
+  });
+
+  it("cannot make a passing appearance into a starting point", () => {
+    // The gate is sourced from togetherness alone. A landmark a character barely
+    // appears in is still a book they barely appear in.
+    const cameo = generateCandidates(
+      [issueIn("famous", "A Famous Book", 700, 415, { characterCount: 26 })],
+      {
+        affinities: [
+          affinityFor("famous", "A Famous Book", {
+            volumeIssueCount: 700,
+            coIssueCount: 1,
+            minCharacterAppearances: 1,
+            longestCoStreak: 1,
+            firstCoIssueNumber: "415",
+            lastCoIssueNumber: "415",
+            acclaim: {
+              curatedTier: 1,
+              curatedStory: "A Landmark",
+              awardCount: 2,
+              topAward: "Eisner Award",
+              monthlyPageviews: 50_000,
+            },
+          }),
+        ],
+      },
+    );
+
+    const [ranked] = rankCandidates(cameo, publishers);
+    expect(ranked.features.acclaim).toBeGreaterThan(0.9);
+    expect(ranked.eligibleAsStart).toBe(false);
+  });
+
+  it("cannot outweigh a real difference in how well a book represents the character", () => {
+    const acclaimedButPeripheral = book("peripheral", {
+      volumeIssueCount: 400,
+      minCharacterAppearances: 9,
+      acclaim: { curatedTier: 1, curatedStory: "A Landmark", awardCount: 2 },
+    });
+    const plainAndCentral = book("central", { minCharacterAppearances: 40 });
+
+    const ranked = rankCandidates([...acclaimedButPeripheral, ...plainAndCentral], publishers);
+    expect(ranked[0].issues[0].volume.id).toBe("central");
+  });
+
+  it("keeps the swing from acclaim alone bounded", () => {
+    const best = calculateFeatures(
+      book("best", {
+        acclaim: {
+          curatedTier: 1,
+          curatedStory: "A Landmark",
+          awardCount: 2,
+          monthlyPageviews: 50_000,
+        },
+      })[0],
+      publishers,
+    );
+    const none = calculateFeatures(book("none")[0], publishers);
+    const swing = scoreCandidate(best) - scoreCandidate(none);
+
+    // Enough to lift a landmark over an equivalent unknown, not enough to
+    // reorder the list on its own.
+    expect(swing).toBeGreaterThan(0.05);
+    expect(swing).toBeLessThan(0.15);
   });
 });

@@ -1,11 +1,23 @@
 {
   "name": "batman-superman",
-  "characters": ["Batman", "Superman"],
-  "notes": "A pair with two genuine shared titles. Either World's Finest Comics or Batman/Superman is a good answer; a single Action Comics issue is not. Tests that ComicVine's per-volume character counts carry the core-cast signal even when only a slice of the volume is ingested locally.",
+  "characters": [
+    "Batman",
+    "Superman"
+  ],
+  "notes": "A pair with several genuine shared titles. World's Finest Comics, Batman/Superman and Superman/Batman are all books built around the two of them, so any is a correct lead; a single Action Comics issue is not. Recorded from live data, so it also checks that ComicVine's per-volume character counts carry the core-cast signal on real input.",
   "expect": {
-    "top1AnyOf": ["World's Finest Comics", "Batman/Superman"],
-    "top3AnyOf": ["Batman/Superman", "World's Finest Comics"],
-    "mustNotAppearTop3": ["Action Comics"],
+    "top1AnyOf": [
+      "World's Finest Comics",
+      "Batman/Superman",
+      "Superman/Batman"
+    ],
+    "top3AnyOf": [
+      "Superman/Batman",
+      "World's Finest Comics"
+    ],
+    "mustNotAppearTop3": [
+      "Action Comics"
+    ],
     "minTogetherness": 0.6
   }
 }

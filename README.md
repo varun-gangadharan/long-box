@@ -84,6 +84,42 @@ npm run typecheck
 npm run build
 ```
 
+## Acclaim — is the book any good?
+
+Every other ranking signal is structural: who is in a book, how long it runs, where it
+starts. Two books of the same shape are therefore indistinguishable, and an
+Eisner-winning landmark tied with a competent forgotten one. Acclaim is the only signal
+that comes from outside the catalog.
+
+| Source | What it gives | How it joins |
+| --- | --- | --- |
+| Wikidata (CC0) | Awards, via `P166` | Exact — property `P5905` stores ComicVine ids with their resource prefix, so `4050-6822` is a volume |
+| Wikipedia pageviews | Median monthly readership | Exact — the article title comes from the Wikidata sitelink |
+| `data/acclaimed-stories.json` | A curated tier | Resolved against the catalog by volume, year and issue range; anything unresolved is reported, never guessed |
+
+The curated file is not a shortcut around the data. Wikidata records an award for only
+about forty comic volumes: enough for *The Long Halloween*, nothing for *Year One*,
+*Hush*, *The Killing Joke* or *The Dark Knight Returns*. The file covers a gap that was
+measured rather than assumed, and it is the only place editorial judgement lives.
+
+Two properties matter more than the weights:
+
+- **Absence is neutral.** Roughly a thousand volumes in all of Wikidata carry a ComicVine
+  id, so nearly every candidate has no acclaim data. An unknown book scores the baseline;
+  acclaim is a bonus for recognition earned, never a tax on obscurity.
+- **Acclaim never opens the gate.** A landmark a character barely appears in is still a
+  passing appearance, and `eligibleAsStart` is sourced from togetherness alone.
+
+Refresh it out of band — never on the request path:
+
+```bash
+npm run enrich:acclaim -- --dry-run
+npm run enrich:acclaim
+```
+
+The job also backfills: naming a landmark is a reason to go and fetch it, so books the
+curated list names but the catalog lacks are ingested on the spot.
+
 ## Current state
 
 - live app is up

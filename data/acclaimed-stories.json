@@ -1,0 +1,196 @@
+{
+  "$comment": "Editorial judgement, deliberately kept in one reviewable file and never mixed with sourced data. Wikidata records awards for only about forty comic volumes, and misses Year One, The Dark Knight Returns, Hush and The Killing Joke entirely, so a curated list is the honest way to cover a measured gap rather than a shortcut around research. Entries resolve against the local catalog by volume name, start year and issue range; anything that does not resolve is reported and skipped rather than guessed at. Tier 1 is a story the hobby treats as canonical, tier 2 is strongly acclaimed, tier 3 is notable.",
+  "stories": [
+    {
+      "name": "Batman: Year One",
+      "tier": 1,
+      "volume": { "name": "Batman", "startYear": 1940 },
+      "issueRange": [404, 407],
+      "note": "Miller and Mazzucchelli's origin retelling; the most commonly recommended Batman starting point."
+    },
+    {
+      "name": "Batman: The Long Halloween",
+      "tier": 1,
+      "volume": { "name": "Batman: The Long Halloween", "startYear": 1996 },
+      "note": "Loeb and Sale. Eisner Award for Best Limited Series, 1998."
+    },
+    {
+      "name": "Batman: Hush",
+      "tier": 1,
+      "volume": { "name": "Batman", "startYear": 1940 },
+      "issueRange": [608, 619],
+      "note": "Loeb and Jim Lee; a standard modern entry point and a tour of the supporting cast."
+    },
+    {
+      "name": "Batman: A Death in the Family",
+      "tier": 1,
+      "volume": { "name": "Batman", "startYear": 1940 },
+      "issueRange": [426, 429],
+      "note": "The death of Jason Todd; a landmark the rest of the character's continuity refers back to."
+    },
+    {
+      "name": "Batman: The Dark Knight Returns",
+      "tier": 1,
+      "volume": { "name": "Batman: The Dark Knight", "startYear": 1986 },
+      "note": "Miller. Repeatedly named among the most important superhero comics published."
+    },
+    {
+      "name": "Batman: Dark Victory",
+      "tier": 2,
+      "volume": { "name": "Batman: Dark Victory", "startYear": 1999 },
+      "note": "Direct sequel to The Long Halloween by the same team."
+    },
+    {
+      "name": "Batman: The Killing Joke",
+      "tier": 2,
+      "volume": { "name": "Batman: The Killing Joke", "startYear": 1988 },
+      "note": "Moore and Bolland. Defining Joker story, though its treatment of Barbara Gordon is much criticised."
+    },
+    {
+      "name": "Batman: Knightfall",
+      "tier": 3,
+      "volume": { "name": "Batman", "startYear": 1940 },
+      "issueRange": [492, 500],
+      "note": "Bane breaks Batman; widely known, though long and heavily crossed over."
+    },
+    {
+      "name": "Gotham Central",
+      "tier": 2,
+      "volume": { "name": "Gotham Central", "startYear": 2003 },
+      "note": "Brubaker, Rucka and Lark. Eisner Award for Best Serialized Story."
+    },
+    {
+      "name": "The New Teen Titans",
+      "tier": 1,
+      "volume": { "name": "The New Teen Titans", "startYear": 1980 },
+      "note": "Wolfman and Perez. The definitive run for the Titans and for Dick Grayson and Starfire as a couple."
+    },
+    {
+      "name": "The Judas Contract",
+      "tier": 1,
+      "volume": { "name": "Tales of the Teen Titans", "startYear": 1984 },
+      "issueRange": [42, 44],
+      "note": "The high point of the Wolfman and Perez run; Dick Grayson becomes Nightwing."
+    },
+    {
+      "name": "Titans (2016)",
+      "tier": 3,
+      "volume": { "name": "Titans", "startYear": 2016 },
+      "note": "Abnett's Rebirth run; the modern take on the same cast and relationships."
+    },
+    {
+      "name": "Nightwing: Year One",
+      "tier": 2,
+      "volume": { "name": "Nightwing", "startYear": 1996 },
+      "issueRange": [101, 106],
+      "note": "Dixon and Beatty; the standard origin for Dick Grayson as Nightwing."
+    },
+    {
+      "name": "Watchmen",
+      "tier": 1,
+      "volume": { "name": "Watchmen", "startYear": 1986 },
+      "note": "Moore and Gibbons. Eisner Award winner and the most widely read work in the medium."
+    },
+    {
+      "name": "Kingdom Come",
+      "tier": 1,
+      "volume": { "name": "Kingdom Come", "startYear": 1996 },
+      "note": "Waid and Ross. Eisner Award for Best Limited Series."
+    },
+    {
+      "name": "All-Star Superman",
+      "tier": 1,
+      "volume": { "name": "All Star Superman", "startYear": 2005 },
+      "note": "Morrison and Quitely. The most commonly recommended Superman book for a new reader."
+    },
+    {
+      "name": "Superman: Red Son",
+      "tier": 2,
+      "volume": { "name": "Superman: Red Son", "startYear": 2003 },
+      "note": "Millar. Self-contained elseworld, frequently recommended as a way in."
+    },
+    {
+      "name": "Superman for All Seasons",
+      "tier": 2,
+      "volume": { "name": "Superman For All Seasons", "startYear": 1998 },
+      "note": "Loeb and Sale; a quiet, self-contained origin."
+    },
+    {
+      "name": "Superman: Birthright",
+      "tier": 3,
+      "volume": { "name": "Superman: Birthright", "startYear": 2003 },
+      "note": "Waid's modern origin retelling."
+    },
+    {
+      "name": "The Death of Superman",
+      "tier": 2,
+      "volume": { "name": "Superman", "startYear": 1987 },
+      "issueRange": [73, 75],
+      "note": "The most widely reported comic story of its era."
+    },
+    {
+      "name": "Superman/Batman: Public Enemies",
+      "tier": 3,
+      "volume": { "name": "Superman/Batman", "startYear": 2003 },
+      "issueRange": [1, 6],
+      "note": "Loeb and McGuinness; the pair as a double act, adapted to animation."
+    },
+    {
+      "name": "Batman/Superman: World's Finest",
+      "tier": 2,
+      "volume": { "name": "Batman/Superman: World's Finest", "startYear": 2022 },
+      "note": "Waid and Mora; the current, and unusually accessible, take on the partnership."
+    },
+    {
+      "name": "Daredevil: Born Again",
+      "tier": 1,
+      "volume": { "name": "Daredevil", "startYear": 1964 },
+      "issueRange": [227, 231],
+      "note": "Miller and Mazzucchelli; routinely named the best Daredevil story."
+    },
+    {
+      "name": "Daredevil: The Man Without Fear",
+      "tier": 2,
+      "volume": { "name": "Daredevil: The Man Without Fear", "startYear": 1993 },
+      "note": "Miller and Romita Jr; the standard retold origin."
+    },
+    {
+      "name": "Daredevil (2011)",
+      "tier": 2,
+      "volume": { "name": "Daredevil", "startYear": 2011 },
+      "note": "Waid and Samnee. Eisner-winning run and the most approachable modern Daredevil."
+    },
+    {
+      "name": "The Night Gwen Stacy Died",
+      "tier": 1,
+      "volume": { "name": "The Amazing Spider-Man", "startYear": 1963 },
+      "issueRange": [121, 122],
+      "note": "The story usually cited as ending the Silver Age of superhero comics."
+    },
+    {
+      "name": "Kraven's Last Hunt",
+      "tier": 1,
+      "volume": { "name": "The Amazing Spider-Man", "startYear": 1963 },
+      "issueRange": [293, 294],
+      "note": "DeMatteis and Zeck; the most acclaimed Spider-Man story of the 1980s."
+    },
+    {
+      "name": "Ultimate Spider-Man",
+      "tier": 2,
+      "volume": { "name": "Ultimate Spider-Man", "startYear": 2000 },
+      "note": "Bendis and Bagley; written specifically as a way in for new readers."
+    },
+    {
+      "name": "The New Frontier",
+      "tier": 2,
+      "volume": { "name": "DC: The New Frontier", "startYear": 2004 },
+      "note": "Cooke. Eisner Award for Best Limited Series."
+    },
+    {
+      "name": "Batman: Year 100",
+      "tier": 3,
+      "volume": { "name": "Batman: Year 100", "startYear": 2006 },
+      "note": "Pope. Eisner Award for Best Limited Series, though far less read than its reputation suggests."
+    }
+  ]
+}

@@ -1,5 +1,7 @@
 import { normalizeEntityName } from "./names";
 import type {
+  Acclaim,
+  AcclaimFeatures,
   BeginnerFriendlinessFeatures,
   CandidateIssue,
   CreatorCredit,
@@ -18,9 +20,43 @@ import type {
  * winning the top slot.
  */
 export const SCORE_WEIGHTS = {
-  togetherness: 0.62,
-  beginnerFriendliness: 0.38,
+  togetherness: 0.5,
+  beginnerFriendliness: 0.32,
+  acclaim: 0.18,
 } as const;
+
+/**
+ * Whether a book is any good, by somebody else's reckoning.
+ *
+ * Every other feature here is structural — who is in it, how long it runs, where
+ * it starts — so two books of the same shape are indistinguishable and an
+ * Eisner-winning landmark ties with a competent forgotten one. This is the only
+ * signal that comes from outside the catalog: awards recorded in Wikidata, how
+ * much a story is still read on Wikipedia, and an explicit curated list.
+ */
+export const ACCLAIM_WEIGHTS = {
+  curatedScore: 0.45,
+  awardScore: 0.28,
+  attentionScore: 0.22,
+  recognitionScore: 0.05,
+} as const;
+
+/**
+ * What a book scores when nothing is known about it.
+ *
+ * This matters more than any other constant here. Roughly a thousand volumes in
+ * all of Wikidata carry a ComicVine id, so almost every candidate has no acclaim
+ * data at all. If absence scored zero, the signal would stop being a mark of
+ * distinction and become a penalty on the entire catalog for not being famous.
+ * Acclaim is a bonus for books that have earned recognition, never a punishment
+ * for the rest, so an unknown book sits at the same baseline it would have had
+ * before this signal existed.
+ */
+const UNKNOWN_ACCLAIM = 0.35;
+
+/** Monthly Wikipedia readership treated as the top of the scale. */
+const ATTENTION_CEILING = 50_000;
+const ATTENTION_FLOOR = 100;
 
 /**
  * A single-character query asks a different question: not "is this book about
@@ -148,8 +184,11 @@ export function calculateFeatures(
   );
   const beginner = beginnerFeatures(candidate);
 
+  const acclaimed = acclaimFeatures(candidate);
+
   return {
     togetherness: combineTogetherness(together, requestedCharacterCount(candidate, characterNames)),
+    acclaim: combineAcclaim(acclaimed),
     beginnerFriendliness: combineBeginner(beginner),
     metadataCompleteness: average(
       candidate.issues.map(
@@ -161,6 +200,7 @@ export function calculateFeatures(
     ),
     together,
     beginner,
+    acclaimed,
   };
 }
 
@@ -168,7 +208,8 @@ export function scoreCandidate(features: RankingFeatures): number {
   return round(
     clamp(
       features.togetherness * SCORE_WEIGHTS.togetherness +
-        features.beginnerFriendliness * SCORE_WEIGHTS.beginnerFriendliness,
+        features.beginnerFriendliness * SCORE_WEIGHTS.beginnerFriendliness +
+        features.acclaim * SCORE_WEIGHTS.acclaim,
     ),
   );
 }
@@ -379,6 +420,23 @@ function beginnerFeatures(candidate: ReadingCandidate): BeginnerFriendlinessFeat
   const firstNumber = first ? integerIssueNumber(first.issueNumber) : null;
   const affinity = candidate.volumeAffinity;
 
+  // A named story we know to be self-contained beats the heuristics that stand in
+  // for that knowledge. Year One is Batman #404-407, so counting issue numbers
+  // concludes a reader needs four hundred issues of context first — when the
+  // whole point of the book is that it needs none. Where the curated list
+  // identifies a complete story, its judgement replaces the proxy.
+  if (isCompleteCuratedStory(candidate)) {
+    return {
+      entryPointScore: 0.9,
+      commitmentScore: commitmentScore(candidate.issues.length),
+      prerequisiteDepth: 0.85,
+      selfContainment: 1,
+      modernityScore: modernityScore(candidate.issues),
+      castManageability: castManageability(candidate.issues),
+      creativeTeamCohesion: creativeTeamCohesion(candidate),
+    };
+  }
+
   const entryPointScore =
     firstNumber === 1
       ? 1
@@ -560,6 +618,9 @@ export function explainCandidate(
   if (features.beginner.modernityScore >= 0.85) {
     reasons.push("Recent enough that the art and pacing will feel familiar.");
   }
+
+  const recognition = acclaimReason(candidate, features);
+  if (recognition) reasons.push(recognition);
 
   return reasons;
 }
@@ -832,4 +893,125 @@ function clamp(value: number): number {
 
 function round(value: number): number {
   return Number(value.toFixed(3));
+}
+
+// --- Acclaim ----------------------------------------------------------------
+
+/**
+ * The strongest claim to recognition anywhere in the candidate.
+ *
+ * A landmark is sometimes a whole book — The Long Halloween is its own volume —
+ * and sometimes a run inside a much longer title, as Year One is four issues of
+ * Batman. Taking the best of the volume's standing and any single issue's lets
+ * both shapes be recognised without a four-issue story inheriting the reputation
+ * of the seven hundred issues around it.
+ */
+function bestAcclaim(candidate: ReadingCandidate): Acclaim | null {
+  const claims = [
+    candidate.volumeAffinity?.acclaim,
+    ...candidate.issues.map((issue) => issue.acclaim),
+  ].filter((claim): claim is Acclaim => Boolean(claim));
+  if (!claims.length) return null;
+
+  return claims.reduce((best, claim) => ({
+    curatedTier: bestTier(best.curatedTier, claim.curatedTier),
+    curatedStory:
+      bestTier(best.curatedTier, claim.curatedTier) === claim.curatedTier
+        ? (claim.curatedStory ?? best.curatedStory)
+        : best.curatedStory,
+    awardCount: Math.max(best.awardCount, claim.awardCount),
+    topAward: best.topAward ?? claim.topAward,
+    monthlyPageviews: Math.max(best.monthlyPageviews ?? 0, claim.monthlyPageviews ?? 0) || null,
+  }));
+}
+
+/** Tier 1 outranks tier 3; absent loses to any tier. */
+function bestTier(left: number | null, right: number | null): number | null {
+  if (left === null) return right;
+  if (right === null) return left;
+  return Math.min(left, right);
+}
+
+function acclaimFeatures(candidate: ReadingCandidate): AcclaimFeatures {
+  const acclaim = bestAcclaim(candidate);
+  if (!acclaim) {
+    return { awardScore: 0, attentionScore: 0, curatedScore: 0, recognitionScore: 0 };
+  }
+
+  return {
+    // One award is most of the signal; a second adds little.
+    awardScore: acclaim.awardCount >= 2 ? 1 : acclaim.awardCount === 1 ? 0.8 : 0,
+    attentionScore: attentionScore(acclaim.monthlyPageviews),
+    curatedScore:
+      acclaim.curatedTier === 1
+        ? 1
+        : acclaim.curatedTier === 2
+          ? 0.8
+          : acclaim.curatedTier === 3
+            ? 0.6
+            : 0,
+    // Being catalogued at all is a weak mark of notability, no more.
+    recognitionScore: 1,
+  };
+}
+
+/**
+ * Readership, log-scaled because attention is distributed by orders of
+ * magnitude — Watchmen outreads an obscure Eisner winner forty times over, and a
+ * linear scale would let one famous book flatten every other.
+ */
+function attentionScore(monthlyPageviews: number | null): number {
+  if (!monthlyPageviews || monthlyPageviews <= ATTENTION_FLOOR) return 0;
+  const span = Math.log10(ATTENTION_CEILING) - Math.log10(ATTENTION_FLOOR);
+  return clamp((Math.log10(monthlyPageviews) - Math.log10(ATTENTION_FLOOR)) / span);
+}
+
+function combineAcclaim(features: AcclaimFeatures): number {
+  const weighted =
+    features.curatedScore * ACCLAIM_WEIGHTS.curatedScore +
+    features.awardScore * ACCLAIM_WEIGHTS.awardScore +
+    features.attentionScore * ACCLAIM_WEIGHTS.attentionScore +
+    features.recognitionScore * ACCLAIM_WEIGHTS.recognitionScore;
+
+  // Scaled into the headroom above the baseline rather than compared against it.
+  // Taking the larger of the two would flatten everything worth less than the
+  // baseline — a single Eisner comes to 0.27 on these weights, so an award would
+  // have scored exactly the same as no information at all.
+  return round(clamp(UNKNOWN_ACCLAIM + (1 - UNKNOWN_ACCLAIM) * weighted));
+}
+
+/**
+ * States the evidence rather than the conclusion, and keeps editorial judgement
+ * visibly separate from sourced facts — an award is a matter of record, "widely
+ * recommended" is an opinion this project is taking responsibility for.
+ */
+function acclaimReason(
+  candidate: ReadingCandidate,
+  features: RankingFeatures,
+): string | null {
+  const acclaim = bestAcclaim(candidate);
+  if (!acclaim) return null;
+
+  if (acclaim.topAward) return `Won the ${acclaim.topAward}.`;
+  if (acclaim.curatedTier === 1 && acclaim.curatedStory) {
+    return `${acclaim.curatedStory} is one of the stories this character is best known for.`;
+  }
+  if (acclaim.curatedTier && acclaim.curatedStory) {
+    return `Widely recommended as ${acclaim.curatedStory}.`;
+  }
+  if (features.acclaimed.attentionScore >= 0.7) {
+    return "Still widely read, judging by how much attention it gets.";
+  }
+  return null;
+}
+
+/**
+ * True when every issue of the candidate belongs to the same curated story, so
+ * the candidate *is* that story rather than merely containing part of it. A
+ * forty-issue run holding four acclaimed issues must not inherit their standing.
+ */
+function isCompleteCuratedStory(candidate: ReadingCandidate): boolean {
+  const stories = candidate.issues.map((issue) => issue.acclaim?.curatedStory ?? null);
+  const [first] = stories;
+  return Boolean(first) && stories.every((story) => story === first);
 }

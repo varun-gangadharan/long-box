@@ -35,6 +35,16 @@ const storyArcRowSchema = z.object({
   description: z.string().nullable(),
 });
 
+const acclaimSchema = z
+  .object({
+    curatedTier: z.number().int().nullable(),
+    curatedStory: z.string().nullable(),
+    awardCount: z.number().int().nonnegative(),
+    topAward: z.string().nullable(),
+    monthlyPageviews: z.number().int().nullable(),
+  })
+  .nullable();
+
 const candidateRowSchema = z.object({
   issue_id: z.string().uuid(),
   comicvine_id: z.coerce.number().int().positive(),
@@ -56,6 +66,7 @@ const candidateRowSchema = z.object({
     }),
   ),
   creators: z.array(z.object({ name: z.string(), role: z.string() })),
+  acclaim: acclaimSchema,
 });
 
 const volumeAffinityRowSchema = z.object({
@@ -74,6 +85,7 @@ const volumeAffinityRowSchema = z.object({
   last_co_date: z.string().nullable(),
   top_writer: z.string().nullable(),
   top_artist: z.string().nullable(),
+  acclaim: acclaimSchema,
 });
 
 export class CharacterNotFoundError extends Error {
@@ -189,6 +201,7 @@ function mapCandidateRows(data: unknown): CandidateIssue[] {
     requestedCharacterCount: row.requested_character_count,
     storyArcs: row.story_arcs,
     creators: row.creators,
+    acclaim: row.acclaim ?? null,
   }));
 }
 
@@ -245,6 +258,7 @@ export async function findVolumeAffinities(
     lastCoDate: row.last_co_date,
     topWriter: row.top_writer,
     topArtist: row.top_artist,
+    acclaim: row.acclaim ?? null,
   }));
 }
 

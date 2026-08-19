@@ -29,6 +29,20 @@ export type StoryArcReference = {
   name: string;
 };
 
+/**
+ * What the outside world has said about a book: awards recorded in Wikidata,
+ * how much it is still read on Wikipedia, and any editorial tier from the
+ * curated list. Null when nothing is known, which is the common case and must be
+ * read as unknown rather than as poor.
+ */
+export type Acclaim = {
+  curatedTier: number | null;
+  curatedStory: string | null;
+  awardCount: number;
+  topAward: string | null;
+  monthlyPageviews: number | null;
+};
+
 export type CreatorCredit = {
   name: string;
   role: string;
@@ -51,6 +65,7 @@ export type CandidateIssue = {
   requestedCharacterCount: number;
   storyArcs: StoryArcReference[];
   creators: CreatorCredit[];
+  acclaim: Acclaim | null;
 };
 
 /**
@@ -82,6 +97,7 @@ export type VolumeAffinity = {
   lastCoDate: string | null;
   topWriter: string | null;
   topArtist: string | null;
+  acclaim: Acclaim | null;
 };
 
 export type CandidateType = "single_issue" | "issue_run" | "story_arc" | "volume_run";
@@ -135,13 +151,27 @@ export type BeginnerFriendlinessFeatures = {
   creativeTeamCohesion: number;
 };
 
+/** Is this book any good — by somebody else's reckoning, not ours. */
+export type AcclaimFeatures = {
+  /** Awards recorded against the book in Wikidata. */
+  awardScore: number;
+  /** Log-scaled Wikipedia readership: attention, which is not the same as quality. */
+  attentionScore: number;
+  /** Editorial tier from data/acclaimed-stories.json. */
+  curatedScore: number;
+  /** Catalogued in Wikidata or Wikipedia at all — a floor, not a verdict. */
+  recognitionScore: number;
+};
+
 export type RankingFeatures = {
   togetherness: number;
   beginnerFriendliness: number;
+  acclaim: number;
   /** Data quality, not comic quality: a tiebreaker, never a score component. */
   metadataCompleteness: number;
   together: TogethernessFeatures;
   beginner: BeginnerFriendlinessFeatures;
+  acclaimed: AcclaimFeatures;
 };
 
 export type RankedRecommendation = ReadingCandidate & {

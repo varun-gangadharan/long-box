@@ -28,6 +28,7 @@ const issue = {
   requestedCharacterCount: 1,
   storyArcs: [],
   creators: [{ name: "Test Writer", role: "writer" }],
+  acclaim: null,
 };
 
 function recommendation(
@@ -49,6 +50,7 @@ function recommendation(
     features: {
       togetherness: 0.8,
       beginnerFriendliness: 0.6,
+      acclaim: 0.35,
       metadataCompleteness: 1,
       together: {
         coreCastScore: 0.8,
@@ -68,6 +70,12 @@ function recommendation(
         modernityScore: 0.9,
         castManageability: 1,
         creativeTeamCohesion: 1,
+      },
+      acclaimed: {
+        awardScore: 0,
+        attentionScore: 0,
+        curatedScore: 0,
+        recognitionScore: 0,
       },
     },
     reasons: ["The requested character appears in every issue."],

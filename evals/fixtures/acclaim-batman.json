@@ -1,8 +1,8 @@
 {
-  "name": "batman-solo",
+  "name": "acclaim-batman",
   "source": "recorded",
-  "recordedAt": "2026-08-19T00:50:29.165Z",
-  "note": "A single-character query asks what to read about one person, which is a different question from what two characters share. Batman is a regular in Justice League, so co-appearance measures alone rank team books as highly as his own — and they did. The answer should be a book published about Batman: his own title or one of the self-contained stories under his name. A Justice League book is not wrong about him, it is just not about him.",
+  "recordedAt": "2026-08-19T00:56:57.104Z",
+  "note": "Every other ranking feature is structural, so a landmark and a competent forgotten book of the same shape scored the same: before acclaim existed, Batman: Journey Into Knight led at 0.887 and The Long Halloween sat third at 0.873, both being twelve-ish self-contained issues titled after Batman starting at #1. Acclaim is the only signal that comes from outside the catalog. The Long Halloween carries an Eisner recorded in Wikidata; Year One and Hush are runs inside the ongoing title, so they depend on curated entries and on the candidate pool not truncating them.",
   "characterPublishers": [
     "DC Comics"
   ],
@@ -299,44 +299,6 @@
       "name": "Eve of Destruction; The Origin of the JSA",
       "coverDate": "2007-04-11",
       "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/40/109036-18053-108536-1-52.jpg",
-      "volume": {
-        "id": "4e8bcc15-fd76-42e4-a5bd-c14c01c3c4a9",
-        "name": "52",
-        "startYear": 2006,
-        "issueCount": 52
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "11964b35-804d-4cb7-b2f9-8b572fee017c",
-      "comicvineId": 108733,
-      "issueNumber": "51",
-      "name": "Homecoming; The Origin of the JLA",
-      "coverDate": "2007-04-25",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/1816/111797-18053-108733-1-52.jpg",
-      "volume": {
-        "id": "4e8bcc15-fd76-42e4-a5bd-c14c01c3c4a9",
-        "name": "52",
-        "startYear": 2006,
-        "issueCount": 52
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "95a7ac62-a232-4451-9555-0145bcd8d0f8",
-      "comicvineId": 108928,
-      "issueNumber": "52",
-      "name": "A Year In The Life",
-      "coverDate": "2007-05-02",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/40/114475-18053-108928-1-52.jpg",
       "volume": {
         "id": "4e8bcc15-fd76-42e4-a5bd-c14c01c3c4a9",
         "name": "52",
@@ -869,6 +831,196 @@
       "acclaim": null
     },
     {
+      "id": "e9af3d10-129e-419a-b275-20ff7fb3fe66",
+      "comicvineId": 437727,
+      "issueNumber": "154",
+      "name": "La Minaccia Dell 'Uomo Della Luna",
+      "coverDate": "1959-03-29",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/11113/111139104/3510365-3510209-2.jpg",
+      "volume": {
+        "id": "612d481c-c7ec-497e-8ba8-4ee4058f874a",
+        "name": "Albi del Falco",
+        "startYear": 1954,
+        "issueCount": 523
+      },
+      "characterCount": 3,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "2ae703fa-66d0-4154-9c0a-2d9d671c1a74",
+      "comicvineId": 437763,
+      "issueNumber": "277",
+      "name": "Di Sorpresa in Sorpresa",
+      "coverDate": "1961-08-06",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/11113/111139104/3510478-3510440-227.jpg",
+      "volume": {
+        "id": "612d481c-c7ec-497e-8ba8-4ee4058f874a",
+        "name": "Albi del Falco",
+        "startYear": 1954,
+        "issueCount": 523
+      },
+      "characterCount": 3,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "a908cc9a-d623-449c-a9a0-0215e5917914",
+      "comicvineId": 437794,
+      "issueNumber": "319",
+      "name": "Il Principe Che Doveva Morire",
+      "coverDate": "1962-05-27",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/11113/111139104/3510532-319.jpg",
+      "volume": {
+        "id": "612d481c-c7ec-497e-8ba8-4ee4058f874a",
+        "name": "Albi del Falco",
+        "startYear": 1954,
+        "issueCount": 523
+      },
+      "characterCount": 4,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "86571bec-cb04-46d9-8b22-546e5bb9241c",
+      "comicvineId": 437824,
+      "issueNumber": "356",
+      "name": "La Sibilla",
+      "coverDate": "1963-02-10",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/11113/111139104/3510582-356.jpg",
+      "volume": {
+        "id": "612d481c-c7ec-497e-8ba8-4ee4058f874a",
+        "name": "Albi del Falco",
+        "startYear": 1954,
+        "issueCount": 523
+      },
+      "characterCount": 3,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "fd42b5bd-5fd0-4f91-9fc9-0d3630444ad6",
+      "comicvineId": 437863,
+      "issueNumber": "402",
+      "name": "Colpo Di Scena",
+      "coverDate": "1963-12-29",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/11113/111139104/3510745-3510440-227.jpg",
+      "volume": {
+        "id": "612d481c-c7ec-497e-8ba8-4ee4058f874a",
+        "name": "Albi del Falco",
+        "startYear": 1954,
+        "issueCount": 523
+      },
+      "characterCount": 4,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "f64df48b-8df4-4c29-8418-4c3d5ce5368d",
+      "comicvineId": 437886,
+      "issueNumber": "425",
+      "name": "La Scuola Dell'Umorismo",
+      "coverDate": "1964-06-07",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/11113/111139104/3510858-3510440-227.jpg",
+      "volume": {
+        "id": "612d481c-c7ec-497e-8ba8-4ee4058f874a",
+        "name": "Albi del Falco",
+        "startYear": 1954,
+        "issueCount": 523
+      },
+      "characterCount": 3,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "3b6b3198-6240-45b9-9775-b48503a1d292",
+      "comicvineId": 437912,
+      "issueNumber": "451",
+      "name": "Catena Di Attentati",
+      "coverDate": "1964-12-06",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/11113/111139104/3511026-3511008-445.jpg",
+      "volume": {
+        "id": "612d481c-c7ec-497e-8ba8-4ee4058f874a",
+        "name": "Albi del Falco",
+        "startYear": 1954,
+        "issueCount": 523
+      },
+      "characterCount": 3,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "cf9d385d-40f8-4ed0-8b8e-bd1eec053088",
+      "comicvineId": 437923,
+      "issueNumber": "465",
+      "name": "Fato Zeta",
+      "coverDate": "1965-03-14",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/11113/111139104/3511054-3511008-445.jpg",
+      "volume": {
+        "id": "612d481c-c7ec-497e-8ba8-4ee4058f874a",
+        "name": "Albi del Falco",
+        "startYear": 1954,
+        "issueCount": 523
+      },
+      "characterCount": 2,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "43d36e67-6bc2-416f-9503-f68ff26c2a89",
+      "comicvineId": 437944,
+      "issueNumber": "490",
+      "name": "La Gara Delle Identità Segrete",
+      "coverDate": "1965-09-05",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/11113/111139104/3511148-490.jpg",
+      "volume": {
+        "id": "612d481c-c7ec-497e-8ba8-4ee4058f874a",
+        "name": "Albi del Falco",
+        "startYear": 1954,
+        "issueCount": 523
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "60595a52-d8ff-49a9-a96b-898f56e64e31",
+      "comicvineId": 437968,
+      "issueNumber": "522",
+      "name": "Nembo Kid Del 2966",
+      "coverDate": "1966-04-17",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/11113/111139104/3511259-3511228-505.jpg",
+      "volume": {
+        "id": "612d481c-c7ec-497e-8ba8-4ee4058f874a",
+        "name": "Albi del Falco",
+        "startYear": 1954,
+        "issueCount": 523
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
       "id": "427de5c7-da48-4e58-8fa1-8c6b4ce5ccdb",
       "comicvineId": 106828,
       "issueNumber": "1",
@@ -1350,101 +1502,6 @@
       "name": "Lightning in Berlin!",
       "coverDate": "1984-09-30",
       "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/22085-3070-24647-1-all-star-squadron.jpg",
-      "volume": {
-        "id": "324182f3-53e6-4331-a30b-80a512369d36",
-        "name": "All-Star Squadron",
-        "startYear": 1981,
-        "issueCount": 67
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "415537d5-72c2-4bb0-aa35-bcc9946551ad",
-      "comicvineId": 24734,
-      "issueNumber": "38",
-      "name": "Detroit is Dynamite!",
-      "coverDate": "1984-10-31",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/22163-3070-24734-1-all-star-squadron.jpg",
-      "volume": {
-        "id": "324182f3-53e6-4331-a30b-80a512369d36",
-        "name": "All-Star Squadron",
-        "startYear": 1981,
-        "issueCount": 67
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "7a36ea91-e41e-40e0-8ebe-c29fc1115bc3",
-      "comicvineId": 25109,
-      "issueNumber": "41",
-      "name": "--Catch a Falling Starman!",
-      "coverDate": "1985-01-31",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/22501-3070-25109-1-all-star-squadron.jpg",
-      "volume": {
-        "id": "324182f3-53e6-4331-a30b-80a512369d36",
-        "name": "All-Star Squadron",
-        "startYear": 1981,
-        "issueCount": 67
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "8762d3b4-e6ce-4d0e-936e-ff44e44a9b80",
-      "comicvineId": 25919,
-      "issueNumber": "50",
-      "name": "Crisis Point",
-      "coverDate": "1985-10-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/23242-3070-25919-1-all-star-squadron.jpg",
-      "volume": {
-        "id": "324182f3-53e6-4331-a30b-80a512369d36",
-        "name": "All-Star Squadron",
-        "startYear": 1981,
-        "issueCount": 67
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "04921b12-45c7-451e-be8b-8ff95fd6a0e4",
-      "comicvineId": 26341,
-      "issueNumber": "53",
-      "name": "Worlds in Turmoil",
-      "coverDate": "1986-01-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/23626-3070-26341-1-all-star-squadron.jpg",
-      "volume": {
-        "id": "324182f3-53e6-4331-a30b-80a512369d36",
-        "name": "All-Star Squadron",
-        "startYear": 1981,
-        "issueCount": 67
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "8555e748-cae8-49f6-bfc5-5ff015b3131d",
-      "comicvineId": 26444,
-      "issueNumber": "54",
-      "name": "The Crisis Comes to 1942! (And Vice Versa)",
-      "coverDate": "1986-02-28",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/23723-3070-26444-1-all-star-squadron.jpg",
       "volume": {
         "id": "324182f3-53e6-4331-a30b-80a512369d36",
         "name": "All-Star Squadron",
@@ -2336,10 +2393,25 @@
         "startYear": 1940,
         "issueCount": 716
       },
-      "characterCount": 0,
+      "characterCount": 4,
       "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
+      "storyArcs": [
+        {
+          "id": "b3a4573a-4afb-41c6-816e-712dba1f0c68",
+          "comicvineId": 42218,
+          "name": "\"Batman\" A Death in the Family"
+        }
+      ],
+      "creators": [
+        {
+          "name": "Jim Aparo",
+          "role": "penciler"
+        },
+        {
+          "name": "Jim Starlin",
+          "role": "writer"
+        }
+      ],
       "acclaim": {
         "curatedTier": 1,
         "curatedStory": "Batman: A Death in the Family",
@@ -2711,10 +2783,25 @@
         "startYear": 1940,
         "issueCount": 716
       },
-      "characterCount": 0,
+      "characterCount": 9,
       "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
+      "storyArcs": [
+        {
+          "id": "2c907141-1acc-4e70-ace4-3d4232097ace",
+          "comicvineId": 40875,
+          "name": "\"Batman\" Hush"
+        }
+      ],
+      "creators": [
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        },
+        {
+          "name": "Jim Lee",
+          "role": "penciler"
+        }
+      ],
       "acclaim": {
         "curatedTier": 1,
         "curatedStory": "Batman: Hush",
@@ -2997,25 +3084,6 @@
       "acclaim": null
     },
     {
-      "id": "2106fa9a-8cfd-4fe6-b694-0d8ebe6cdab5",
-      "comicvineId": 118534,
-      "issueNumber": "2",
-      "name": "Infestation",
-      "coverDate": "2008-01-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/40/243532-19660-118534-1-batman-and-the-outsi.jpg",
-      "volume": {
-        "id": "c6a687e5-c3b1-4d9e-94bd-922a8d85e557",
-        "name": "Batman and the Outsiders",
-        "startYear": 2007,
-        "issueCount": 14
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
       "id": "0e69eaac-d72c-45d4-859c-02015360af8f",
       "comicvineId": 23411,
       "issueNumber": "2",
@@ -3035,12 +3103,12 @@
       "acclaim": null
     },
     {
-      "id": "1548b45a-3eb6-4718-ac00-89297909ad86",
-      "comicvineId": 120275,
-      "issueNumber": "3",
-      "name": "Throwdown",
-      "coverDate": "2008-02-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/308/259398-19660-120275-1-batman-and-the-outsi.jpg",
+      "id": "2106fa9a-8cfd-4fe6-b694-0d8ebe6cdab5",
+      "comicvineId": 118534,
+      "issueNumber": "2",
+      "name": "Infestation",
+      "coverDate": "2008-01-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/40/243532-19660-118534-1-batman-and-the-outsi.jpg",
       "volume": {
         "id": "c6a687e5-c3b1-4d9e-94bd-922a8d85e557",
         "name": "Batman and the Outsiders",
@@ -3065,6 +3133,25 @@
         "name": "Batman and the Outsiders",
         "startYear": 1983,
         "issueCount": 33
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "1548b45a-3eb6-4718-ac00-89297909ad86",
+      "comicvineId": 120275,
+      "issueNumber": "3",
+      "name": "Throwdown",
+      "coverDate": "2008-02-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/308/259398-19660-120275-1-batman-and-the-outsi.jpg",
+      "volume": {
+        "id": "c6a687e5-c3b1-4d9e-94bd-922a8d85e557",
+        "name": "Batman and the Outsiders",
+        "startYear": 2007,
+        "issueCount": 14
       },
       "characterCount": 0,
       "requestedCharacterCount": 1,
@@ -3111,25 +3198,6 @@
       "acclaim": null
     },
     {
-      "id": "3d86278a-2961-492c-98e4-6f368f54743c",
-      "comicvineId": 23681,
-      "issueNumber": "5",
-      "name": "Psimon Says...",
-      "coverDate": "1983-12-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/2755088-05.jpg",
-      "volume": {
-        "id": "62eb48a7-3c8b-49d5-b444-7e3c570750f5",
-        "name": "Batman and the Outsiders",
-        "startYear": 1983,
-        "issueCount": 33
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
       "id": "19fa20b9-fb82-4752-bab9-b12dea9bb991",
       "comicvineId": 125705,
       "issueNumber": "5",
@@ -3141,6 +3209,25 @@
         "name": "Batman and the Outsiders",
         "startYear": 2007,
         "issueCount": 14
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "3d86278a-2961-492c-98e4-6f368f54743c",
+      "comicvineId": 23681,
+      "issueNumber": "5",
+      "name": "Psimon Says...",
+      "coverDate": "1983-12-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/2755088-05.jpg",
+      "volume": {
+        "id": "62eb48a7-3c8b-49d5-b444-7e3c570750f5",
+        "name": "Batman and the Outsiders",
+        "startYear": 1983,
+        "issueCount": 33
       },
       "characterCount": 0,
       "requestedCharacterCount": 1,
@@ -3187,25 +3274,6 @@
       "acclaim": null
     },
     {
-      "id": "0636320e-b2fe-4e28-858a-98e08ea33617",
-      "comicvineId": 130791,
-      "issueNumber": "7",
-      "name": "The Snare",
-      "coverDate": "2008-07-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/1/15530/396666-19660-130791-1-batman-and-the-outsi.jpg",
-      "volume": {
-        "id": "c6a687e5-c3b1-4d9e-94bd-922a8d85e557",
-        "name": "Batman and the Outsiders",
-        "startYear": 2007,
-        "issueCount": 14
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
       "id": "398fa7c0-7e9d-41df-8cd7-df353efc6f7d",
       "comicvineId": 23929,
       "issueNumber": "7",
@@ -3225,12 +3293,12 @@
       "acclaim": null
     },
     {
-      "id": "d59f0096-ee15-49e1-bd4b-272d912dc89d",
-      "comicvineId": 131516,
-      "issueNumber": "8",
-      "name": "The Hard Way",
-      "coverDate": "2008-08-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/40/421421-BatmanOutsiders8.jpg",
+      "id": "0636320e-b2fe-4e28-858a-98e08ea33617",
+      "comicvineId": 130791,
+      "issueNumber": "7",
+      "name": "The Snare",
+      "coverDate": "2008-07-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/1/15530/396666-19660-130791-1-batman-and-the-outsi.jpg",
       "volume": {
         "id": "c6a687e5-c3b1-4d9e-94bd-922a8d85e557",
         "name": "Batman and the Outsiders",
@@ -3255,6 +3323,25 @@
         "name": "Batman and the Outsiders",
         "startYear": 1983,
         "issueCount": 33
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "d59f0096-ee15-49e1-bd4b-272d912dc89d",
+      "comicvineId": 131516,
+      "issueNumber": "8",
+      "name": "The Hard Way",
+      "coverDate": "2008-08-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/40/421421-BatmanOutsiders8.jpg",
+      "volume": {
+        "id": "c6a687e5-c3b1-4d9e-94bd-922a8d85e557",
+        "name": "Batman and the Outsiders",
+        "startYear": 2007,
+        "issueCount": 14
       },
       "characterCount": 0,
       "requestedCharacterCount": 1,
@@ -3301,25 +3388,6 @@
       "acclaim": null
     },
     {
-      "id": "8fb76efe-4e26-4625-a9d4-e7dde79338f8",
-      "comicvineId": 136027,
-      "issueNumber": "10",
-      "name": "Monsters",
-      "coverDate": "2008-10-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/9241/507133-000.jpg",
-      "volume": {
-        "id": "c6a687e5-c3b1-4d9e-94bd-922a8d85e557",
-        "name": "Batman and the Outsiders",
-        "startYear": 2007,
-        "issueCount": 14
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
       "id": "0d1744e9-d3f3-4d10-b3bc-4198f4024586",
       "comicvineId": 24255,
       "issueNumber": "10",
@@ -3339,17 +3407,17 @@
       "acclaim": null
     },
     {
-      "id": "b6aa390c-4354-4374-976e-30549a1bdb6e",
-      "comicvineId": 24354,
-      "issueNumber": "11",
-      "name": "The Truth About Katana, Part 1: A Sword Of Ancient Death!",
-      "coverDate": "1984-06-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/2755093-11.jpg",
+      "id": "8fb76efe-4e26-4625-a9d4-e7dde79338f8",
+      "comicvineId": 136027,
+      "issueNumber": "10",
+      "name": "Monsters",
+      "coverDate": "2008-10-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/9241/507133-000.jpg",
       "volume": {
-        "id": "62eb48a7-3c8b-49d5-b444-7e3c570750f5",
+        "id": "c6a687e5-c3b1-4d9e-94bd-922a8d85e557",
         "name": "Batman and the Outsiders",
-        "startYear": 1983,
-        "issueCount": 33
+        "startYear": 2007,
+        "issueCount": 14
       },
       "characterCount": 0,
       "requestedCharacterCount": 1,
@@ -3369,6 +3437,25 @@
         "name": "Batman and the Outsiders",
         "startYear": 2007,
         "issueCount": 14
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "b6aa390c-4354-4374-976e-30549a1bdb6e",
+      "comicvineId": 24354,
+      "issueNumber": "11",
+      "name": "The Truth About Katana, Part 1: A Sword Of Ancient Death!",
+      "coverDate": "1984-06-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/2755093-11.jpg",
+      "volume": {
+        "id": "62eb48a7-3c8b-49d5-b444-7e3c570750f5",
+        "name": "Batman and the Outsiders",
+        "startYear": 1983,
+        "issueCount": 33
       },
       "characterCount": 0,
       "requestedCharacterCount": 1,
@@ -3478,101 +3565,6 @@
       "name": "The Truth About Halo Part 1: ...Goodbye...",
       "coverDate": "1984-12-01",
       "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/2755098-16.jpg",
-      "volume": {
-        "id": "62eb48a7-3c8b-49d5-b444-7e3c570750f5",
-        "name": "Batman and the Outsiders",
-        "startYear": 1983,
-        "issueCount": 33
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "139d31d7-1251-4e73-b393-b9c88e61254c",
-      "comicvineId": 25117,
-      "issueNumber": "17",
-      "name": "We Are Dying, Egypt--Dying",
-      "coverDate": "1985-01-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/2755102-17.jpg",
-      "volume": {
-        "id": "62eb48a7-3c8b-49d5-b444-7e3c570750f5",
-        "name": "Batman and the Outsiders",
-        "startYear": 1983,
-        "issueCount": 33
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "4e4ef2b3-15b9-4643-92db-cf9f332e92bd",
-      "comicvineId": 25203,
-      "issueNumber": "18",
-      "name": "Who Wears the Crown of Ra?",
-      "coverDate": "1985-02-28",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/2755100-18.jpg",
-      "volume": {
-        "id": "62eb48a7-3c8b-49d5-b444-7e3c570750f5",
-        "name": "Batman and the Outsiders",
-        "startYear": 1983,
-        "issueCount": 33
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "b47f322d-c9ad-4496-b0a3-1ee1b60b55fa",
-      "comicvineId": 25330,
-      "issueNumber": "20",
-      "name": "The Truth About Halo Part 2: Death And Rememberance",
-      "coverDate": "1985-04-30",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/2755101-20.jpg",
-      "volume": {
-        "id": "62eb48a7-3c8b-49d5-b444-7e3c570750f5",
-        "name": "Batman and the Outsiders",
-        "startYear": 1983,
-        "issueCount": 33
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "ca33b8a6-d299-4e98-afb1-707a1f604fac",
-      "comicvineId": 25437,
-      "issueNumber": "21",
-      "name": "The Silent Treatment",
-      "coverDate": "1985-05-31",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/2755117-21.jpg",
-      "volume": {
-        "id": "62eb48a7-3c8b-49d5-b444-7e3c570750f5",
-        "name": "Batman and the Outsiders",
-        "startYear": 1983,
-        "issueCount": 33
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "b93dfa86-413f-42b5-9f65-fdeaf39eb90b",
-      "comicvineId": 25529,
-      "issueNumber": "22",
-      "name": "The Truth About Halo Part 3: What She Is And How She Came To Be",
-      "coverDate": "1985-06-30",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/2755119-22.jpg",
       "volume": {
         "id": "62eb48a7-3c8b-49d5-b444-7e3c570750f5",
         "name": "Batman and the Outsiders",
@@ -8197,82 +8189,6 @@
       "acclaim": null
     },
     {
-      "id": "3bcf86c2-335f-4c65-b453-0641eabe7802",
-      "comicvineId": 112553,
-      "issueNumber": "344",
-      "name": "The Crime-Boss Who Was Always One Step Ahead of Batman",
-      "coverDate": "1965-10-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/6060/163424-18058-112553-1-detective-comics.jpg",
-      "volume": {
-        "id": "b63f3778-daf4-4d53-91ab-11192f689296",
-        "name": "Detective Comics",
-        "startYear": 1937,
-        "issueCount": 883
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "9278b5b4-ccb9-426c-a383-175de46107bc",
-      "comicvineId": 112559,
-      "issueNumber": "347",
-      "name": "The Strange Death of Batman",
-      "coverDate": "1966-01-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/6060/163538-18058-112559-1-detective-comics.jpg",
-      "volume": {
-        "id": "b63f3778-daf4-4d53-91ab-11192f689296",
-        "name": "Detective Comics",
-        "startYear": 1937,
-        "issueCount": 883
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "da27bd6f-a2ad-401d-92c6-38f46dbd9639",
-      "comicvineId": 112612,
-      "issueNumber": "362",
-      "name": "The Night Batman Destroyed Gotham City",
-      "coverDate": "1967-04-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/6060/163745-18058-112612-1-detective-comics.jpg",
-      "volume": {
-        "id": "b63f3778-daf4-4d53-91ab-11192f689296",
-        "name": "Detective Comics",
-        "startYear": 1937,
-        "issueCount": 883
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "19044236-b406-48dd-af63-cca8bf33bfa6",
-      "comicvineId": 112632,
-      "issueNumber": "382",
-      "name": "Riddle of the Robbin' Robin!; The Wishing Well Wonder!",
-      "coverDate": "1968-12-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/6060/163773-18058-112632-1-detective-comics.jpg",
-      "volume": {
-        "id": "b63f3778-daf4-4d53-91ab-11192f689296",
-        "name": "Detective Comics",
-        "startYear": 1937,
-        "issueCount": 883
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
       "id": "e3c6b7af-0b4a-4418-8576-57bfd0230d47",
       "comicvineId": 1181754,
       "issueNumber": "1111",
@@ -8656,101 +8572,6 @@
       "name": null,
       "coverDate": "1973-01-01",
       "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/72421-9162-69981-1-gigant.jpg",
-      "volume": {
-        "id": "3386a478-290a-4b50-83c6-4adcdd3520ac",
-        "name": "Gigant",
-        "startYear": 1969,
-        "issueCount": 103
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "a03c25a7-7e6d-4a18-b756-5f42c2659279",
-      "comicvineId": 69982,
-      "issueNumber": "197306",
-      "name": null,
-      "coverDate": "1973-07-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/72425-9162-69982-1-gigant.jpg",
-      "volume": {
-        "id": "3386a478-290a-4b50-83c6-4adcdd3520ac",
-        "name": "Gigant",
-        "startYear": 1969,
-        "issueCount": 103
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "32e34999-47c8-49f8-88d9-ef18e048ed8f",
-      "comicvineId": 69993,
-      "issueNumber": "197505",
-      "name": null,
-      "coverDate": "1975-01-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/72428-9162-69993-1-gigant.jpg",
-      "volume": {
-        "id": "3386a478-290a-4b50-83c6-4adcdd3520ac",
-        "name": "Gigant",
-        "startYear": 1969,
-        "issueCount": 103
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "57b1d337-2543-42d5-a3fb-4ab22272ae04",
-      "comicvineId": 69994,
-      "issueNumber": "197506",
-      "name": null,
-      "coverDate": "1975-01-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/72431-9162-69994-1-gigant.jpg",
-      "volume": {
-        "id": "3386a478-290a-4b50-83c6-4adcdd3520ac",
-        "name": "Gigant",
-        "startYear": 1969,
-        "issueCount": 103
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "0c2129ef-59cc-4607-a075-a31bda375272",
-      "comicvineId": 69995,
-      "issueNumber": "197601",
-      "name": null,
-      "coverDate": "1976-01-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/72434-9162-69995-1-gigant.jpg",
-      "volume": {
-        "id": "3386a478-290a-4b50-83c6-4adcdd3520ac",
-        "name": "Gigant",
-        "startYear": 1969,
-        "issueCount": 103
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "da45b6b3-dd3e-41e9-8aaa-de690a6edcfc",
-      "comicvineId": 69996,
-      "issueNumber": "197602",
-      "name": null,
-      "coverDate": "1976-01-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/72437-9162-69996-1-gigant.jpg",
       "volume": {
         "id": "3386a478-290a-4b50-83c6-4adcdd3520ac",
         "name": "Gigant",
@@ -9408,82 +9229,6 @@
       "acclaim": null
     },
     {
-      "id": "72423211-a0c1-4114-ac28-bbf11580c302",
-      "comicvineId": 111343,
-      "issueNumber": "70",
-      "name": "Seeing Red, Part Two: The Buddy System",
-      "coverDate": "2007-03-31",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/574/146805-9113-111343-1-green-arrow.jpg",
-      "volume": {
-        "id": "3d503996-fab0-4a8a-aeac-536d64f2a070",
-        "name": "Green Arrow",
-        "startYear": 2001,
-        "issueCount": 75
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "608e83de-0eda-46a0-a21b-ca6d4fa602c6",
-      "comicvineId": 111342,
-      "issueNumber": "71",
-      "name": "Seeing Red, Part Three: Change Partners",
-      "coverDate": "2007-04-30",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/574/146801-9113-111342-1-green-arrow.jpg",
-      "volume": {
-        "id": "3d503996-fab0-4a8a-aeac-536d64f2a070",
-        "name": "Green Arrow",
-        "startYear": 2001,
-        "issueCount": 75
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "2345724c-b5b4-41f9-83db-cc025ed31ff8",
-      "comicvineId": 109864,
-      "issueNumber": "72",
-      "name": "Seeing Red Part 4: Back To School Night",
-      "coverDate": "2007-05-31",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/574/126386-9113-109864-1-green-arrow.jpg",
-      "volume": {
-        "id": "3d503996-fab0-4a8a-aeac-536d64f2a070",
-        "name": "Green Arrow",
-        "startYear": 2001,
-        "issueCount": 75
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "d1e0831c-6ee5-441c-960b-68b4132409c4",
-      "comicvineId": 133923,
-      "issueNumber": "75",
-      "name": "Jericho Conclusion: And the Walls Came Tumbling Down",
-      "coverDate": "2007-08-31",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/9241/458835-002.jpg",
-      "volume": {
-        "id": "3d503996-fab0-4a8a-aeac-536d64f2a070",
-        "name": "Green Arrow",
-        "startYear": 2001,
-        "issueCount": 75
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
       "id": "41456c86-cee9-4cc4-9099-4b6f53048e14",
       "comicvineId": 1160284,
       "issueNumber": "33",
@@ -9661,6 +9406,272 @@
       "acclaim": null
     },
     {
+      "id": "16a2d656-8edb-4c85-80ba-db64453080f7",
+      "comicvineId": 699049,
+      "issueNumber": "1",
+      "name": null,
+      "coverDate": "1967-01-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/6777272-inv1.jpg",
+      "volume": {
+        "id": "73d59d20-235d-434d-9877-539e81d79d5a",
+        "name": "Invictus (3ª Série): Batman e Super-Homem",
+        "startYear": 1967,
+        "issueCount": 79
+      },
+      "characterCount": 3,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "1d640e3b-0ebb-4134-8771-0364bf13fbf9",
+      "comicvineId": 699676,
+      "issueNumber": "4",
+      "name": null,
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/6785605-inv4.jpg",
+      "volume": {
+        "id": "73d59d20-235d-434d-9877-539e81d79d5a",
+        "name": "Invictus (3ª Série): Batman e Super-Homem",
+        "startYear": 1967,
+        "issueCount": 79
+      },
+      "characterCount": 4,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "15d92ca5-48fb-49b8-9676-a8d2b739a9f7",
+      "comicvineId": 700332,
+      "issueNumber": "9",
+      "name": null,
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/6793336-inv9.jpg",
+      "volume": {
+        "id": "73d59d20-235d-434d-9877-539e81d79d5a",
+        "name": "Invictus (3ª Série): Batman e Super-Homem",
+        "startYear": 1967,
+        "issueCount": 79
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "80023b2c-fa73-4cde-b9e4-6261d2dddc40",
+      "comicvineId": 700474,
+      "issueNumber": "16",
+      "name": null,
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/6797415-inv16.jpg",
+      "volume": {
+        "id": "73d59d20-235d-434d-9877-539e81d79d5a",
+        "name": "Invictus (3ª Série): Batman e Super-Homem",
+        "startYear": 1967,
+        "issueCount": 79
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "f7706ad2-4fe0-443d-8837-97271a20a669",
+      "comicvineId": 700898,
+      "issueNumber": "20",
+      "name": null,
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/6802706-inv.jpg",
+      "volume": {
+        "id": "73d59d20-235d-434d-9877-539e81d79d5a",
+        "name": "Invictus (3ª Série): Batman e Super-Homem",
+        "startYear": 1967,
+        "issueCount": 79
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "40045618-cc5c-4594-8fc0-11a4963ee822",
+      "comicvineId": 701477,
+      "issueNumber": "29",
+      "name": null,
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/6814521-inv29.jpg",
+      "volume": {
+        "id": "73d59d20-235d-434d-9877-539e81d79d5a",
+        "name": "Invictus (3ª Série): Batman e Super-Homem",
+        "startYear": 1967,
+        "issueCount": 79
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "bcc1ea44-081a-4939-961c-a072a3269a26",
+      "comicvineId": 702100,
+      "issueNumber": "33",
+      "name": null,
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/6824338-inv33.jpg",
+      "volume": {
+        "id": "73d59d20-235d-434d-9877-539e81d79d5a",
+        "name": "Invictus (3ª Série): Batman e Super-Homem",
+        "startYear": 1967,
+        "issueCount": 79
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "f59df644-1138-48bf-ad7d-f499ee038bf8",
+      "comicvineId": 702158,
+      "issueNumber": "41",
+      "name": null,
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/6826071-sup41.jpg",
+      "volume": {
+        "id": "73d59d20-235d-434d-9877-539e81d79d5a",
+        "name": "Invictus (3ª Série): Batman e Super-Homem",
+        "startYear": 1967,
+        "issueCount": 79
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "e60d900a-93ce-41a8-b8a0-a6f3402b9e96",
+      "comicvineId": 702524,
+      "issueNumber": "49",
+      "name": null,
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/6830968-bat49.jpg",
+      "volume": {
+        "id": "73d59d20-235d-434d-9877-539e81d79d5a",
+        "name": "Invictus (3ª Série): Batman e Super-Homem",
+        "startYear": 1967,
+        "issueCount": 79
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "dea6a254-8bda-4cdb-b3c8-c7192193c6d5",
+      "comicvineId": 702387,
+      "issueNumber": "50",
+      "name": null,
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/6829578-inv50.jpg",
+      "volume": {
+        "id": "73d59d20-235d-434d-9877-539e81d79d5a",
+        "name": "Invictus (3ª Série): Batman e Super-Homem",
+        "startYear": 1967,
+        "issueCount": 79
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "17579772-3435-440c-965c-9e35c0f0eb10",
+      "comicvineId": 701990,
+      "issueNumber": "52",
+      "name": "O Super-Homem Negativo",
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/6820134-inv52.jpg",
+      "volume": {
+        "id": "73d59d20-235d-434d-9877-539e81d79d5a",
+        "name": "Invictus (3ª Série): Batman e Super-Homem",
+        "startYear": 1967,
+        "issueCount": 79
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "2991c18c-f28d-4102-859d-49ea90d82df1",
+      "comicvineId": 702546,
+      "issueNumber": "60",
+      "name": null,
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/6832383-bat60.jpg",
+      "volume": {
+        "id": "73d59d20-235d-434d-9877-539e81d79d5a",
+        "name": "Invictus (3ª Série): Batman e Super-Homem",
+        "startYear": 1967,
+        "issueCount": 79
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "4962ab0c-2566-407d-84fc-8aed97acb6ae",
+      "comicvineId": 702720,
+      "issueNumber": "67",
+      "name": null,
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/6836189-inv67.jpg",
+      "volume": {
+        "id": "73d59d20-235d-434d-9877-539e81d79d5a",
+        "name": "Invictus (3ª Série): Batman e Super-Homem",
+        "startYear": 1967,
+        "issueCount": 79
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "27d0f1ab-ed29-40d5-860e-e8e76649315b",
+      "comicvineId": 702807,
+      "issueNumber": "78",
+      "name": "O segredo do Homem-Tigre!",
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/6838110-inv78.jpg",
+      "volume": {
+        "id": "73d59d20-235d-434d-9877-539e81d79d5a",
+        "name": "Invictus (3ª Série): Batman e Super-Homem",
+        "startYear": 1967,
+        "issueCount": 79
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
       "id": "a4d8e793-484b-46a9-aba6-a7469f6b4a90",
       "comicvineId": 43302,
       "issueNumber": "1",
@@ -9711,10 +9722,25 @@
         "startYear": 1997,
         "issueCount": 126
       },
-      "characterCount": 0,
+      "characterCount": 17,
       "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
+      "storyArcs": [
+        {
+          "id": "60fd53b1-4cff-4f8f-b667-18d8e27b5756",
+          "comicvineId": 57224,
+          "name": "\"JLA\" New World Order"
+        }
+      ],
+      "creators": [
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        },
+        {
+          "name": "Howard Porter",
+          "role": "penciler"
+        }
+      ],
       "acclaim": null
     },
     {
@@ -9724,25 +9750,6 @@
       "name": "La noche más oscura",
       "coverDate": "2010-12-31",
       "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/11120/111202620/4270530-4870.jpg",
-      "volume": {
-        "id": "027dba07-4c99-49cc-9223-b7ccad18693b",
-        "name": "JLA",
-        "startYear": 2010,
-        "issueCount": 6
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "a71274e4-0ce4-4bb7-8b6e-a4812479328d",
-      "comicvineId": 473262,
-      "issueNumber": "3",
-      "name": "La caída de Green Arrow",
-      "coverDate": "2011-01-31",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/11120/111202620/4270535-81ida8ikbgl._sl1500_.jpg",
       "volume": {
         "id": "027dba07-4c99-49cc-9223-b7ccad18693b",
         "name": "JLA",
@@ -9767,6 +9774,25 @@
         "name": "JLA",
         "startYear": 1997,
         "issueCount": 126
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "a71274e4-0ce4-4bb7-8b6e-a4812479328d",
+      "comicvineId": 473262,
+      "issueNumber": "3",
+      "name": "La caída de Green Arrow",
+      "coverDate": "2011-01-31",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/11120/111202620/4270535-81ida8ikbgl._sl1500_.jpg",
+      "volume": {
+        "id": "027dba07-4c99-49cc-9223-b7ccad18693b",
+        "name": "JLA",
+        "startYear": 2010,
+        "issueCount": 6
       },
       "characterCount": 0,
       "requestedCharacterCount": 1,
@@ -9996,10 +10022,25 @@
         "startYear": 1997,
         "issueCount": 126
       },
-      "characterCount": 0,
+      "characterCount": 19,
       "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
+      "storyArcs": [
+        {
+          "id": "e7ca1dd1-6850-43b3-bb98-743add7ed273",
+          "comicvineId": 57233,
+          "name": "\"JLA\" Strength in Numbers"
+        }
+      ],
+      "creators": [
+        {
+          "name": "Arnie Jorgenson",
+          "role": "penciler"
+        },
+        {
+          "name": "Grant Morrison",
+          "role": "writer"
+        }
+      ],
       "acclaim": null
     },
     {
@@ -10028,82 +10069,6 @@
       "name": "Seven Soldiers of Probability",
       "coverDate": "1998-06-01",
       "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/3/35127/786652-jla19.png",
-      "volume": {
-        "id": "d06d20b0-0950-45f8-a923-7f8f3ed1a0eb",
-        "name": "JLA",
-        "startYear": 1997,
-        "issueCount": 126
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "e8b3bb6d-55ab-46aa-9ce6-d6d2811ebce1",
-      "comicvineId": 45322,
-      "issueNumber": "22",
-      "name": "It",
-      "coverDate": "1998-09-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/3/35127/786659-jla22.png",
-      "volume": {
-        "id": "d06d20b0-0950-45f8-a923-7f8f3ed1a0eb",
-        "name": "JLA",
-        "startYear": 1997,
-        "issueCount": 126
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "63ce5f17-91ac-4a3e-b375-94804ff8afcc",
-      "comicvineId": 45385,
-      "issueNumber": "23",
-      "name": "Conquerors",
-      "coverDate": "1998-10-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/3/35127/786664-jla23.png",
-      "volume": {
-        "id": "d06d20b0-0950-45f8-a923-7f8f3ed1a0eb",
-        "name": "JLA",
-        "startYear": 1997,
-        "issueCount": 126
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "5b94817d-5fb7-4460-a042-e4a018e75aef",
-      "comicvineId": 45517,
-      "issueNumber": "24",
-      "name": "Executive Action",
-      "coverDate": "1998-12-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/3/35127/786670-jla24.png",
-      "volume": {
-        "id": "d06d20b0-0950-45f8-a923-7f8f3ed1a0eb",
-        "name": "JLA",
-        "startYear": 1997,
-        "issueCount": 126
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "9aec6778-3792-47a6-845f-fe4e2220cf80",
-      "comicvineId": 45606,
-      "issueNumber": "25",
-      "name": "Scorched Earth",
-      "coverDate": "1999-01-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/40474-5957-45606-1-jla.jpg",
       "volume": {
         "id": "d06d20b0-0950-45f8-a923-7f8f3ed1a0eb",
         "name": "JLA",
@@ -10261,6 +10226,255 @@
           "role": "writer"
         }
       ],
+      "acclaim": null
+    },
+    {
+      "id": "6cdffbce-de57-49ac-9297-0dc3edf13cc3",
+      "comicvineId": 569307,
+      "issueNumber": "11",
+      "name": "Outbreak Conclusion",
+      "coverDate": "2017-02-28",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/5602598-11.jpg",
+      "volume": {
+        "id": "924896a6-1aa7-4c29-89c4-84d91d6e9af0",
+        "name": "Justice League",
+        "startYear": 2016,
+        "issueCount": 43
+      },
+      "characterCount": 23,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "writer"
+        },
+        {
+          "name": "Neil Edwards",
+          "role": "penciler"
+        }
+      ],
+      "acclaim": null
+    },
+    {
+      "id": "51ea1974-b689-4dc0-8256-544791df7e22",
+      "comicvineId": 574847,
+      "issueNumber": "12",
+      "name": "Max Lord: Rebirth",
+      "coverDate": "2017-03-31",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/5629816-12.jpg",
+      "volume": {
+        "id": "924896a6-1aa7-4c29-89c4-84d91d6e9af0",
+        "name": "Justice League",
+        "startYear": 2016,
+        "issueCount": 43
+      },
+      "characterCount": 12,
+      "requestedCharacterCount": 1,
+      "storyArcs": [
+        {
+          "id": "45423309-d25d-489a-b98a-12822d3a8538",
+          "comicvineId": 59204,
+          "name": "\"Justice League/Suicide Squad\" Justice League vs. Suicide Squad"
+        }
+      ],
+      "creators": [
+        {
+          "name": "Christian Duce",
+          "role": "artist"
+        },
+        {
+          "name": "Tim Seeley",
+          "role": "writer"
+        }
+      ],
+      "acclaim": null
+    },
+    {
+      "id": "4f9256df-81b0-4d62-8318-1f36cf4c68f8",
+      "comicvineId": 590777,
+      "issueNumber": "18",
+      "name": "Timeless Part 4",
+      "coverDate": "2017-06-30",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/5789129-18.jpg",
+      "volume": {
+        "id": "924896a6-1aa7-4c29-89c4-84d91d6e9af0",
+        "name": "Justice League",
+        "startYear": 2016,
+        "issueCount": 43
+      },
+      "characterCount": 16,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "writer"
+        },
+        {
+          "name": "Fernando Pasarin",
+          "role": "penciler"
+        }
+      ],
+      "acclaim": null
+    },
+    {
+      "id": "b24a4a9e-0d93-4018-978d-99a6cac38b7f",
+      "comicvineId": 606580,
+      "issueNumber": "24",
+      "name": "Fury",
+      "coverDate": "2017-09-30",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/5941585-24.jpg",
+      "volume": {
+        "id": "924896a6-1aa7-4c29-89c4-84d91d6e9af0",
+        "name": "Justice League",
+        "startYear": 2016,
+        "issueCount": 43
+      },
+      "characterCount": 8,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "Dan Abnett",
+          "role": "writer"
+        },
+        {
+          "name": "Ian Churchill",
+          "role": "artist"
+        }
+      ],
+      "acclaim": null
+    },
+    {
+      "id": "335d59ca-8b59-4396-9fb9-5f8f888f9aa9",
+      "comicvineId": 622886,
+      "issueNumber": "29",
+      "name": "Legacy Part Four",
+      "coverDate": "2017-11-30",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/6061052-29.jpg",
+      "volume": {
+        "id": "924896a6-1aa7-4c29-89c4-84d91d6e9af0",
+        "name": "Justice League",
+        "startYear": 2016,
+        "issueCount": 43
+      },
+      "characterCount": 18,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "writer"
+        },
+        {
+          "name": "Fernando Pasarin",
+          "role": "penciler"
+        }
+      ],
+      "acclaim": null
+    },
+    {
+      "id": "639a061a-734b-45c5-8afb-039879f0c609",
+      "comicvineId": 626261,
+      "issueNumber": "30",
+      "name": "Legacy Part Five",
+      "coverDate": "2017-12-31",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/6080841-30.jpg",
+      "volume": {
+        "id": "924896a6-1aa7-4c29-89c4-84d91d6e9af0",
+        "name": "Justice League",
+        "startYear": 2016,
+        "issueCount": 43
+      },
+      "characterCount": 17,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "writer"
+        },
+        {
+          "name": "Fernando Pasarin",
+          "role": "penciler"
+        }
+      ],
+      "acclaim": null
+    },
+    {
+      "id": "bb8d91ff-b94a-4d40-83f0-35f6de7f7842",
+      "comicvineId": 630497,
+      "issueNumber": "31",
+      "name": "Legacy Conclusion",
+      "coverDate": "2017-12-31",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/6104028-31.jpg",
+      "volume": {
+        "id": "924896a6-1aa7-4c29-89c4-84d91d6e9af0",
+        "name": "Justice League",
+        "startYear": 2016,
+        "issueCount": 43
+      },
+      "characterCount": 17,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "Bryan Hitch",
+          "role": "writer"
+        },
+        {
+          "name": "Fernando Pasarin",
+          "role": "penciler"
+        }
+      ],
+      "acclaim": null
+    },
+    {
+      "id": "ee98d936-34ee-41e4-97d3-e891aef15bdf",
+      "comicvineId": 650904,
+      "issueNumber": "36",
+      "name": "The PEOPLE vs. JUSTICE LEAGUE Part 3",
+      "coverDate": "2018-03-31",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/6213331-36.jpg",
+      "volume": {
+        "id": "924896a6-1aa7-4c29-89c4-84d91d6e9af0",
+        "name": "Justice League",
+        "startYear": 2016,
+        "issueCount": 43
+      },
+      "characterCount": 10,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "Christopher Priest",
+          "role": "writer"
+        },
+        {
+          "name": "Pete Woods",
+          "role": "artist"
+        }
+      ],
+      "acclaim": null
+    },
+    {
+      "id": "64d3409f-e892-407c-9e3a-84061df667d0",
+      "comicvineId": 658706,
+      "issueNumber": "38",
+      "name": "The PEOPLE Vs. JUSTICE LEAGUE Part 5: Entropy",
+      "coverDate": "2018-04-30",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/6277703-38.jpg",
+      "volume": {
+        "id": "924896a6-1aa7-4c29-89c4-84d91d6e9af0",
+        "name": "Justice League",
+        "startYear": 2016,
+        "issueCount": 43
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
       "acclaim": null
     },
     {
@@ -10555,63 +10769,6 @@
       "name": "The Simultaneous Effect",
       "coverDate": "2004-05-01",
       "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/63646-10065-96642-1-justice-league-adven.jpg",
-      "volume": {
-        "id": "dfca36c4-b737-4662-8c4e-90f6d18445c5",
-        "name": "Justice League Adventures",
-        "startYear": 2002,
-        "issueCount": 34
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "9bc62f07-43c2-42d7-95cc-552d77fc203d",
-      "comicvineId": 96644,
-      "issueNumber": "31",
-      "name": "Tomorrow",
-      "coverDate": "2004-07-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/63648-10065-96644-1-justice-league-adven.jpg",
-      "volume": {
-        "id": "dfca36c4-b737-4662-8c4e-90f6d18445c5",
-        "name": "Justice League Adventures",
-        "startYear": 2002,
-        "issueCount": 34
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "43204a96-0917-4863-85c5-5e6895ae01fe",
-      "comicvineId": 96646,
-      "issueNumber": "33",
-      "name": "Disappearing Act",
-      "coverDate": "2004-09-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/63650-10065-96646-1-justice-league-adven.jpg",
-      "volume": {
-        "id": "dfca36c4-b737-4662-8c4e-90f6d18445c5",
-        "name": "Justice League Adventures",
-        "startYear": 2002,
-        "issueCount": 34
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "b9fb5197-bb68-4ae8-8897-b74f0435a0f7",
-      "comicvineId": 96647,
-      "issueNumber": "34",
-      "name": "Past Tense",
-      "coverDate": "2004-10-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/63651-10065-96647-1-justice-league-adven.jpg",
       "volume": {
         "id": "dfca36c4-b737-4662-8c4e-90f6d18445c5",
         "name": "Justice League Adventures",
@@ -10998,10 +11155,19 @@
         "startYear": 1960,
         "issueCount": 261
       },
-      "characterCount": 0,
+      "characterCount": 14,
       "requestedCharacterCount": 1,
       "storyArcs": [],
-      "creators": [],
+      "creators": [
+        {
+          "name": "Gardner Fox",
+          "role": "writer"
+        },
+        {
+          "name": "Murphy Anderson",
+          "role": "penciler"
+        }
+      ],
       "acclaim": null
     },
     {
@@ -11011,101 +11177,6 @@
       "name": "The Super-Exiles of Earth!",
       "coverDate": "1963-05-01",
       "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/4285782-19.jpg",
-      "volume": {
-        "id": "bad22ca5-46f2-4435-b129-91a919b16798",
-        "name": "Justice League of America",
-        "startYear": 1960,
-        "issueCount": 261
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "6d6a8077-77cb-4fac-8575-a51c98554f49",
-      "comicvineId": 6531,
-      "issueNumber": "20",
-      "name": "The Mystery of Spaceman X",
-      "coverDate": "1963-06-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/4306442-20.jpg",
-      "volume": {
-        "id": "bad22ca5-46f2-4435-b129-91a919b16798",
-        "name": "Justice League of America",
-        "startYear": 1960,
-        "issueCount": 261
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "0aa2fe9b-ebc5-478f-a7e5-817df8565f8d",
-      "comicvineId": 6621,
-      "issueNumber": "21",
-      "name": "Crisis on Earth-One!",
-      "coverDate": "1963-08-31",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/6056-2014-6621-1-justice-league-of-am.jpg",
-      "volume": {
-        "id": "bad22ca5-46f2-4435-b129-91a919b16798",
-        "name": "Justice League of America",
-        "startYear": 1960,
-        "issueCount": 261
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "9da4f699-b0ea-476b-80cd-38b454dd8e92",
-      "comicvineId": 6665,
-      "issueNumber": "22",
-      "name": "Crisis on Earth-Two!",
-      "coverDate": "1963-09-30",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/4385641-22.jpg",
-      "volume": {
-        "id": "bad22ca5-46f2-4435-b129-91a919b16798",
-        "name": "Justice League of America",
-        "startYear": 1960,
-        "issueCount": 261
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "a58ac0dd-da22-4144-bb21-e73c4ae298d6",
-      "comicvineId": 6757,
-      "issueNumber": "23",
-      "name": "Drones of the Queen Bee!",
-      "coverDate": "1963-11-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/4404335-23.jpg",
-      "volume": {
-        "id": "bad22ca5-46f2-4435-b129-91a919b16798",
-        "name": "Justice League of America",
-        "startYear": 1960,
-        "issueCount": 261
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "5cd2dc4c-44f1-495e-9e22-9454ef0e8113",
-      "comicvineId": 6808,
-      "issueNumber": "24",
-      "name": "Decoy Missions of the Justice League!",
-      "coverDate": "1963-12-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/4404336-24.jpg",
       "volume": {
         "id": "bad22ca5-46f2-4435-b129-91a919b16798",
         "name": "Justice League of America",
@@ -11680,6 +11751,319 @@
       "acclaim": null
     },
     {
+      "id": "cc3828de-fbdd-45b4-8c10-9b5bbb02e640",
+      "comicvineId": 315004,
+      "issueNumber": "12",
+      "name": "Tarzan",
+      "coverDate": "1972-02-28",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/2192360-men12.jpg",
+      "volume": {
+        "id": "cac0a3ea-c811-4a40-a5de-6040980d1e84",
+        "name": "Menomonee Falls Gazette",
+        "startYear": 1971,
+        "issueCount": 232
+      },
+      "characterCount": 14,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "Russ Manning",
+          "role": "penciler"
+        },
+        {
+          "name": "Russ Manning",
+          "role": "writer"
+        }
+      ],
+      "acclaim": null
+    },
+    {
+      "id": "78219a35-c9f6-4c81-9372-5240a33bc8fa",
+      "comicvineId": 336642,
+      "issueNumber": "96",
+      "name": "Buck Rogers",
+      "coverDate": "1973-10-15",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/2359570-men96.jpg",
+      "volume": {
+        "id": "cac0a3ea-c811-4a40-a5de-6040980d1e84",
+        "name": "Menomonee Falls Gazette",
+        "startYear": 1971,
+        "issueCount": 232
+      },
+      "characterCount": 42,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "d0b3e2ed-f790-41b8-9cf2-7e3d5567f3ea",
+      "comicvineId": 339043,
+      "issueNumber": "102",
+      "name": "Guy Bennett",
+      "coverDate": "1973-11-26",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/2389940-men102.jpg",
+      "volume": {
+        "id": "cac0a3ea-c811-4a40-a5de-6040980d1e84",
+        "name": "Menomonee Falls Gazette",
+        "startYear": 1971,
+        "issueCount": 232
+      },
+      "characterCount": 37,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "6bba2600-833d-4d08-8a8b-6447c74a426c",
+      "comicvineId": 310823,
+      "issueNumber": "108",
+      "name": "Ambler",
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/2157199-men108.jpg",
+      "volume": {
+        "id": "cac0a3ea-c811-4a40-a5de-6040980d1e84",
+        "name": "Menomonee Falls Gazette",
+        "startYear": 1971,
+        "issueCount": 232
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "cd41aa17-f241-4c54-a307-977440fd3af7",
+      "comicvineId": 312145,
+      "issueNumber": "110",
+      "name": "Paul Temple",
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/2169042-men110.jpg",
+      "volume": {
+        "id": "cac0a3ea-c811-4a40-a5de-6040980d1e84",
+        "name": "Menomonee Falls Gazette",
+        "startYear": 1971,
+        "issueCount": 232
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "3789a990-2153-48f1-a493-999815031128",
+      "comicvineId": 342436,
+      "issueNumber": "118",
+      "name": "Gunner",
+      "coverDate": "1974-03-18",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/2421704-men118.jpg",
+      "volume": {
+        "id": "cac0a3ea-c811-4a40-a5de-6040980d1e84",
+        "name": "Menomonee Falls Gazette",
+        "startYear": 1971,
+        "issueCount": 232
+      },
+      "characterCount": 43,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "112c6942-bd78-43c9-994c-25d71f032f42",
+      "comicvineId": 343523,
+      "issueNumber": "122",
+      "name": "Red Barry",
+      "coverDate": "1974-04-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/2437458-meno122.jpg",
+      "volume": {
+        "id": "cac0a3ea-c811-4a40-a5de-6040980d1e84",
+        "name": "Menomonee Falls Gazette",
+        "startYear": 1971,
+        "issueCount": 232
+      },
+      "characterCount": 37,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "53717b87-20ed-4da4-a5af-23ff05296f63",
+      "comicvineId": 344503,
+      "issueNumber": "127",
+      "name": "Jeff Hawke",
+      "coverDate": "1974-05-20",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/12/124613/2448499-menomonee_falls_gazette_127__1974__pagecover.jpg",
+      "volume": {
+        "id": "cac0a3ea-c811-4a40-a5de-6040980d1e84",
+        "name": "Menomonee Falls Gazette",
+        "startYear": 1971,
+        "issueCount": 232
+      },
+      "characterCount": 36,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "f8701b15-b577-4cf9-9095-c83ea0024b25",
+      "comicvineId": 346714,
+      "issueNumber": "134",
+      "name": "Rick O'Shay",
+      "coverDate": "1974-07-08",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/2479179-men134.jpg",
+      "volume": {
+        "id": "cac0a3ea-c811-4a40-a5de-6040980d1e84",
+        "name": "Menomonee Falls Gazette",
+        "startYear": 1971,
+        "issueCount": 232
+      },
+      "characterCount": 35,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "18408d59-65ac-4ad8-bace-11dfacef0b6c",
+      "comicvineId": 348345,
+      "issueNumber": "143",
+      "name": "Steve Canyon",
+      "coverDate": "1974-09-09",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/2505926-men143.jpg",
+      "volume": {
+        "id": "cac0a3ea-c811-4a40-a5de-6040980d1e84",
+        "name": "Menomonee Falls Gazette",
+        "startYear": 1971,
+        "issueCount": 232
+      },
+      "characterCount": 38,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "5043322c-9d20-40d5-a55e-389cf47b395c",
+      "comicvineId": 354225,
+      "issueNumber": "161",
+      "name": "The Phantom",
+      "coverDate": "1975-01-13",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/2557814-meno161.jpg",
+      "volume": {
+        "id": "cac0a3ea-c811-4a40-a5de-6040980d1e84",
+        "name": "Menomonee Falls Gazette",
+        "startYear": 1971,
+        "issueCount": 232
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "87e12a3e-cd6a-48e5-85da-bf04b3602017",
+      "comicvineId": 356563,
+      "issueNumber": "172",
+      "name": "Jeff Cobb",
+      "coverDate": "1975-03-31",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/2582759-meno172.jpg",
+      "volume": {
+        "id": "cac0a3ea-c811-4a40-a5de-6040980d1e84",
+        "name": "Menomonee Falls Gazette",
+        "startYear": 1971,
+        "issueCount": 232
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "57503ded-6809-44a6-be77-546124cefe6d",
+      "comicvineId": 357129,
+      "issueNumber": "177",
+      "name": "Air Hawk",
+      "coverDate": "1975-05-05",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/2592016-meno177.jpg",
+      "volume": {
+        "id": "cac0a3ea-c811-4a40-a5de-6040980d1e84",
+        "name": "Menomonee Falls Gazette",
+        "startYear": 1971,
+        "issueCount": 232
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "880e0fc4-247f-4623-9819-eb068453a889",
+      "comicvineId": 357936,
+      "issueNumber": "183",
+      "name": "The Spirit",
+      "coverDate": "1975-06-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/2602776-men183.jpg",
+      "volume": {
+        "id": "cac0a3ea-c811-4a40-a5de-6040980d1e84",
+        "name": "Menomonee Falls Gazette",
+        "startYear": 1971,
+        "issueCount": 232
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "7d9f39a8-3a68-4fbe-af59-f278da28220e",
+      "comicvineId": 358794,
+      "issueNumber": "187",
+      "name": "Steve Canyon",
+      "coverDate": "1975-07-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/2610606-men187.jpg",
+      "volume": {
+        "id": "cac0a3ea-c811-4a40-a5de-6040980d1e84",
+        "name": "Menomonee Falls Gazette",
+        "startYear": 1971,
+        "issueCount": 232
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "2aff61fa-7d97-4fc1-9282-163f521481b3",
+      "comicvineId": 359518,
+      "issueNumber": "192",
+      "name": "Joe Palooka ; Mickey Finn",
+      "coverDate": "1975-08-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/2618959-men192.jpg",
+      "volume": {
+        "id": "cac0a3ea-c811-4a40-a5de-6040980d1e84",
+        "name": "Menomonee Falls Gazette",
+        "startYear": 1971,
+        "issueCount": 232
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
       "id": "e4dd112a-7b93-4343-857b-1e8d68fb2115",
       "comicvineId": 1139071,
       "issueNumber": "4",
@@ -11908,101 +12292,6 @@
       "name": "Paper Revelations",
       "coverDate": "1998-08-31",
       "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/2/27470/516732-23_1nw.jpg",
-      "volume": {
-        "id": "880515f6-54e9-4c9c-a817-609c09d1e3de",
-        "name": "Nightwing",
-        "startYear": 1996,
-        "issueCount": 155
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "6b9eaa6d-67e8-481b-88b5-3b1daec3da12",
-      "comicvineId": 45699,
-      "issueNumber": "28",
-      "name": "Live Not on Evil, Part 2",
-      "coverDate": "1999-02-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/40548-5755-45699-1-nightwing.jpg",
-      "volume": {
-        "id": "880515f6-54e9-4c9c-a817-609c09d1e3de",
-        "name": "Nightwing",
-        "startYear": 1996,
-        "issueCount": 155
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "ee9f9756-c2f0-415e-a194-37f1daa9cff6",
-      "comicvineId": 45940,
-      "issueNumber": "33",
-      "name": "Acts of Violence",
-      "coverDate": "1999-07-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/40729-5755-45940-1-nightwing.jpg",
-      "volume": {
-        "id": "880515f6-54e9-4c9c-a817-609c09d1e3de",
-        "name": "Nightwing",
-        "startYear": 1996,
-        "issueCount": 155
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "5ebdc35d-f724-41f5-99c6-a2b0348908ff",
-      "comicvineId": 45984,
-      "issueNumber": "34",
-      "name": "Sister Act",
-      "coverDate": "1999-08-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/40762-5755-45984-1-nightwing.jpg",
-      "volume": {
-        "id": "880515f6-54e9-4c9c-a817-609c09d1e3de",
-        "name": "Nightwing",
-        "startYear": 1996,
-        "issueCount": 155
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "2fec5817-86ee-45d3-976e-e71c749cc9bd",
-      "comicvineId": 46028,
-      "issueNumber": "35",
-      "name": "The Belly of the Beast Escape to Blackgate 1",
-      "coverDate": "1999-09-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/40797-5755-46028-1-nightwing.jpg",
-      "volume": {
-        "id": "880515f6-54e9-4c9c-a817-609c09d1e3de",
-        "name": "Nightwing",
-        "startYear": 1996,
-        "issueCount": 155
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "15289ce3-c742-44b6-95f3-305f61406a68",
-      "comicvineId": 46412,
-      "issueNumber": "47",
-      "name": "The Quarry",
-      "coverDate": "2000-09-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/41132-5755-46412-1-nightwing.jpg",
       "volume": {
         "id": "880515f6-54e9-4c9c-a817-609c09d1e3de",
         "name": "Nightwing",
@@ -13578,82 +13867,6 @@
       "acclaim": null
     },
     {
-      "id": "964ca96e-94c6-42be-8e51-c7b868dcd91b",
-      "comicvineId": 19345,
-      "issueNumber": "18",
-      "name": "Manhunt in Time",
-      "coverDate": "1979-03-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/17296-2847-19345-1-super-friends.jpg",
-      "volume": {
-        "id": "77063b5e-b51c-4124-8b3d-3a2f2049e5a8",
-        "name": "Super Friends",
-        "startYear": 1976,
-        "issueCount": 47
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "a62439b8-ae71-436e-8835-8a1ea5704094",
-      "comicvineId": 19413,
-      "issueNumber": "19",
-      "name": "The Mystery of the Missing Monkey",
-      "coverDate": "1979-04-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/17358-2847-19413-1-super-friends.jpg",
-      "volume": {
-        "id": "77063b5e-b51c-4124-8b3d-3a2f2049e5a8",
-        "name": "Super Friends",
-        "startYear": 1976,
-        "issueCount": 47
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "48c47e72-57b1-42f1-a615-92eabe466f68",
-      "comicvineId": 19486,
-      "issueNumber": "20",
-      "name": "Revenge of the Leafy Monsters",
-      "coverDate": "1979-05-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/17423-2847-19486-1-super-friends.jpg",
-      "volume": {
-        "id": "77063b5e-b51c-4124-8b3d-3a2f2049e5a8",
-        "name": "Super Friends",
-        "startYear": 1976,
-        "issueCount": 47
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "faa532b2-1a92-444c-b825-a8d5879c57b2",
-      "comicvineId": 19559,
-      "issueNumber": "21",
-      "name": "Battle Against the Super Fiends",
-      "coverDate": "1979-06-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/17489-2847-19559-1-super-friends.jpg",
-      "volume": {
-        "id": "77063b5e-b51c-4124-8b3d-3a2f2049e5a8",
-        "name": "Super Friends",
-        "startYear": 1976,
-        "issueCount": 47
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
       "id": "89eb2811-52d2-4995-824f-ccd3254c3222",
       "comicvineId": 654043,
       "issueNumber": "12",
@@ -14489,25 +14702,6 @@
       "acclaim": null
     },
     {
-      "id": "dd864412-50d4-4ea2-80d5-f9d1daf95fca",
-      "comicvineId": 91414,
-      "issueNumber": "210",
-      "name": "For Tomorrow, Part Seven",
-      "coverDate": "2004-12-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/5/56044/1618115-superman__1987__210.jpeg",
-      "volume": {
-        "id": "d3d2703f-79e0-408f-994c-09b7b0b57bd6",
-        "name": "Superman",
-        "startYear": 1987,
-        "issueCount": 228
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
       "id": "8614185c-5905-499e-952b-eb8290dc5430",
       "comicvineId": 10939,
       "issueNumber": "229",
@@ -14628,101 +14822,6 @@
       "name": "The Sandstorm That Swallowed Metropolis!; Two Can Die As Cheaply As One",
       "coverDate": "1978-08-31",
       "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/16874-773-18798-1-superman.jpg",
-      "volume": {
-        "id": "f3561c05-992d-479a-8d27-841b0e0f9407",
-        "name": "Superman",
-        "startYear": 1939,
-        "issueCount": 488
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "d9ef567c-42c8-4edb-9e3d-7f9f468e81f3",
-      "comicvineId": 20081,
-      "issueNumber": "343",
-      "name": "The Last Days of Metropolis!",
-      "coverDate": "1980-01-31",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/17947-773-20081-1-superman.jpg",
-      "volume": {
-        "id": "f3561c05-992d-479a-8d27-841b0e0f9407",
-        "name": "Superman",
-        "startYear": 1939,
-        "issueCount": 488
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "e18d0f01-9f52-425d-8fb1-94f059ec8fe7",
-      "comicvineId": 20510,
-      "issueNumber": "349",
-      "name": "The Turnabout Trap!",
-      "coverDate": "1980-07-31",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/18329-773-20510-1-superman.jpg",
-      "volume": {
-        "id": "f3561c05-992d-479a-8d27-841b0e0f9407",
-        "name": "Superman",
-        "startYear": 1939,
-        "issueCount": 488
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "3624764f-1c5d-4205-8dff-bf25bb9fa103",
-      "comicvineId": 21839,
-      "issueNumber": "367",
-      "name": "The Revengers Strike Back!; ...And not a Drop to Drink",
-      "coverDate": "1982-01-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/19564-773-21839-1-superman.jpg",
-      "volume": {
-        "id": "f3561c05-992d-479a-8d27-841b0e0f9407",
-        "name": "Superman",
-        "startYear": 1939,
-        "issueCount": 488
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "571bdf5c-edfe-45e1-9a64-b5ceb07d6405",
-      "comicvineId": 23431,
-      "issueNumber": "387",
-      "name": "The Conqueror from the Past!",
-      "coverDate": "1983-09-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/21009-773-23431-1-superman.jpg",
-      "volume": {
-        "id": "f3561c05-992d-479a-8d27-841b0e0f9407",
-        "name": "Superman",
-        "startYear": 1939,
-        "issueCount": 488
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "7e420922-68ec-428b-b430-5a8f71335a90",
-      "comicvineId": 24759,
-      "issueNumber": "400",
-      "name": "The Living Legends of Superman; Last Son of Krypton; The Exile at the Edge of Eternity",
-      "coverDate": "1984-10-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/22187-773-24759-1-superman.jpg",
       "volume": {
         "id": "f3561c05-992d-479a-8d27-841b0e0f9407",
         "name": "Superman",
@@ -15036,6 +15135,463 @@
       "acclaim": null
     },
     {
+      "id": "8bd066ae-6dbf-434b-a7f9-11e594bdb591",
+      "comicvineId": 586179,
+      "issueNumber": "3",
+      "name": null,
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/5742572-sup3.jpg",
+      "volume": {
+        "id": "3b4642e7-009f-463d-b5a1-613241590073",
+        "name": "Superman et Batman et Robin",
+        "startYear": null,
+        "issueCount": 74
+      },
+      "characterCount": 3,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "c40294a0-a4ac-4e78-a022-624037122884",
+      "comicvineId": 587877,
+      "issueNumber": "9",
+      "name": null,
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/5754733-sup9.jpg",
+      "volume": {
+        "id": "3b4642e7-009f-463d-b5a1-613241590073",
+        "name": "Superman et Batman et Robin",
+        "startYear": null,
+        "issueCount": 74
+      },
+      "characterCount": 3,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "5e74ce76-3c4c-494b-9ae7-5789b436009f",
+      "comicvineId": 589621,
+      "issueNumber": "18",
+      "name": null,
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/5769969-sup18.jpg",
+      "volume": {
+        "id": "3b4642e7-009f-463d-b5a1-613241590073",
+        "name": "Superman et Batman et Robin",
+        "startYear": null,
+        "issueCount": 74
+      },
+      "characterCount": 3,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "f1ef9303-9ba3-4534-ba1a-3035b0e0c7f4",
+      "comicvineId": 590034,
+      "issueNumber": "22",
+      "name": "Le Domino Vert",
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/5777971-sup22.jpg",
+      "volume": {
+        "id": "3b4642e7-009f-463d-b5a1-613241590073",
+        "name": "Superman et Batman et Robin",
+        "startYear": null,
+        "issueCount": 74
+      },
+      "characterCount": 3,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "bfb0d41f-e6b2-41e1-a860-a8ac3c8676c8",
+      "comicvineId": 591294,
+      "issueNumber": "31",
+      "name": null,
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/5793952-sup31.jpg",
+      "volume": {
+        "id": "3b4642e7-009f-463d-b5a1-613241590073",
+        "name": "Superman et Batman et Robin",
+        "startYear": null,
+        "issueCount": 74
+      },
+      "characterCount": 3,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "e660d6e7-7abc-4363-9a71-1154fc09296f",
+      "comicvineId": 592170,
+      "issueNumber": "37",
+      "name": null,
+      "coverDate": "1972-01-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/5804728-sup37.jpg",
+      "volume": {
+        "id": "3b4642e7-009f-463d-b5a1-613241590073",
+        "name": "Superman et Batman et Robin",
+        "startYear": null,
+        "issueCount": 74
+      },
+      "characterCount": 14,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "Bob Brown",
+          "role": "penciler"
+        },
+        {
+          "name": "Dennis O'Neil",
+          "role": "writer"
+        },
+        {
+          "name": "Dick Dillin",
+          "role": "penciler"
+        },
+        {
+          "name": "E. Nelson Bridwell",
+          "role": "writer"
+        },
+        {
+          "name": "Frank Robbins",
+          "role": "writer"
+        },
+        {
+          "name": "Ralph Heimdahl",
+          "role": "artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        }
+      ],
+      "acclaim": null
+    },
+    {
+      "id": "89447f1e-89bf-4b94-ad63-15fec9807825",
+      "comicvineId": 592499,
+      "issueNumber": "40",
+      "name": null,
+      "coverDate": "1972-04-05",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/5809026-sup40.jpg",
+      "volume": {
+        "id": "3b4642e7-009f-463d-b5a1-613241590073",
+        "name": "Superman et Batman et Robin",
+        "startYear": null,
+        "issueCount": 74
+      },
+      "characterCount": 20,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "Cary Bates",
+          "role": "writer"
+        },
+        {
+          "name": "Dennis O'Neil",
+          "role": "writer"
+        },
+        {
+          "name": "E. Nelson Bridwell",
+          "role": "writer"
+        },
+        {
+          "name": "Irv Novick",
+          "role": "penciler"
+        },
+        {
+          "name": "Kurt Schaffenberger",
+          "role": "artist"
+        },
+        {
+          "name": "Ralph Heimdahl",
+          "role": "artist"
+        },
+        {
+          "name": "Ross Andru",
+          "role": "penciler"
+        }
+      ],
+      "acclaim": null
+    },
+    {
+      "id": "688397c2-9efe-47f8-af7c-a2dc8fe348bc",
+      "comicvineId": 593615,
+      "issueNumber": "51",
+      "name": null,
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/5826745-sup51.jpg",
+      "volume": {
+        "id": "3b4642e7-009f-463d-b5a1-613241590073",
+        "name": "Superman et Batman et Robin",
+        "startYear": null,
+        "issueCount": 74
+      },
+      "characterCount": 3,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "4e5474bf-6295-400e-b318-660b7b1fd80b",
+      "comicvineId": 594503,
+      "issueNumber": "57",
+      "name": null,
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/5837093-sup57.jpg",
+      "volume": {
+        "id": "3b4642e7-009f-463d-b5a1-613241590073",
+        "name": "Superman et Batman et Robin",
+        "startYear": null,
+        "issueCount": 74
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "912f1b45-039f-4dc9-8659-8663a245ff7d",
+      "comicvineId": 595137,
+      "issueNumber": "62",
+      "name": null,
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/5845418-sup62.jpg",
+      "volume": {
+        "id": "3b4642e7-009f-463d-b5a1-613241590073",
+        "name": "Superman et Batman et Robin",
+        "startYear": null,
+        "issueCount": 74
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "6ef0657f-c3b4-4ceb-b69d-fd9081138a2f",
+      "comicvineId": 595373,
+      "issueNumber": "65.66",
+      "name": null,
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/5849720-sup65.jpg",
+      "volume": {
+        "id": "3b4642e7-009f-463d-b5a1-613241590073",
+        "name": "Superman et Batman et Robin",
+        "startYear": null,
+        "issueCount": 74
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "cde218d7-83f6-4db8-b141-2bf7663fdd55",
+      "comicvineId": 596309,
+      "issueNumber": "73",
+      "name": null,
+      "coverDate": null,
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/5858402-sup73.jpg",
+      "volume": {
+        "id": "3b4642e7-009f-463d-b5a1-613241590073",
+        "name": "Superman et Batman et Robin",
+        "startYear": null,
+        "issueCount": 74
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "4a05cef4-e7bd-4fba-b56d-6331401ac23d",
+      "comicvineId": 488900,
+      "issueNumber": "1",
+      "name": null,
+      "coverDate": "1976-01-31",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/4563716-sup1.jpg",
+      "volume": {
+        "id": "e563c9ca-30a5-494d-843e-25d9fd8d5e3b",
+        "name": "Superman Taschenbuch",
+        "startYear": 1976,
+        "issueCount": 80
+      },
+      "characterCount": 19,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "371f0108-3a83-4d62-a75d-599b99fe7c2a",
+      "comicvineId": 490468,
+      "issueNumber": "14",
+      "name": null,
+      "coverDate": "1979-12-31",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/4594824-sup14.jpg",
+      "volume": {
+        "id": "e563c9ca-30a5-494d-843e-25d9fd8d5e3b",
+        "name": "Superman Taschenbuch",
+        "startYear": 1976,
+        "issueCount": 80
+      },
+      "characterCount": 7,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "d4670366-7858-48aa-9dce-a9c3921b1c52",
+      "comicvineId": 491891,
+      "issueNumber": "28",
+      "name": null,
+      "coverDate": "1980-12-31",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/4623414-sup28.jpg",
+      "volume": {
+        "id": "e563c9ca-30a5-494d-843e-25d9fd8d5e3b",
+        "name": "Superman Taschenbuch",
+        "startYear": 1976,
+        "issueCount": 80
+      },
+      "characterCount": 16,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "e3cba6e7-7b19-48c5-aa1f-9fa7e3cf1529",
+      "comicvineId": 492378,
+      "issueNumber": "30",
+      "name": "Wer bist du, Sternenzar?",
+      "coverDate": "1981-04-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/4629723-sup30.jpg",
+      "volume": {
+        "id": "e563c9ca-30a5-494d-843e-25d9fd8d5e3b",
+        "name": "Superman Taschenbuch",
+        "startYear": 1976,
+        "issueCount": 80
+      },
+      "characterCount": 28,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "e90956d3-ab03-4d32-83fd-f13c2b8569a0",
+      "comicvineId": 493714,
+      "issueNumber": "42",
+      "name": null,
+      "coverDate": "1982-04-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/4654203-sup42.jpg",
+      "volume": {
+        "id": "e563c9ca-30a5-494d-843e-25d9fd8d5e3b",
+        "name": "Superman Taschenbuch",
+        "startYear": 1976,
+        "issueCount": 80
+      },
+      "characterCount": 17,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "c6d28321-97b2-4b59-9219-12378d205913",
+      "comicvineId": 495985,
+      "issueNumber": "60",
+      "name": "Kampf um Superman",
+      "coverDate": "1984-01-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/4701490-sup60.jpg",
+      "volume": {
+        "id": "e563c9ca-30a5-494d-843e-25d9fd8d5e3b",
+        "name": "Superman Taschenbuch",
+        "startYear": 1976,
+        "issueCount": 80
+      },
+      "characterCount": 21,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "e2a99edd-1727-45f0-888b-22956d2cb7f4",
+      "comicvineId": 496565,
+      "issueNumber": "67",
+      "name": null,
+      "coverDate": "1985-04-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/4718845-sup67.jpg",
+      "volume": {
+        "id": "e563c9ca-30a5-494d-843e-25d9fd8d5e3b",
+        "name": "Superman Taschenbuch",
+        "startYear": 1976,
+        "issueCount": 80
+      },
+      "characterCount": 21,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "88ab9acd-8040-498c-a728-cb557dd79088",
+      "comicvineId": 497029,
+      "issueNumber": "72",
+      "name": null,
+      "coverDate": "1985-04-01",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/4727560-sup72.jpg",
+      "volume": {
+        "id": "e563c9ca-30a5-494d-843e-25d9fd8d5e3b",
+        "name": "Superman Taschenbuch",
+        "startYear": 1976,
+        "issueCount": 80
+      },
+      "characterCount": 16,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "853cbdd8-ac47-4153-a02e-5d04657e4cba",
+      "comicvineId": 497542,
+      "issueNumber": "79",
+      "name": null,
+      "coverDate": "1987-12-31",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/4740889-sup79.jpg",
+      "volume": {
+        "id": "e563c9ca-30a5-494d-843e-25d9fd8d5e3b",
+        "name": "Superman Taschenbuch",
+        "startYear": 1976,
+        "issueCount": 80
+      },
+      "characterCount": 0,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [],
+      "acclaim": null
+    },
+    {
       "id": "1f2b2db9-04cc-48df-98f5-bcfacb4bdd39",
       "comicvineId": 1159697,
       "issueNumber": "11",
@@ -15158,10 +15714,25 @@
         "startYear": 2003,
         "issueCount": 87
       },
-      "characterCount": 0,
+      "characterCount": 7,
       "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
+      "storyArcs": [
+        {
+          "id": "78e35c0a-3e30-4551-b7a1-718ee2ddca37",
+          "comicvineId": 57015,
+          "name": "\"Superman/Batman\" World's Finest"
+        }
+      ],
+      "creators": [
+        {
+          "name": "Ed McGuinness",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        }
+      ],
       "acclaim": {
         "curatedTier": 3,
         "curatedStory": "Superman/Batman: Public Enemies",
@@ -15321,10 +15892,25 @@
         "startYear": 2003,
         "issueCount": 87
       },
-      "characterCount": 0,
+      "characterCount": 18,
       "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
+      "storyArcs": [
+        {
+          "id": "3feb931d-8f6e-450a-bea8-770b3bf7a5c3",
+          "comicvineId": 56607,
+          "name": "\"Superman/Batman\" The Supergirl from Krypton"
+        }
+      ],
+      "creators": [
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        },
+        {
+          "name": "Michael Turner",
+          "role": "penciler"
+        }
+      ],
       "acclaim": null
     },
     {
@@ -15416,10 +16002,25 @@
         "startYear": 2003,
         "issueCount": 87
       },
-      "characterCount": 0,
+      "characterCount": 18,
       "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
+      "storyArcs": [
+        {
+          "id": "639e64f8-1010-4cf8-8e2e-23e4bec3e8c5",
+          "comicvineId": 57016,
+          "name": "\"Superman/Batman\" Absolute Power"
+        }
+      ],
+      "creators": [
+        {
+          "name": "Carlos Pacheco",
+          "role": "penciler"
+        },
+        {
+          "name": "Jeph Loeb",
+          "role": "writer"
+        }
+      ],
       "acclaim": null
     },
     {
@@ -15448,101 +16049,6 @@
       "name": "Absolute Power, Chapter 3: When Time Goes Asunder...",
       "coverDate": "2005-03-01",
       "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/5/56044/2107048-superman_batman__2003__16.jpeg",
-      "volume": {
-        "id": "58bd693f-8806-467f-8048-9a914c89b901",
-        "name": "Superman/Batman",
-        "startYear": 2003,
-        "issueCount": 87
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "07bbd057-5051-488e-a7fb-648a398f2a0b",
-      "comicvineId": 100963,
-      "issueNumber": "17",
-      "name": "Absolute Power, Chapter 4: A World Without Batman...",
-      "coverDate": "2005-03-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/5/56044/2107051-superman_batman__2003__17.jpeg",
-      "volume": {
-        "id": "58bd693f-8806-467f-8048-9a914c89b901",
-        "name": "Superman/Batman",
-        "startYear": 2003,
-        "issueCount": 87
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "2fd30283-7cd2-4189-9a0b-8794502ffff9",
-      "comicvineId": 107556,
-      "issueNumber": "29",
-      "name": "The Enemies Among Us, Part 2",
-      "coverDate": "2006-10-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/574/101724-10938-107556-1-superman--batman.jpg",
-      "volume": {
-        "id": "58bd693f-8806-467f-8048-9a914c89b901",
-        "name": "Superman/Batman",
-        "startYear": 2003,
-        "issueCount": 87
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "8e9d0a6d-b2d4-4517-a512-812ba471a69d",
-      "comicvineId": 106896,
-      "issueNumber": "32",
-      "name": "The Enemies Among Us, Part 5",
-      "coverDate": "2007-02-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/5/56044/1638626-superman_batman__2003__32.jpeg",
-      "volume": {
-        "id": "58bd693f-8806-467f-8048-9a914c89b901",
-        "name": "Superman/Batman",
-        "startYear": 2003,
-        "issueCount": 87
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "87e55769-8538-43da-a936-16a3e6521329",
-      "comicvineId": 108127,
-      "issueNumber": "33",
-      "name": "The Enemies Among Us, Conclusion",
-      "coverDate": "2007-03-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/40/105531-10938-108127-1-superman--batman.jpg",
-      "volume": {
-        "id": "58bd693f-8806-467f-8048-9a914c89b901",
-        "name": "Superman/Batman",
-        "startYear": 2003,
-        "issueCount": 87
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "a8f3324d-3e1d-44f9-b21f-85b0c1ebb340",
-      "comicvineId": 108630,
-      "issueNumber": "34",
-      "name": "Metal Men, Part 1: We, Robots!",
-      "coverDate": "2007-05-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/40/110754-10938-108630-1-superman--batman.jpg",
       "volume": {
         "id": "58bd693f-8806-467f-8048-9a914c89b901",
         "name": "Superman/Batman",
@@ -16713,82 +17219,6 @@
       "acclaim": null
     },
     {
-      "id": "c4b85ef9-96a1-4fc8-892e-cd7d18a8587d",
-      "comicvineId": 18368,
-      "issueNumber": "17",
-      "name": "Scars; Horoscopes of Crime; There's A Demon Born Every Minute",
-      "coverDate": "1978-05-31",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/16481-2727-18368-1-batman-family.jpg",
-      "volume": {
-        "id": "6010daf7-2920-4933-ba30-3dfa4a999e55",
-        "name": "The Batman Family",
-        "startYear": 1975,
-        "issueCount": 20
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "4900ebfb-5242-4991-a368-37d5e30ab13e",
-      "comicvineId": 18539,
-      "issueNumber": "18",
-      "name": "The Monstrosity Chase",
-      "coverDate": "1978-07-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/16636-2727-18539-1-batman-family.jpg",
-      "volume": {
-        "id": "6010daf7-2920-4933-ba30-3dfa4a999e55",
-        "name": "The Batman Family",
-        "startYear": 1975,
-        "issueCount": 20
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "81c82411-446e-4cf5-b149-46551133045b",
-      "comicvineId": 18698,
-      "issueNumber": "19",
-      "name": "The Tomb of The White Bat",
-      "coverDate": "1978-09-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/16781-2727-18698-1-batman-family.jpg",
-      "volume": {
-        "id": "6010daf7-2920-4933-ba30-3dfa4a999e55",
-        "name": "The Batman Family",
-        "startYear": 1975,
-        "issueCount": 20
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "d94a42a1-341b-4dd7-83bc-4f21f6a46e7f",
-      "comicvineId": 18857,
-      "issueNumber": "20",
-      "name": "Enter The Ragman!",
-      "coverDate": "1978-11-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/16927-2727-18857-1-batman-family.jpg",
-      "volume": {
-        "id": "6010daf7-2920-4933-ba30-3dfa4a999e55",
-        "name": "The Batman Family",
-        "startYear": 1975,
-        "issueCount": 20
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
       "id": "6a23524a-3edf-4605-b447-c413b7058934",
       "comicvineId": 19747,
       "issueNumber": "1",
@@ -17144,101 +17574,6 @@
       "name": "Top Ten Tales of 1981",
       "coverDate": "1982-04-01",
       "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/19755-2989-22045-1-best-of-dc-the.jpg",
-      "volume": {
-        "id": "d44f1b14-b77e-4f6e-b03c-046400189848",
-        "name": "The Best of DC",
-        "startYear": 1979,
-        "issueCount": 71
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "55804c4d-a3dd-4a24-8fca-67c8cf941a4b",
-      "comicvineId": 22267,
-      "issueNumber": "26",
-      "name": "The Brave and the Bold",
-      "coverDate": "1982-07-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/19954-2989-22267-1-best-of-dc-the.jpg",
-      "volume": {
-        "id": "d44f1b14-b77e-4f6e-b03c-046400189848",
-        "name": "The Best of DC",
-        "startYear": 1979,
-        "issueCount": 71
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "364da0f3-6dcf-4f4d-a8ed-3553a2761e23",
-      "comicvineId": 22558,
-      "issueNumber": "30",
-      "name": "Detective Comics",
-      "coverDate": "1982-11-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/20217-2989-22558-1-best-of-dc-the.jpg",
-      "volume": {
-        "id": "d44f1b14-b77e-4f6e-b03c-046400189848",
-        "name": "The Best of DC",
-        "startYear": 1979,
-        "issueCount": 71
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "2235ff22-9b52-4d27-aefc-e515461ca11c",
-      "comicvineId": 22633,
-      "issueNumber": "31",
-      "name": "Special Initiation Issue!",
-      "coverDate": "1982-12-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/20285-2989-22633-1-best-of-dc-the.jpg",
-      "volume": {
-        "id": "d44f1b14-b77e-4f6e-b03c-046400189848",
-        "name": "The Best of DC",
-        "startYear": 1979,
-        "issueCount": 71
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "826c939c-8235-4896-9abc-a297f70c4797",
-      "comicvineId": 22991,
-      "issueNumber": "35",
-      "name": "Year's Best Comic Stories",
-      "coverDate": "1983-04-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/20605-2989-22991-1-best-of-dc-the.jpg",
-      "volume": {
-        "id": "d44f1b14-b77e-4f6e-b03c-046400189848",
-        "name": "The Best of DC",
-        "startYear": 1979,
-        "issueCount": 71
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "97efc513-62af-4940-bf39-2cea43663260",
-      "comicvineId": 24256,
-      "issueNumber": "48",
-      "name": "Superman Team Up Action",
-      "coverDate": "1984-05-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/6/67663/3754891-48.jpg",
       "volume": {
         "id": "d44f1b14-b77e-4f6e-b03c-046400189848",
         "name": "The Best of DC",
@@ -17650,82 +17985,6 @@
       "name": "Punish Not My Evil Son",
       "coverDate": "1969-05-31",
       "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/9162-1683-10122-1-brave-and-the-bold-.jpg",
-      "volume": {
-        "id": "1a9c1e26-aed7-47c1-a36d-bc73d6039e79",
-        "name": "The Brave and the Bold",
-        "startYear": 1955,
-        "issueCount": 200
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "9f396833-332c-4fb1-b53b-43262958bcb2",
-      "comicvineId": 10233,
-      "issueNumber": "84",
-      "name": "The Angel, the Rock and the Cowl",
-      "coverDate": "1969-07-31",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/9267-1683-10233-1-brave-and-the-bold-.jpg",
-      "volume": {
-        "id": "1a9c1e26-aed7-47c1-a36d-bc73d6039e79",
-        "name": "The Brave and the Bold",
-        "startYear": 1955,
-        "issueCount": 200
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "3d5146e6-17fd-45d3-9a1c-d18bde272f7c",
-      "comicvineId": 10332,
-      "issueNumber": "85",
-      "name": "The Senator's Been Shot",
-      "coverDate": "1969-09-30",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/9360-1683-10332-1-brave-and-the-bold-.jpg",
-      "volume": {
-        "id": "1a9c1e26-aed7-47c1-a36d-bc73d6039e79",
-        "name": "The Brave and the Bold",
-        "startYear": 1955,
-        "issueCount": 200
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "ed68525d-4e4d-49d1-8e80-b65e010ec63b",
-      "comicvineId": 10432,
-      "issueNumber": "86",
-      "name": "You Can't Hide From A Deadman!",
-      "coverDate": "1969-11-30",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/9456-1683-10432-1-brave-and-the-bold-.jpg",
-      "volume": {
-        "id": "1a9c1e26-aed7-47c1-a36d-bc73d6039e79",
-        "name": "The Brave and the Bold",
-        "startYear": 1955,
-        "issueCount": 200
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "8d3955b4-9bb5-4468-8e93-8608e015f643",
-      "comicvineId": 10543,
-      "issueNumber": "87",
-      "name": "The Widow-Maker!",
-      "coverDate": "1970-01-31",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/4/9561-1683-10543-1-brave-and-the-bold-.jpg",
       "volume": {
         "id": "1a9c1e26-aed7-47c1-a36d-bc73d6039e79",
         "name": "The Brave and the Bold",
@@ -19015,6 +19274,82 @@
       "acclaim": null
     },
     {
+      "id": "04f2cb06-c5cc-4f60-8a35-3b4dd1df53b1",
+      "comicvineId": 135427,
+      "issueNumber": "11",
+      "name": "Distinguished Visitors; Next Step",
+      "coverDate": "2008-08-13",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/9241/494526-scan.jpg",
+      "volume": {
+        "id": "cc251543-0709-4dfb-8f9c-0fa2ecd8f738",
+        "name": "Trinity",
+        "startYear": 2008,
+        "issueCount": 52
+      },
+      "characterCount": 27,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Derenick",
+          "role": "artist"
+        },
+        {
+          "name": "Wayne Faucher",
+          "role": "artist"
+        }
+      ],
+      "acclaim": null
+    },
+    {
+      "id": "07312df7-4787-499c-a01d-4c59303a1596",
+      "comicvineId": 137349,
+      "issueNumber": "14",
+      "name": "So What Now?; Let The Burning Begin!",
+      "coverDate": "2008-09-04",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/9241/527709-0001.jpg",
+      "volume": {
+        "id": "cc251543-0709-4dfb-8f9c-0fa2ecd8f738",
+        "name": "Trinity",
+        "startYear": 2008,
+        "issueCount": 52
+      },
+      "characterCount": 43,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "penciler"
+        },
+        {
+          "name": "Tom Derenick",
+          "role": "penciler"
+        }
+      ],
+      "acclaim": null
+    },
+    {
       "id": "1a25110f-5582-407b-996a-5d164af27a48",
       "comicvineId": 138219,
       "issueNumber": "15",
@@ -19046,10 +19381,31 @@
         "startYear": 2008,
         "issueCount": 52
       },
-      "characterCount": 0,
+      "characterCount": 45,
       "requestedCharacterCount": 1,
       "storyArcs": [],
-      "creators": [],
+      "creators": [
+        {
+          "name": "Andy Owens",
+          "role": "penciler"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "artist"
+        },
+        {
+          "name": "Scott McDaniel",
+          "role": "penciler"
+        }
+      ],
       "acclaim": null
     },
     {
@@ -19103,10 +19459,31 @@
         "startYear": 2008,
         "issueCount": 52
       },
-      "characterCount": 0,
+      "characterCount": 47,
       "requestedCharacterCount": 1,
       "storyArcs": [],
-      "creators": [],
+      "creators": [
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "artist"
+        },
+        {
+          "name": "Tom Derenick",
+          "role": "artist"
+        },
+        {
+          "name": "Wayne Faucher",
+          "role": "artist"
+        }
+      ],
       "acclaim": null
     },
     {
@@ -19122,10 +19499,31 @@
         "startYear": 2008,
         "issueCount": 52
       },
-      "characterCount": 0,
+      "characterCount": 31,
       "requestedCharacterCount": 1,
       "storyArcs": [],
-      "creators": [],
+      "creators": [
+        {
+          "name": "Ande Parks",
+          "role": "artist"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "artist"
+        },
+        {
+          "name": "Mike Norton",
+          "role": "artist"
+        }
+      ],
       "acclaim": null
     },
     {
@@ -19179,10 +19577,31 @@
         "startYear": 2008,
         "issueCount": 52
       },
-      "characterCount": 0,
+      "characterCount": 38,
       "requestedCharacterCount": 1,
       "storyArcs": [],
-      "creators": [],
+      "creators": [
+        {
+          "name": "Andy Owens",
+          "role": "artist"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "artist"
+        },
+        {
+          "name": "Scott McDaniel",
+          "role": "artist"
+        }
+      ],
       "acclaim": null
     },
     {
@@ -19202,6 +19621,86 @@
       "requestedCharacterCount": 1,
       "storyArcs": [],
       "creators": [],
+      "acclaim": null
+    },
+    {
+      "id": "eb547eef-e953-44aa-818c-c1e6371a4cad",
+      "comicvineId": 153091,
+      "issueNumber": "40",
+      "name": "Returned; Patience, Mighty Krona",
+      "coverDate": "2009-03-04",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/9241/742410-trinity__40_001.jpg",
+      "volume": {
+        "id": "cc251543-0709-4dfb-8f9c-0fa2ecd8f738",
+        "name": "Trinity",
+        "startYear": 2008,
+        "issueCount": 52
+      },
+      "characterCount": 41,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "Andy Owens",
+          "role": "artist"
+        },
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "artist"
+        },
+        {
+          "name": "Scott McDaniel",
+          "role": "artist"
+        }
+      ],
+      "acclaim": null
+    },
+    {
+      "id": "e08f48bc-617f-4368-a80f-fabb015d1295",
+      "comicvineId": 153563,
+      "issueNumber": "41",
+      "name": "Our Rightful Realm; His Hunger",
+      "coverDate": "2009-03-11",
+      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/1/15776/737761-trinity41a.jpg",
+      "volume": {
+        "id": "cc251543-0709-4dfb-8f9c-0fa2ecd8f738",
+        "name": "Trinity",
+        "startYear": 2008,
+        "issueCount": 52
+      },
+      "characterCount": 43,
+      "requestedCharacterCount": 1,
+      "storyArcs": [],
+      "creators": [
+        {
+          "name": "Fabian Nicieza",
+          "role": "writer"
+        },
+        {
+          "name": "Kurt Busiek",
+          "role": "writer"
+        },
+        {
+          "name": "Mark Bagley",
+          "role": "artist"
+        },
+        {
+          "name": "Tom Derenick",
+          "role": "artist"
+        },
+        {
+          "name": "Wayne Faucher",
+          "role": "artist"
+        }
+      ],
       "acclaim": null
     },
     {
@@ -19673,10 +20172,63 @@
         "startYear": 1941,
         "issueCount": 322
       },
-      "characterCount": 0,
+      "characterCount": 20,
       "requestedCharacterCount": 1,
       "storyArcs": [],
-      "creators": [],
+      "creators": [
+        {
+          "name": "Bill Finger",
+          "role": "writer"
+        },
+        {
+          "name": "Don Cameron",
+          "role": "writer"
+        },
+        {
+          "name": "Hal Sherman",
+          "role": "penciler"
+        },
+        {
+          "name": "Henry Boltinoff",
+          "role": "penciler"
+        },
+        {
+          "name": "Henry Boltinoff",
+          "role": "writer"
+        },
+        {
+          "name": "Ira Yarbrough",
+          "role": "penciler"
+        },
+        {
+          "name": "Jack Burnley",
+          "role": "penciler"
+        },
+        {
+          "name": "Jack Farr",
+          "role": "penciler"
+        },
+        {
+          "name": "Jack Farr",
+          "role": "writer"
+        },
+        {
+          "name": "Joe Simon",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Simon",
+          "role": "writer"
+        },
+        {
+          "name": "Stan Kaye",
+          "role": "penciler"
+        },
+        {
+          "name": "Whitney Ellsworth",
+          "role": "writer"
+        }
+      ],
       "acclaim": null
     },
     {
@@ -19749,10 +20301,47 @@
         "startYear": 1941,
         "issueCount": 322
       },
-      "characterCount": 0,
+      "characterCount": 17,
       "requestedCharacterCount": 1,
       "storyArcs": [],
-      "creators": [],
+      "creators": [
+        {
+          "name": "Alvin Schwartz",
+          "role": "writer"
+        },
+        {
+          "name": "Jack Burnley",
+          "role": "penciler"
+        },
+        {
+          "name": "Jack Schiff",
+          "role": "writer"
+        },
+        {
+          "name": "Jerry Robinson",
+          "role": "penciler"
+        },
+        {
+          "name": "Joe Samachson",
+          "role": "writer"
+        },
+        {
+          "name": "John Daly",
+          "role": "penciler"
+        },
+        {
+          "name": "Jon Small",
+          "role": "penciler"
+        },
+        {
+          "name": "Sam Citron",
+          "role": "penciler"
+        },
+        {
+          "name": "W. F. White",
+          "role": "penciler"
+        }
+      ],
       "acclaim": null
     },
     {
@@ -19863,10 +20452,55 @@
         "startYear": 1941,
         "issueCount": 322
       },
-      "characterCount": 0,
+      "characterCount": 20,
       "requestedCharacterCount": 1,
       "storyArcs": [],
-      "creators": [],
+      "creators": [
+        {
+          "name": "Bob Kane",
+          "role": "artist"
+        },
+        {
+          "name": "Curt Swan",
+          "role": "penciler"
+        },
+        {
+          "name": "Ira Yarbrough",
+          "role": "penciler"
+        },
+        {
+          "name": "Jack Burnley",
+          "role": "penciler"
+        },
+        {
+          "name": "Jack Farr",
+          "role": "penciler"
+        },
+        {
+          "name": "Jack Farr",
+          "role": "writer"
+        },
+        {
+          "name": "Jack Schiff",
+          "role": "writer"
+        },
+        {
+          "name": "John Daly",
+          "role": "penciler"
+        },
+        {
+          "name": "Maurice Del Bourgo",
+          "role": "penciler"
+        },
+        {
+          "name": "W. F. White",
+          "role": "penciler"
+        },
+        {
+          "name": "Winslow Mortimer",
+          "role": "penciler"
+        }
+      ],
       "acclaim": null
     },
     {
@@ -19887,82 +20521,6 @@
       "storyArcs": [],
       "creators": [],
       "acclaim": null
-    },
-    {
-      "id": "6664cddd-e635-42d2-8b05-c632345bfa81",
-      "comicvineId": 115910,
-      "issueNumber": "24",
-      "name": "Impossible But True",
-      "coverDate": "1946-09-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/8/84205/3724009-%24_3.jpg",
-      "volume": {
-        "id": "81adb496-ce10-4884-accc-39a2b15e86c3",
-        "name": "World's Finest Comics",
-        "startYear": 1941,
-        "issueCount": 322
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "7b7dc813-945e-444f-a60c-914b323dd134",
-      "comicvineId": 115912,
-      "issueNumber": "25",
-      "name": "Mad Weather Over Metropolis",
-      "coverDate": "1946-11-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/217230-18006-115912-1-world-s-finest-comic.jpg",
-      "volume": {
-        "id": "81adb496-ce10-4884-accc-39a2b15e86c3",
-        "name": "World's Finest Comics",
-        "startYear": 1941,
-        "issueCount": 322
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "62a0356d-bb59-42cd-bc7c-93aee18b8b1f",
-      "comicvineId": 116059,
-      "issueNumber": "26",
-      "name": "THE CONFESSIONS OF SUPERMAN",
-      "coverDate": "1947-01-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/218452-18006-116059-1-world-s-finest-comic.jpg",
-      "volume": {
-        "id": "81adb496-ce10-4884-accc-39a2b15e86c3",
-        "name": "World's Finest Comics",
-        "startYear": 1941,
-        "issueCount": 322
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
-    },
-    {
-      "id": "5e6cb352-2356-421d-9898-e57bcb772402",
-      "comicvineId": 116156,
-      "issueNumber": "27",
-      "name": "The Man Who Out-Supered Superman",
-      "coverDate": "1947-03-01",
-      "imageUrl": "https://comicvine.gamespot.com/a/uploads/original/0/3125/219025-18006-116156-1-world-s-finest-comic.jpg",
-      "volume": {
-        "id": "81adb496-ce10-4884-accc-39a2b15e86c3",
-        "name": "World's Finest Comics",
-        "startYear": 1941,
-        "issueCount": 322
-      },
-      "characterCount": 0,
-      "requestedCharacterCount": 1,
-      "storyArcs": [],
-      "creators": [],
-      "acclaim": null
     }
   ],
   "affinities": [
@@ -19972,17 +20530,41 @@
       "volumeStartYear": 1940,
       "volumeIssueCount": 716,
       "publisherName": "DC Comics",
-      "localIssueCount": 362,
-      "coIssueCount": 362,
+      "localIssueCount": 365,
+      "coIssueCount": 365,
       "minCharacterAppearances": 689,
       "longestCoStreak": 115,
       "firstCoIssueNumber": "39",
-      "lastCoIssueNumber": "689",
+      "lastCoIssueNumber": "702",
       "firstCoDate": "1947-02-28",
-      "lastCoDate": "2009-10-31",
+      "lastCoDate": "2010-10-01",
       "topWriter": "Bill Finger",
       "topArtist": "Bob Kane",
       "acclaim": null
+    },
+    {
+      "volumeId": "81adb496-ce10-4884-accc-39a2b15e86c3",
+      "volumeName": "World's Finest Comics",
+      "volumeStartYear": 1941,
+      "volumeIssueCount": 322,
+      "publisherName": "DC Comics",
+      "localIssueCount": 213,
+      "coIssueCount": 213,
+      "minCharacterAppearances": 314,
+      "longestCoStreak": 130,
+      "firstCoIssueNumber": "7",
+      "lastCoIssueNumber": "323",
+      "firstCoDate": "1942-09-30",
+      "lastCoDate": "1986-01-31",
+      "topWriter": "Jack Schiff",
+      "topArtist": "George Papp",
+      "acclaim": {
+        "curatedTier": null,
+        "curatedStory": null,
+        "awardCount": 0,
+        "topAward": null,
+        "monthlyPageviews": 2869
+      }
     },
     {
       "volumeId": "bad22ca5-46f2-4435-b129-91a919b16798",
@@ -20001,30 +20583,6 @@
       "topWriter": "Gardner Fox",
       "topArtist": "Mike Sekowsky",
       "acclaim": null
-    },
-    {
-      "volumeId": "81adb496-ce10-4884-accc-39a2b15e86c3",
-      "volumeName": "World's Finest Comics",
-      "volumeStartYear": 1941,
-      "volumeIssueCount": 322,
-      "publisherName": "DC Comics",
-      "localIssueCount": 192,
-      "coIssueCount": 192,
-      "minCharacterAppearances": 314,
-      "longestCoStreak": 128,
-      "firstCoIssueNumber": "7",
-      "lastCoIssueNumber": "316",
-      "firstCoDate": "1942-09-30",
-      "lastCoDate": "1985-06-30",
-      "topWriter": null,
-      "topArtist": null,
-      "acclaim": {
-        "curatedTier": null,
-        "curatedStory": null,
-        "awardCount": 0,
-        "topAward": null,
-        "monthlyPageviews": 2869
-      }
     },
     {
       "volumeId": "1a9c1e26-aed7-47c1-a36d-bc73d6039e79",
@@ -20074,16 +20632,16 @@
       "volumeStartYear": 1997,
       "volumeIssueCount": 126,
       "publisherName": "DC Comics",
-      "localIssueCount": 87,
-      "coIssueCount": 87,
+      "localIssueCount": 88,
+      "coIssueCount": 88,
       "minCharacterAppearances": 104,
       "longestCoStreak": 12,
       "firstCoIssueNumber": "1",
       "lastCoIssueNumber": "125",
       "firstCoDate": "1997-01-01",
       "lastCoDate": "2006-04-01",
-      "topWriter": null,
-      "topArtist": null,
+      "topWriter": "Grant Morrison",
+      "topArtist": "Howard Porter",
       "acclaim": null
     },
     {
@@ -20123,6 +20681,30 @@
       "acclaim": null
     },
     {
+      "volumeId": "58bd693f-8806-467f-8048-9a914c89b901",
+      "volumeName": "Superman/Batman",
+      "volumeStartYear": 2003,
+      "volumeIssueCount": 87,
+      "publisherName": "DC Comics",
+      "localIssueCount": 35,
+      "coIssueCount": 35,
+      "minCharacterAppearances": 83,
+      "longestCoStreak": 17,
+      "firstCoIssueNumber": "1",
+      "lastCoIssueNumber": "80",
+      "firstCoDate": "2003-10-01",
+      "lastCoDate": "2011-03-01",
+      "topWriter": "Jeph Loeb",
+      "topArtist": "Shane Davis",
+      "acclaim": {
+        "curatedTier": null,
+        "curatedStory": null,
+        "awardCount": 0,
+        "topAward": null,
+        "monthlyPageviews": 4846
+      }
+    },
+    {
       "volumeId": "62eb48a7-3c8b-49d5-b444-7e3c570750f5",
       "volumeName": "Batman and the Outsiders",
       "volumeStartYear": 1983,
@@ -20157,30 +20739,6 @@
       "topWriter": "Bill Finger",
       "topArtist": "Ross Andru",
       "acclaim": null
-    },
-    {
-      "volumeId": "58bd693f-8806-467f-8048-9a914c89b901",
-      "volumeName": "Superman/Batman",
-      "volumeStartYear": 2003,
-      "volumeIssueCount": 87,
-      "publisherName": "DC Comics",
-      "localIssueCount": 26,
-      "coIssueCount": 26,
-      "minCharacterAppearances": 83,
-      "longestCoStreak": 17,
-      "firstCoIssueNumber": "1",
-      "lastCoIssueNumber": "80",
-      "firstCoDate": "2003-10-01",
-      "lastCoDate": "2011-03-01",
-      "topWriter": null,
-      "topArtist": null,
-      "acclaim": {
-        "curatedTier": null,
-        "curatedStory": null,
-        "awardCount": 0,
-        "topAward": null,
-        "monthlyPageviews": 4846
-      }
     },
     {
       "volumeId": "3386a478-290a-4b50-83c6-4adcdd3520ac",
@@ -20234,6 +20792,24 @@
       "lastCoDate": "1984-10-01",
       "topWriter": "Otto Binder",
       "topArtist": "Curt Swan",
+      "acclaim": null
+    },
+    {
+      "volumeId": "cac0a3ea-c811-4a40-a5de-6040980d1e84",
+      "volumeName": "Menomonee Falls Gazette",
+      "volumeStartYear": 1971,
+      "volumeIssueCount": 232,
+      "publisherName": "Street Enterprises",
+      "localIssueCount": 21,
+      "coIssueCount": 21,
+      "minCharacterAppearances": 149,
+      "longestCoStreak": 2,
+      "firstCoIssueNumber": "12",
+      "lastCoIssueNumber": "226",
+      "firstCoDate": "1972-02-28",
+      "lastCoDate": "1976-11-01",
+      "topWriter": "Russ Manning",
+      "topArtist": "Russ Manning",
       "acclaim": null
     },
     {
@@ -20339,6 +20915,24 @@
       "acclaim": null
     },
     {
+      "volumeId": "cc251543-0709-4dfb-8f9c-0fa2ecd8f738",
+      "volumeName": "Trinity",
+      "volumeStartYear": 2008,
+      "volumeIssueCount": 52,
+      "publisherName": "DC Comics",
+      "localIssueCount": 17,
+      "coIssueCount": 17,
+      "minCharacterAppearances": 51,
+      "longestCoStreak": 4,
+      "firstCoIssueNumber": "1",
+      "lastCoIssueNumber": "52",
+      "firstCoDate": "2008-06-04",
+      "lastCoDate": "2009-05-27",
+      "topWriter": "Fabian Nicieza",
+      "topArtist": "Mark Bagley",
+      "acclaim": null
+    },
+    {
       "volumeId": "75f444d5-8166-4874-8656-b14b31b5f9b5",
       "volumeName": "Gotham Central",
       "volumeStartYear": 2003,
@@ -20394,6 +20988,24 @@
       "lastCoIssueNumber": "36",
       "firstCoDate": "2005-10-31",
       "lastCoDate": "2009-04-30",
+      "topWriter": null,
+      "topArtist": null,
+      "acclaim": null
+    },
+    {
+      "volumeId": "73d59d20-235d-434d-9877-539e81d79d5a",
+      "volumeName": "Invictus (3ª Série): Batman e Super-Homem",
+      "volumeStartYear": 1967,
+      "volumeIssueCount": 79,
+      "publisherName": "Editora Brasil-América Limitada",
+      "localIssueCount": 14,
+      "coIssueCount": 14,
+      "minCharacterAppearances": 79,
+      "longestCoStreak": 2,
+      "firstCoIssueNumber": "1",
+      "lastCoIssueNumber": "78",
+      "firstCoDate": "1967-01-01",
+      "lastCoDate": "1967-01-01",
       "topWriter": null,
       "topArtist": null,
       "acclaim": null
@@ -20579,21 +21191,21 @@
       "acclaim": null
     },
     {
-      "volumeId": "cc251543-0709-4dfb-8f9c-0fa2ecd8f738",
-      "volumeName": "Trinity",
-      "volumeStartYear": 2008,
-      "volumeIssueCount": 52,
-      "publisherName": "DC Comics",
+      "volumeId": "3b4642e7-009f-463d-b5a1-613241590073",
+      "volumeName": "Superman et Batman et Robin",
+      "volumeStartYear": null,
+      "volumeIssueCount": 74,
+      "publisherName": "Sage - Sagédition",
       "localIssueCount": 12,
       "coIssueCount": 12,
-      "minCharacterAppearances": 51,
-      "longestCoStreak": 2,
-      "firstCoIssueNumber": "1",
-      "lastCoIssueNumber": "42",
-      "firstCoDate": "2008-06-04",
-      "lastCoDate": "2009-03-18",
-      "topWriter": null,
-      "topArtist": null,
+      "minCharacterAppearances": 74,
+      "longestCoStreak": 1,
+      "firstCoIssueNumber": "3",
+      "lastCoIssueNumber": "73",
+      "firstCoDate": "1972-01-01",
+      "lastCoDate": "1972-04-05",
+      "topWriter": "Dennis O'Neil",
+      "topArtist": "Ralph Heimdahl",
       "acclaim": null
     },
     {
@@ -20610,6 +21222,24 @@
       "lastCoIssueNumber": "12",
       "firstCoDate": "1985-11-30",
       "lastCoDate": "1986-10-31",
+      "topWriter": null,
+      "topArtist": null,
+      "acclaim": null
+    },
+    {
+      "volumeId": "612d481c-c7ec-497e-8ba8-4ee4058f874a",
+      "volumeName": "Albi del Falco",
+      "volumeStartYear": 1954,
+      "volumeIssueCount": 523,
+      "publisherName": "Arnoldo Mondadori Editore",
+      "localIssueCount": 10,
+      "coIssueCount": 10,
+      "minCharacterAppearances": 68,
+      "longestCoStreak": 1,
+      "firstCoIssueNumber": "154",
+      "lastCoIssueNumber": "522",
+      "firstCoDate": "1959-03-29",
+      "lastCoDate": "1966-04-17",
       "topWriter": null,
       "topArtist": null,
       "acclaim": null
@@ -20655,6 +21285,24 @@
         "topAward": null,
         "monthlyPageviews": 4088
       }
+    },
+    {
+      "volumeId": "e563c9ca-30a5-494d-843e-25d9fd8d5e3b",
+      "volumeName": "Superman Taschenbuch",
+      "volumeStartYear": 1976,
+      "volumeIssueCount": 80,
+      "publisherName": "Egmont Ehapa Verlag",
+      "localIssueCount": 9,
+      "coIssueCount": 9,
+      "minCharacterAppearances": 50,
+      "longestCoStreak": 1,
+      "firstCoIssueNumber": "1",
+      "lastCoIssueNumber": "79",
+      "firstCoDate": "1976-01-31",
+      "lastCoDate": "1987-12-31",
+      "topWriter": null,
+      "topArtist": null,
+      "acclaim": null
     },
     {
       "volumeId": "99142b9d-8307-405c-a5e5-63496f37e43a",
@@ -20714,6 +21362,24 @@
       "lastCoDate": "2004-08-01",
       "topWriter": null,
       "topArtist": null,
+      "acclaim": null
+    },
+    {
+      "volumeId": "924896a6-1aa7-4c29-89c4-84d91d6e9af0",
+      "volumeName": "Justice League",
+      "volumeStartYear": 2016,
+      "volumeIssueCount": 43,
+      "publisherName": "DC Comics",
+      "localIssueCount": 9,
+      "coIssueCount": 9,
+      "minCharacterAppearances": 41,
+      "longestCoStreak": 3,
+      "firstCoIssueNumber": "11",
+      "lastCoIssueNumber": "38",
+      "firstCoDate": "2017-02-28",
+      "lastCoDate": "2018-04-30",
+      "topWriter": "Bryan Hitch",
+      "topArtist": "Fernando Pasarin",
       "acclaim": null
     },
     {
@@ -21833,24 +22499,6 @@
       "acclaim": null
     },
     {
-      "volumeId": "f62b9294-4917-456f-928d-505d8c7a4ca3",
-      "volumeName": "Convergence",
-      "volumeStartYear": 2015,
-      "volumeIssueCount": null,
-      "publisherName": "DC Comics",
-      "localIssueCount": 1,
-      "coIssueCount": 1,
-      "minCharacterAppearances": null,
-      "longestCoStreak": 1,
-      "firstCoIssueNumber": "1",
-      "lastCoIssueNumber": "1",
-      "firstCoDate": "2015-10-31",
-      "lastCoDate": "2015-10-31",
-      "topWriter": null,
-      "topArtist": null,
-      "acclaim": null
-    },
-    {
       "volumeId": "1fd75388-6fb6-49e9-abec-40188583bab3",
       "volumeName": "Convergence",
       "volumeStartYear": 2015,
@@ -21864,6 +22512,24 @@
       "lastCoIssueNumber": "1",
       "firstCoDate": "2015-06-30",
       "lastCoDate": "2015-06-30",
+      "topWriter": null,
+      "topArtist": null,
+      "acclaim": null
+    },
+    {
+      "volumeId": "f62b9294-4917-456f-928d-505d8c7a4ca3",
+      "volumeName": "Convergence",
+      "volumeStartYear": 2015,
+      "volumeIssueCount": null,
+      "publisherName": "DC Comics",
+      "localIssueCount": 1,
+      "coIssueCount": 1,
+      "minCharacterAppearances": null,
+      "longestCoStreak": 1,
+      "firstCoIssueNumber": "1",
+      "lastCoIssueNumber": "1",
+      "firstCoDate": "2015-10-31",
+      "lastCoDate": "2015-10-31",
       "topWriter": null,
       "topArtist": null,
       "acclaim": null

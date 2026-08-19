@@ -29,6 +29,7 @@ function issue(number: string, options: Partial<CandidateIssue> = {}): Candidate
     requestedCharacterCount: 2,
     storyArcs: [],
     creators: [],
+    acclaim: null,
     ...options,
   };
 }
@@ -50,6 +51,7 @@ function affinity(options: Partial<VolumeAffinity> = {}): VolumeAffinity {
     lastCoDate: "2020-12-01",
     topWriter: "Test Writer",
     topArtist: "Test Artist",
+    acclaim: null,
     ...options,
   };
 }
@@ -162,7 +164,9 @@ describe("reading-path ranking", () => {
 
     expect(ranked.features.together.coreCastScore).toBe(1);
     expect(ranked.eligibleAsStart).toBe(true);
-    expect(ranked.score).toBeGreaterThan(0.8);
+    // A book with no acclaim data cannot reach 1.0: acclaim contributes its
+    // unknown baseline, capping an otherwise perfect candidate around 0.88.
+    expect(ranked.score).toBeGreaterThan(0.75);
     expect(ranked.reasons).toContain("Your characters share 6 of this book's 12 issues.");
     expect(ranked.reasons).toContain("They are core cast here, not guest stars.");
     expect(ranked.reasons).toContain("Written by Marv Wolfman with art by George Pérez.");

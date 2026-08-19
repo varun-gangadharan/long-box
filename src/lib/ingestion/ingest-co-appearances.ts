@@ -292,11 +292,14 @@ async function enrichIssueDetail(
   );
 
   // Re-upsert so detail-only fields land on rows the list endpoint created.
-  const detailedIssueIds = await upsertIssues(database, detailed, volumeIds);
+  // Prioritised issues come from character-titled volumes, which are not in the
+  // co-appearance volume map, so filter to what this map can actually place.
+  const placeable = detailed.filter((issue) => volumeIds.has(issue.volume.comicvineId));
+  const detailedIssueIds = await upsertIssues(database, placeable, volumeIds);
   const merged = new Map([...issueIds, ...detailedIssueIds]);
 
-  await upsertRelationships(database, detailed, merged, characterIds, storyArcIds);
-  await upsertCreatorLinks(database, detailed, merged, creatorIds);
+  await upsertRelationships(database, placeable, merged, characterIds, storyArcIds);
+  await upsertCreatorLinks(database, placeable, merged, creatorIds);
 
   return detailed.length;
 }
